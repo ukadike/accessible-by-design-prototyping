@@ -112,6 +112,7 @@ POUR does the same for systems:
 ### Why POUR Matters
 
 POUR helps move from:
+
 > something that works → something that can be understood and used
 
 Learn more:  
@@ -162,3 +163,130 @@ let interactiveObject = {
   accessibilitySummary:
     "Supports multiple input methods, provides clear instructions, and gives visual feedback."
 };
+```
+
+This makes it easier to understand:
+
+- what the system is  
+- what it does  
+- how to use it  
+
+Even if you are not writing code, this way of thinking applies to:
+
+- sketches  
+- diagrams  
+- prototypes  
+
+---
+
+## Working with Multiple Elements
+
+Most systems are not made of a single object, but many.
+
+- collections  
+- repeated elements  
+- variations  
+
+In code → arrays  
+In design → patterns or flows  
+
+---
+
+## Workshop Flow
+
+### 1. Make
+Create a simple prototype
+
+### 2. Clarify
+Improve:
+- instructions  
+- interaction  
+- feedback  
+
+### 3. Expand
+Make it usable by more people and systems
+
+---
+
+### Discussion
+
+Participants reflect on:
+
+- what their system does  
+- who it is for  
+- how it can be understood  
+
+---
+
+### Play (Sketching + Imagination)
+
+![Hand-drawn interface sketches showing early prototype ideas](assets/sketch-prototype.png)
+
+Participants explore ideas using:
+
+- pencil and paper  
+- diagrams or schematics  
+- imagined interactions  
+
+---
+
+## Example Interaction
+
+![Interactive circle that can be moved using keyboard or mouse input](assets/interaction-example.png)
+
+A simple system demonstrating:
+- multiple input methods  
+- visible feedback  
+- clear interaction  
+
+---
+
+## Making Things Easier to Understand and Use
+
+- What does this do?  
+- How does someone know how to use it?  
+- Does it respond clearly?  
+- Can it be used in more than one way?  
+- Could another system understand it?  
+
+Don’t make people guess.
+
+---
+
+## Reflection
+
+> This system allows a user to ______ by ______.
+
+---
+
+## Extend Your Prototype
+
+- clearer instructions  
+- alternative inputs  
+- multiple elements  
+- different contexts  
+
+---
+
+## Why This Matters
+
+When your intent is clear:
+
+- your work becomes easier to understand  
+- more people can use it  
+- it adapts across contexts  
+- it becomes easier for systems to interpret  
+
+Accessible design begins with clarity.
+
+---
+
+## Credits
+
+Adekemi (Kemi) Hanna Sijuwade-Ukadike
+
+---
+
+## License
+
+MIT
