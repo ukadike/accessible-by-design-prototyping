@@ -15,6 +15,7 @@
 - [Overview](#overview)
 - [Core Idea](#core-idea)
 - [Thinking in Objects](#thinking-in-objects)
+- [Example: Expressing Intent in Code](#example-expressing-intent-in-code)
 - [Working with Multiple Elements](#working-with-multiple-elements)
 - [Workshop Flow](#workshop-flow)
   - [Discussion](#discussion)
@@ -29,7 +30,7 @@
 
 ## What is Digital Accessibility?
 
-![Diverse group collaborating in an accessible creative technology workshop, using laptops and discussing interactive systems](assets/workshop-hero.png)
+![Diverse group collaborating in an accessible creative technology workshop](assets/workshop-hero.png)
 
 Digital accessibility is about designing systems so that more people—and more systems—can use and understand them.  
 It means considering different abilities, contexts, and ways of interacting from the very beginning.
@@ -43,8 +44,6 @@ It also includes how systems are interpreted by:
 - browsers and user agents  
 - search systems  
 - AI and machine learning tools  
-
-At its core, accessibility asks:
 
 > Can this be understood and used without unnecessary barriers?
 
@@ -63,15 +62,11 @@ If someone—or something—has to guess:
 
 then it becomes harder to use.
 
-In this workshop, accessibility means:
-
-> making your intent clear from the start
+> Accessibility = making intent clear from the start
 
 ---
 
 ## How Content Should Work
-
-In digital accessibility, a higher-level way to think about design is this:
 
 Content should be:
 - perceivable  
@@ -79,13 +74,13 @@ Content should be:
 - understandable  
 - robust  
 
-This means content should not depend on a single way of seeing, using, or interpreting it.
+This means it should not depend on a single way of seeing, using, or interpreting it.
 
 ---
 
 ## Understanding POUR
 
-![Diagram showing four accessibility principles: Perceivable, Operable, Understandable, Robust](assets/accessibility-principles.png)
+![Diagram showing Perceivable, Operable, Understandable, Robust](assets/accessibility-principles.png)
 
 POUR stands for:
 - Perceivable  
@@ -93,44 +88,34 @@ POUR stands for:
 - Understandable  
 - Robust  
 
-These principles help ensure that systems can be used and understood by a wide range of people and technologies.
-
 ---
 
 ### POUR and Storytelling
 
-A simple way to understand POUR is through storytelling.
+Think of this like storytelling:
 
-When telling a clear story, you answer:
 - Who  
 - What  
 - Where  
 - When  
 - Why / How  
 
-POUR works in a similar way for systems:
+POUR does the same for systems:
 
-- **Perceivable** → What is happening?  
-- **Operable** → How does someone use it?  
-- **Understandable** → Does it make sense?  
-- **Robust** → Can it be interpreted across systems?  
-
-Just like a good story, a good system should not require guessing.
+- Perceivable → what is happening  
+- Operable → how to use it  
+- Understandable → does it make sense  
+- Robust → can it work across systems  
 
 ---
 
 ### Why POUR Matters
 
-POUR helps you move from something that *works*  
-to something that can be:
+POUR helps move from:
+> something that works → something that can be understood and used
 
-- experienced  
-- used  
-- understood  
-- interpreted  
-
-Learn more:
-- https://www.w3.org/WAI/standards-guidelines/wcag/
+Learn more:  
+https://www.w3.org/WAI/standards-guidelines/wcag/
 
 ---
 
@@ -138,7 +123,7 @@ Learn more:
 
 This workshop is about prototyping with intention.
 
-You will create a simple prototype and improve it by making it clearer:
+You will create a simple prototype and make it clearer:
 
 - what it is  
 - what it does  
@@ -148,15 +133,13 @@ You will create a simple prototype and improve it by making it clearer:
 
 ## Core Idea
 
-A prototype becomes more useful as its intent becomes clearer.
-
-Make → clarify → expand.
+Make → clarify → expand
 
 ---
 
 ## Thinking in Objects
 
-Think of what you are building as an object with a purpose.
+Think of what you are building as an object:
 
 - What is it?  
 - What does it do?  
@@ -164,114 +147,16 @@ Think of what you are building as an object with a purpose.
 
 ---
 
-## Working with Multiple Elements
+## Example: Expressing Intent in Code
 
-Most systems are not made of a single object, but many.
-
-- collections  
-- repeated elements  
-- variations  
-
-In code, this is often an array.  
-In design, it can be patterns or flows.
-
----
-
-## Workshop Flow
-
-This workshop includes three phases:
-
-### 1. Make
-Create a simple prototype.
-
-### 2. Clarify
-Improve it by making intent clearer:
-- instructions  
-- interaction  
-- feedback  
-
-### 3. Expand
-Make it usable by more people and systems.
-
----
-
-### Discussion
-
-Participants will reflect on:
-
-- what their system does  
-- who it is for  
-- how it can be understood  
-
----
-
-### Play (Sketching + Imagination)
-
-![Hand-drawn interface sketches on paper showing early prototype ideas, interaction flows, and layout concepts](assets/sketch-prototype.png)
-
-Participants may explore ideas using:
-
-- pencil and paper  
-- diagrams or schematics  
-- imagined interactions  
-
----
-
-## Example Interaction
-
-![Diagram of an interactive circle that can be moved using arrow keys or click-and-drag, with directional guides showing movement](assets/interaction-example.png)
-
-A simple interactive system demonstrating multiple input methods, visible feedback, and clear instructions.
-
----
-
-## Making Things Easier to Understand and Use
-
-- What does this do?  
-- How does someone know how to use it?  
-- Does it respond clearly?  
-- Can it be used in more than one way?  
-- Could another system understand it?  
-
-Don’t make people guess.
-
----
-
-## Reflection
-
-> This system allows a user to ______ by ______.
-
----
-
-## Extend Your Prototype
-
-- clearer instructions  
-- alternative inputs  
-- multiple elements  
-- different contexts  
-
----
-
-## Why This Matters
-
-When your intent is clear:
-
-- your work becomes easier to understand  
-- more people can use it  
-- it adapts across contexts  
-- it becomes easier for systems to interpret  
-
-Accessible design begins with clarity.
-
----
-
-## Credits
-
-Workshop by  
-**Adekemi (Kemi) Hanna Sijuwade-Ukadike**
-
----
-
-## License
-
-MIT License (or update as needed)
+```javascript
+let interactiveObject = {
+  name: "movable circle",
+  role: "interactive visual element",
+  description:
+    "A circle that can be moved using keyboard or pointer input.",
+  instructions:
+    "Use arrow keys or click and drag to move the circle.",
+  accessibilitySummary:
+    "Supports multiple input methods, provides clear instructions, and gives visual feedback."
+};
