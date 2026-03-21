@@ -5,9 +5,32 @@
 
 ---
 
+## 🧭 What is Digital Accessibility?
+
+Digital accessibility is about designing systems so that more people—and more systems—can use and understand them.  
+It means considering different abilities, contexts, and ways of interacting from the very beginning.
+
+This includes people:
+- with different physical, sensory, or cognitive abilities  
+- using different devices or environments  
+- using assistive technologies such as screen readers or keyboard navigation  
+
+It also includes how systems are interpreted by:
+- browsers and user agents  
+- search systems  
+- AI and machine learning tools  
+
+At its core, accessibility asks:
+
+> Can this be understood and used without unnecessary barriers?
+
+---
+
 ## 🧭 Accessibility Primer
 
-Accessibility begins with clarity.
+Accessibility is not something added at the end.
+
+It begins with clarity.
 
 If someone—or something—has to guess:
 - what your system does  
@@ -24,14 +47,14 @@ In this workshop, accessibility means:
 
 ## 🧠 A Simple Check
 
-As you build, ask:
+As you build, use these simple checks:
 
 - Can someone **sense** what’s happening?  
 - Can someone **use** it?  
 - Does it **make sense**?  
 - Could another system understand it?  
 
-These come from accessibility thinking (POUR), used here as simple design checks.
+These are adapted from accessibility principles (POUR) and used here as a design lens.
 
 Learn more:
 - https://www.w3.org/WAI/standards-guidelines/wcag/
@@ -62,9 +85,11 @@ Make → clarify → expand.
 
 Think of what you are building as an object with a purpose.
 
-- What is it?  
-- What does it do?  
-- How do you use it?  
+Every object has:
+
+- what it is  
+- what it does  
+- how someone interacts with it  
 
 When these are clear, your prototype becomes easier to understand and use.
 
@@ -152,7 +177,7 @@ Accessible design begins with clarity.
 ## 🤝 Credits
 
 Workshop by  
-Adekemi (Kemi) Hanna Sijuwade-Ukadike  
+**Adekemi (Kemi) Hanna Sijuwade-Ukadike**  
 Creative technologist, artist, and systems builder  
 
 ---
