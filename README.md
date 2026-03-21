@@ -4,7 +4,31 @@
 
 ---
 
+## Table of Contents
+
+- [What is Digital Accessibility?](#what-is-digital-accessibility)
+- [Accessibility Primer](#accessibility-primer)
+- [How Content Should Work](#how-content-should-work)
+- [Understanding POUR](#understanding-pour)
+  - [POUR and Storytelling](#pour-and-storytelling)
+  - [Why POUR Matters](#why-pour-matters)
+  - [What POUR Impacts](#what-pour-impacts)
+- [Overview](#overview)
+- [Core Idea](#core-idea)
+- [Thinking in Objects](#thinking-in-objects)
+- [Working with Multiple Elements](#working-with-multiple-elements)
+- [Workshop Flow](#workshop-flow)
+- [Example Interaction](#example-interaction)
+- [Making Things Easier to Understand and Use](#making-things-easier-to-understand-and-use)
+- [Reflection](#reflection)
+- [Extend Your Prototype](#extend-your-prototype)
+- [Why This Matters](#why-this-matters)
+
+---
+
 ## What is Digital Accessibility?
+
+![Diverse group collaborating with creative coding tools in a workshop setting](assets/workshop-hero.png)
 
 Digital accessibility is about designing systems so that more people—and more systems—can use and understand them.  
 It means considering different abilities, contexts, and ways of interacting from the very beginning.
@@ -56,23 +80,11 @@ Content should be:
 
 This means content should not depend on a single way of seeing, using, or interpreting it.
 
-Instead, it should:
-- communicate clearly  
-- respond predictably  
-- support different ways of interaction  
-- be structured so it can be interpreted by different systems  
-
-This applies not only to text, but also to:
-- visuals  
-- interactions  
-- interfaces  
-- prototypes  
-
-> What you create should be understandable across different users and systems.
-
 ---
 
 ## Understanding POUR
+
+![Diagram showing four accessibility principles: Perceivable, Operable, Understandable, Robust](assets/accessibility-principles.png)
 
 POUR stands for:
 - Perceivable  
@@ -95,16 +107,12 @@ When telling a clear story, you answer:
 - When  
 - Why / How  
 
-These questions help people understand what is happening.
-
 POUR works in a similar way for systems:
 
-- **Perceivable** → What is happening? Can it be sensed?  
+- **Perceivable** → What is happening?  
 - **Operable** → How does someone use it?  
-- **Understandable** → Why does it behave this way? Does it make sense?  
-- **Robust** → Where and by whom can it be interpreted across systems?  
-
-Just like a good story, a good system should not require guessing.
+- **Understandable** → Does it make sense?  
+- **Robust** → Can it be interpreted across systems?  
 
 ---
 
@@ -118,14 +126,17 @@ to something that can be:
 - understood  
 - interpreted  
 
-This matters for:
-- people  
-- assistive technologies  
-- browsers and user agents  
-- AI and machine learning systems  
-
 Learn more:
 - https://www.w3.org/WAI/standards-guidelines/wcag/
+
+---
+
+### What POUR Impacts
+
+- **Perceivable** → presentation  
+- **Operable** → interaction  
+- **Understandable** → meaning  
+- **Robust** → structure  
 
 ---
 
@@ -153,98 +164,95 @@ Make → clarify → expand.
 
 Think of what you are building as an object with a purpose.
 
-Every object has:
-- what it is  
-- what it does  
-- how someone interacts with it  
-
-When these are clear, your prototype becomes easier to understand and use.
+- What is it?  
+- What does it do?  
+- How do you use it?  
 
 ---
 
 ## Working with Multiple Elements
 
-Most systems are not made of a single object, but many.
+Systems are often made of multiple objects.
 
-You can think of these as a collection:
-- multiple elements  
-- repeated patterns  
-- variations of the same object  
+- collections  
+- repeated elements  
+- variations  
 
-In code, this is often represented as an array.  
-In design, it may appear as:
-- repeated shapes  
-- multiple states  
-- sequences or flows  
-
-Understanding how objects relate to each other helps you build more complete systems.
+In code, this is often an array.  
+In design, it can be patterns or flows.
 
 ---
 
-## What We Will Do
+## Workshop Flow
 
-During the workshop, you will:
+This workshop includes three phases:
 
-- create a small interactive prototype  
-- define what your object does  
-- make interaction visible and understandable  
-- expand your system to support multiple elements  
-- refine your work so others can use it more easily  
+### 1. Make
+Create a simple prototype.
 
-You can use any medium:
-- code  
-- web tools  
-- sketches  
+### 2. Clarify
+Improve it by making intent clearer:
+- instructions  
+- interaction  
+- feedback  
+
+### 3. Expand
+Make it usable by more people and systems.
+
+---
+
+### Discussion
+
+Participants will share ideas and reflect on:
+
+- what their system does  
+- who it is for  
+- how it can be understood  
+
+---
+
+### Play (Sketching + Imagination)
+
+Participants may also explore ideas using:
+
+- pencil and paper  
 - diagrams or schematics  
+- imagined interactions  
 
-The focus is on clarity, not complexity.
+This allows prototyping without relying on code, while still applying the same principles.
 
 ---
 
 ## Example Interaction
 
-![Interactive example showing a visual responding to user input, changing size and color with movement, with simple on-screen guidance](assets/interaction-example.png)
+![Interactive example showing a circle responding to input with movement and multiple interaction methods](assets/interaction-example.png)
 
-An example prototype where a visual element responds to input, demonstrating clear feedback and simple instructions.
+An example prototype where a visual element responds to input, demonstrating clear feedback, instructions, and multiple ways of interaction.
 
 ---
 
 ## Making Things Easier to Understand and Use
 
-As you build, ask:
-
 - What does this do?  
 - How does someone know how to use it?  
 - Does it respond clearly?  
 - Can it be used in more than one way?  
-- Could someone—or something else—figure it out?  
-
-Don’t make people guess.
+- Could another system understand it?  
 
 ---
 
 ## Reflection
 
-Describe your prototype in one sentence:
-
 > This system allows a user to ______ by ______.
-
-Then consider:
-
-- Would someone understand this without explanation?  
-- Could it be used differently?  
-- Could another system interpret what it does?  
 
 ---
 
 ## Extend Your Prototype
 
-You can improve your prototype by:
-
-- adding clearer instructions  
-- supporting different ways of interacting  
-- working with multiple elements or states  
-- designing for a specific person or context  
+- clearer instructions  
+- alternative inputs  
+- multiple elements  
+- different contexts  
 
 ---
 
@@ -255,20 +263,6 @@ When your intent is clear:
 - your work becomes easier to understand  
 - more people can use it  
 - it adapts across contexts  
-- it becomes easier for systems and tools to interpret  
+- it becomes easier for systems to interpret  
 
 Accessible design begins with clarity.
-
----
-
-## Credits
-
-Workshop by  
-**Adekemi (Kemi) Hanna Sijuwade-Ukadike**  
-Creative technologist, artist, and systems builder  
-
----
-
-## License
-
-MIT License (or update as needed)
