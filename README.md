@@ -4,6 +4,29 @@
 
 ---
 
+## Table of Contents
+
+- [What is Digital Accessibility?](#what-is-digital-accessibility)
+- [Accessibility Primer](#accessibility-primer)
+- [How Content Should Work](#how-content-should-work)
+- [Understanding POUR](#understanding-pour)
+  - [POUR and Storytelling](#pour-and-storytelling)
+  - [Why POUR Matters](#why-pour-matters)
+- [Overview](#overview)
+- [Core Idea](#core-idea)
+- [Thinking in Objects](#thinking-in-objects)
+- [Working with Multiple Elements](#working-with-multiple-elements)
+- [Workshop Flow](#workshop-flow)
+  - [Discussion](#discussion)
+  - [Play (Sketching + Imagination)](#play-sketching--imagination)
+- [Example Interaction](#example-interaction)
+- [Making Things Easier to Understand and Use](#making-things-easier-to-understand-and-use)
+- [Reflection](#reflection)
+- [Extend Your Prototype](#extend-your-prototype)
+- [Why This Matters](#why-this-matters)
+
+---
+
 ## What is Digital Accessibility?
 
 ![Diverse group collaborating in an accessible creative technology workshop, using laptops and discussing interactive systems](assets/workshop-hero.png)
@@ -139,8 +162,6 @@ Think of what you are building as an object with a purpose.
 - What does it do?  
 - How do you use it?  
 
-When these are clear, your prototype becomes easier to understand and use.
-
 ---
 
 ## Working with Multiple Elements
@@ -193,8 +214,6 @@ Participants may explore ideas using:
 - pencil and paper  
 - diagrams or schematics  
 - imagined interactions  
-
-This allows prototyping without relying on code, while still applying the same principles.
 
 ---
 
@@ -249,8 +268,7 @@ Accessible design begins with clarity.
 ## Credits
 
 Workshop by  
-**Adekemi (Kemi) Hanna Sijuwade-Ukadike**  
-Creative technologist, artist, and systems builder  
+**Adekemi (Kemi) Hanna Sijuwade-Ukadike**
 
 ---
 
