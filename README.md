@@ -123,7 +123,7 @@ https://www.w3.org/WAI/standards-guidelines/wcag/
 
 This workshop is about prototyping with intention.
 
-You will create a simple prototype and make it clearer:
+You will create a simple prototype and improve it by making it clearer:
 
 - what it is  
 - what it does  
@@ -148,6 +148,8 @@ Think of what you are building as an object:
 ---
 
 ## Example: Expressing Intent in Code
+
+One way to make intent clearer is through structure.
 
 ```javascript
 let interactiveObject = {
