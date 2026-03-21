@@ -4,31 +4,9 @@
 
 ---
 
-## Table of Contents
-
-- [What is Digital Accessibility?](#what-is-digital-accessibility)
-- [Accessibility Primer](#accessibility-primer)
-- [How Content Should Work](#how-content-should-work)
-- [Understanding POUR](#understanding-pour)
-  - [POUR and Storytelling](#pour-and-storytelling)
-  - [Why POUR Matters](#why-pour-matters)
-  - [What POUR Impacts](#what-pour-impacts)
-- [Overview](#overview)
-- [Core Idea](#core-idea)
-- [Thinking in Objects](#thinking-in-objects)
-- [Working with Multiple Elements](#working-with-multiple-elements)
-- [Workshop Flow](#workshop-flow)
-- [Example Interaction](#example-interaction)
-- [Making Things Easier to Understand and Use](#making-things-easier-to-understand-and-use)
-- [Reflection](#reflection)
-- [Extend Your Prototype](#extend-your-prototype)
-- [Why This Matters](#why-this-matters)
-
----
-
 ## What is Digital Accessibility?
 
-![Diverse group collaborating with creative coding tools in a workshop setting](assets/workshop-hero.png)
+![Diverse group collaborating in an accessible creative technology workshop, using laptops and discussing interactive systems](assets/workshop-hero.png)
 
 Digital accessibility is about designing systems so that more people—and more systems—can use and understand them.  
 It means considering different abilities, contexts, and ways of interacting from the very beginning.
@@ -114,6 +92,8 @@ POUR works in a similar way for systems:
 - **Understandable** → Does it make sense?  
 - **Robust** → Can it be interpreted across systems?  
 
+Just like a good story, a good system should not require guessing.
+
 ---
 
 ### Why POUR Matters
@@ -128,15 +108,6 @@ to something that can be:
 
 Learn more:
 - https://www.w3.org/WAI/standards-guidelines/wcag/
-
----
-
-### What POUR Impacts
-
-- **Perceivable** → presentation  
-- **Operable** → interaction  
-- **Understandable** → meaning  
-- **Robust** → structure  
 
 ---
 
@@ -168,11 +139,13 @@ Think of what you are building as an object with a purpose.
 - What does it do?  
 - How do you use it?  
 
+When these are clear, your prototype becomes easier to understand and use.
+
 ---
 
 ## Working with Multiple Elements
 
-Systems are often made of multiple objects.
+Most systems are not made of a single object, but many.
 
 - collections  
 - repeated elements  
@@ -203,7 +176,7 @@ Make it usable by more people and systems.
 
 ### Discussion
 
-Participants will share ideas and reflect on:
+Participants will reflect on:
 
 - what their system does  
 - who it is for  
@@ -213,7 +186,9 @@ Participants will share ideas and reflect on:
 
 ### Play (Sketching + Imagination)
 
-Participants may also explore ideas using:
+![Hand-drawn interface sketches on paper showing early prototype ideas, interaction flows, and layout concepts](assets/sketch-prototype.png)
+
+Participants may explore ideas using:
 
 - pencil and paper  
 - diagrams or schematics  
@@ -225,9 +200,9 @@ This allows prototyping without relying on code, while still applying the same p
 
 ## Example Interaction
 
-![Interactive example showing a circle responding to input with movement and multiple interaction methods](assets/interaction-example.png)
+![Diagram of an interactive circle that can be moved using arrow keys or click-and-drag, with directional guides showing movement](assets/interaction-example.png)
 
-An example prototype where a visual element responds to input, demonstrating clear feedback, instructions, and multiple ways of interaction.
+A simple interactive system demonstrating multiple input methods, visible feedback, and clear instructions.
 
 ---
 
@@ -238,6 +213,8 @@ An example prototype where a visual element responds to input, demonstrating cle
 - Does it respond clearly?  
 - Can it be used in more than one way?  
 - Could another system understand it?  
+
+Don’t make people guess.
 
 ---
 
@@ -266,3 +243,17 @@ When your intent is clear:
 - it becomes easier for systems to interpret  
 
 Accessible design begins with clarity.
+
+---
+
+## Credits
+
+Workshop by  
+**Adekemi (Kemi) Hanna Sijuwade-Ukadike**  
+Creative technologist, artist, and systems builder  
+
+---
+
+## License
+
+MIT License (or update as needed)
