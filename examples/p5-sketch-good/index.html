@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>p5 Sketch — Good</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <p id="instructions">
+        Use the left and right arrow keys to move the circle. Press "P" to pause or resume the animation.
+      </p>
+      <script>
+        let x = 200;
+        let y = 200;
+        let isPaused = false;
+
+        function setup() {
+          createCanvas(400, 400);
+          describe('A circle that moves left and right in response to arrow key presses, on a light gray background.');
+        }
+
+        function draw() {
+          if (isPaused) return;
+          background(240);
+          circle(x, y, 40);
+        }
+
+        function keyPressed() {
+          if (keyCode === LEFT_ARROW) x -= 10;
+          if (keyCode === RIGHT_ARROW) x += 10;
+          if (key === 'p' || key === 'P') isPaused = !isPaused;
+        }
+      </script>
+    </main>
+  </body>
+</html>

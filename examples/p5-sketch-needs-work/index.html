@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>p5 Sketch — Needs Work</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <script>
+        let x = 200;
+        let y = 200;
+
+        function setup() {
+          createCanvas(400, 400);
+        }
+
+        function draw() {
+          background(240);
+          circle(x, y, 40);
+        }
+
+        function mouseDragged() {
+          x = mouseX;
+          y = mouseY;
+        }
+      </script>
+    </main>
+  </body>
+</html>

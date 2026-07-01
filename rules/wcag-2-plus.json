@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "description": "WCAG 2+ extension layer: automated-or-manual rules for creative, civic, educational, and multimodal interfaces that go beyond conventional HTML audits.",
+  "rules": [
+    {
+      "id": "p5-canvas-description",
+      "title": "Canvas needs an accessible description",
+      "category": "p5-canvas",
+      "severity": "serious",
+      "wcag": ["1.1.1", "1.3.1"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "Canvas-based sketches need text descriptions so nonvisual users can understand the sketch.",
+      "nextSteps": [
+        "Add p5 describe() for the overall canvas.",
+        "Use describeElement() for important objects or interactions.",
+        "Use textOutput() or gridOutput() when shape descriptions are useful."
+      ],
+      "appliesTo": ["p5", "canvas"]
+    },
+    {
+      "id": "p5-keyboard-alternative",
+      "title": "Mouse/touch-only interaction needs a keyboard alternative",
+      "category": "p5-canvas",
+      "severity": "serious",
+      "wcag": ["2.1.1"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "Interactions driven only by mousePressed, mouseDragged, mouseMoved, or touchStarted are unusable without a pointing device.",
+      "nextSteps": [
+        "Add keyPressed() handling or visible button controls that trigger the same behavior.",
+        "Ensure focus order and focus indication are clear for any added controls."
+      ],
+      "appliesTo": ["p5", "canvas"]
+    },
+    {
+      "id": "p5-animation-pause-control",
+      "title": "Continuous animation needs a pause or reduce-motion control",
+      "category": "p5-canvas",
+      "severity": "moderate",
+      "wcag": ["2.2.2"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "Sketches with a running draw() loop that animates continuously can be disorienting or triggering without a way to pause or reduce motion.",
+      "nextSteps": [
+        "Add a visible pause/play control.",
+        "Respect prefers-reduced-motion where practical.",
+        "Avoid motion that is not essential to the sketch's meaning."
+      ],
+      "appliesTo": ["p5", "canvas"]
+    }
+  ]
+}

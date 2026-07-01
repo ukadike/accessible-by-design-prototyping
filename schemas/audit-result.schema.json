@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://accessibility-audit-lab/schemas/audit-result.schema.json",
+  "title": "AuditResult",
+  "type": "object",
+  "required": ["projectName", "target", "auditedAt", "summary", "issues", "humanReviewPrompts"],
+  "additionalProperties": false,
+  "properties": {
+    "projectName": { "type": "string" },
+    "target": { "type": "string" },
+    "auditedAt": { "type": "string", "format": "date-time" },
+    "summary": {
+      "type": "object",
+      "required": ["critical", "serious", "moderate", "minor", "manualReview"],
+      "additionalProperties": false,
+      "properties": {
+        "critical": { "type": "integer", "minimum": 0 },
+        "serious": { "type": "integer", "minimum": 0 },
+        "moderate": { "type": "integer", "minimum": 0 },
+        "minor": { "type": "integer", "minimum": 0 },
+        "manualReview": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "severity", "wcag", "principle", "explanation", "nextSteps", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "severity": { "enum": ["critical", "serious", "moderate", "minor", "manual"] },
+          "wcag": { "type": "array", "items": { "type": "string" } },
+          "principle": { "enum": ["Perceivable", "Operable", "Understandable", "Robust", "WCAG 2+"] },
+          "location": { "type": "string" },
+          "explanation": { "type": "string" },
+          "nextSteps": { "type": "array", "items": { "type": "string" } },
+          "source": { "enum": ["axe-core", "wcag-2-plus", "p5-auditor", "manual-review"] }
+        }
+      }
+    },
+    "humanReviewPrompts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "question", "wcag", "appliesTo"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "question": { "type": "string" },
+          "wcag": { "type": "array", "items": { "type": "string" } },
+          "appliesTo": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
