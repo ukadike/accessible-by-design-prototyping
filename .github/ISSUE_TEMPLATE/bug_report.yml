@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in the CLI, web UI, or a rule isn't working as expected
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, including any error output.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: Command run, target audited (URL or file), and any relevant sketch/HTML.
+      placeholder: |
+        npm run audit -- https://example.com
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `npm ls accessibility-audit-lab` or the commit SHA you're on.
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version (`node -v`), and how you're running it (CLI, web UI, CI).
+    validations:
+      required: false

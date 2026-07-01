@@ -4,6 +4,24 @@
   "description": "An open-source WCAG 2.2+ accessibility auditing toolkit for websites, creative coding projects, p5.js sketches, civic media, and experimental interfaces.",
   "type": "module",
   "license": "MIT",
+  "author": "Adekemi (Kemi) Hanna Sijuwade-Ukadike",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukadike/accessible-by-design-prototyping.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ukadike/accessible-by-design-prototyping/issues"
+  },
+  "homepage": "https://github.com/ukadike/accessible-by-design-prototyping#readme",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "axe-core",
+    "p5js",
+    "creative-coding",
+    "audit"
+  ],
   "bin": {
     "a11y-lab": "./dist/cli/index.js"
   },

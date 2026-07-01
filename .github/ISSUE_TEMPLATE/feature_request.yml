@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest a new rule, adapter, report format, or other capability
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What gap or problem does this address?
+      description: e.g. "There's no automated check for X" or "The report doesn't show Y."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would the rule, prompt, adapter, or feature look like? Link to a relevant WCAG success criterion if one applies.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - WCAG 2+ rule / human-review prompt
+        - p5.js / canvas auditor
+        - CLI
+        - Web UI
+        - Reporters (Markdown/JSON/console)
+        - Documentation
+        - Other
+    validations:
+      required: false

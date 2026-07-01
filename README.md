@@ -1,5 +1,10 @@
 # Accessibility Audit Lab
 
+[![test](https://github.com/ukadike/accessible-by-design-prototyping/actions/workflows/test.yml/badge.svg)](https://github.com/ukadike/accessible-by-design-prototyping/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Contributor%20Covenant-blue.svg)](CODE_OF_CONDUCT.md)
+
 Accessibility Audit Lab is an open-source WCAG 2.2+ auditing toolkit for websites, p5.js sketches, creative coding projects, civic media, and experimental interfaces.
 
 It combines automated accessibility checks, p5/canvas-specific review, plain-language remediation guidance, and structured reports that help teams understand what to fix next.
@@ -60,10 +65,18 @@ tests/        Vitest unit tests
 
 This tool is an accessibility aid, not a legal compliance certification.
 
+## Contributing
+
+Contributions are welcome — new WCAG 2+ rules and human-review prompts especially. See [CONTRIBUTING.md](CONTRIBUTING.md) for dev setup, the PR checklist, and how to add a rule. Please also read the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Security issues should be reported privately — see [SECURITY.md](SECURITY.md).
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
 ## Credits
 
 Adekemi (Kemi) Hanna Sijuwade-Ukadike
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).
