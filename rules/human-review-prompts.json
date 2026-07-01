@@ -89,5 +89,40 @@
     "question": "If the project serves multiple languages, are accessibility labels, alt text, and instructions translated and reviewed by fluent speakers?",
     "wcag": ["3.1.2"],
     "appliesTo": ["html", "p5"]
+  },
+  {
+    "id": "skip-link-review",
+    "title": "Review bypass/skip navigation",
+    "question": "Is there a way to skip repeated navigation blocks (a \"skip to content\" link, or landmark regions) so keyboard and screen reader users don't have to tab through the same menu on every page?",
+    "wcag": ["2.4.1"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "focus-order-review",
+    "title": "Review focus order",
+    "question": "Does tabbing through the page move focus in an order that matches the visual reading order and preserves meaning?",
+    "wcag": ["2.4.3"],
+    "appliesTo": ["html", "p5", "canvas"]
+  },
+  {
+    "id": "focus-visible-review",
+    "title": "Review focus visibility",
+    "question": "Is there always a clearly visible focus indicator on the element that currently has keyboard focus, and is it never fully hidden behind other content?",
+    "wcag": ["2.4.7", "2.4.11"],
+    "appliesTo": ["html", "p5", "canvas"]
+  },
+  {
+    "id": "consistent-navigation-review",
+    "title": "Review consistent navigation",
+    "question": "If navigation menus repeat across multiple pages, do they appear in the same relative order each time?",
+    "wcag": ["3.2.3"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "multiple-ways-review",
+    "title": "Review multiple ways to find content",
+    "question": "Is there more than one way to locate a page within the site (e.g. navigation menu plus search, or a sitemap), other than a single required sequence of steps?",
+    "wcag": ["2.4.5"],
+    "appliesTo": ["html"]
   }
 ]

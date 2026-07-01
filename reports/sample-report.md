@@ -4,7 +4,7 @@
 
 ./examples/simple-html-site/index.html
 
-Audited at: 2026-07-01T17:05:50.054Z
+Audited at: 2026-07-01T17:39:16.725Z
 
 ## Summary
 
@@ -12,7 +12,7 @@ Audited at: 2026-07-01T17:05:50.054Z
 - Serious: 2
 - Moderate: 5
 - Minor: 0
-- Manual review items: 12
+- Manual review items: 17
 
 ## Critical Issues
 
@@ -231,6 +231,41 @@ If the project serves multiple languages, are accessibility labels, alt text, an
 
 - **WCAG:** 3.1.2
 - **Applies to:** html, p5
+
+### Review bypass/skip navigation
+
+Is there a way to skip repeated navigation blocks (a "skip to content" link, or landmark regions) so keyboard and screen reader users don't have to tab through the same menu on every page?
+
+- **WCAG:** 2.4.1
+- **Applies to:** html
+
+### Review focus order
+
+Does tabbing through the page move focus in an order that matches the visual reading order and preserves meaning?
+
+- **WCAG:** 2.4.3
+- **Applies to:** html, p5, canvas
+
+### Review focus visibility
+
+Is there always a clearly visible focus indicator on the element that currently has keyboard focus, and is it never fully hidden behind other content?
+
+- **WCAG:** 2.4.7, 2.4.11
+- **Applies to:** html, p5, canvas
+
+### Review consistent navigation
+
+If navigation menus repeat across multiple pages, do they appear in the same relative order each time?
+
+- **WCAG:** 3.2.3
+- **Applies to:** html
+
+### Review multiple ways to find content
+
+Is there more than one way to locate a page within the site (e.g. navigation menu plus search, or a sitemap), other than a single required sequence of steps?
+
+- **WCAG:** 2.4.5
+- **Applies to:** html
 
 ## Recommended Next Steps
 
