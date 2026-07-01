@@ -93,4 +93,18 @@ describe('rules engine', () => {
     const rules = rulesForContext(['p5', 'canvas']);
     expect(rules.some((rule) => rule.id === 'p5-canvas-description')).toBe(true);
   });
+
+  it('includes navigation prompts (skip links, focus order, focus visibility, consistent navigation, multiple ways) for html audits', () => {
+    const prompts = promptsForContext(['html']);
+    const navigationPromptIds = [
+      'skip-link-review',
+      'focus-order-review',
+      'focus-visible-review',
+      'consistent-navigation-review',
+      'multiple-ways-review',
+    ];
+    for (const id of navigationPromptIds) {
+      expect(prompts.some((prompt) => prompt.id === id)).toBe(true);
+    }
+  });
 });

@@ -5,6 +5,10 @@ All notable changes to this project are documented here. This project follows
 
 ## [Unreleased]
 
+### Added
+
+- Navigation human-review prompts: bypass/skip navigation (2.4.1), focus order (2.4.3), focus visibility (2.4.7 / 2.4.11), consistent navigation (3.2.3), and multiple ways to find content (2.4.5).
+
 ## [0.1.0] - 2026-07-01
 
 ### Added

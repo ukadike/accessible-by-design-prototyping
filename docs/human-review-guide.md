@@ -26,6 +26,11 @@ For each prompt:
 - Consistent help placement
 - Accessible authentication
 - Multilingual accessibility notes
+- Bypass/skip navigation
+- Focus order
+- Focus visibility
+- Consistent navigation
+- Multiple ways to find content
 
 ## Best practice: include disabled testers
 
