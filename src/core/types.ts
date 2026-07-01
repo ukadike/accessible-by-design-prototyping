@@ -11,7 +11,7 @@ export interface AuditIssue {
   location?: string;
   explanation: string;
   nextSteps: string[];
-  source: 'axe-core' | 'wcag-2-plus' | 'p5-auditor' | 'manual-review';
+  source: 'axe-core' | 'wcag-2-plus' | 'p5-auditor' | 'pdf-auditor' | 'manual-review';
 }
 
 export interface HumanReviewPrompt {

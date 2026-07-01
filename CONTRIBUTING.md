@@ -25,6 +25,7 @@ Try the CLI against the bundled examples:
 ```bash
 npm run audit -- ./examples/simple-html-site/index.html
 npm run audit:p5 -- ./examples/p5-sketch-needs-work/index.html
+npm run audit:pdf -- ./examples/pdf-needs-work/document.pdf
 ```
 
 Run the web UI:

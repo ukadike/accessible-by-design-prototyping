@@ -24,12 +24,13 @@ WCAG 2.2 is the standards foundation for this project, with backward compatibili
 - Blind editor review
 - Human-review prompts
 - Navigation (skip links, focus order, focus visibility, consistent navigation, multiple ways to find content)
+- PDF document accessibility (tagging, reading order, PDF/UA-adjacent checks)
 
 ## Where the rules live
 
 - `rules/wcag-core.json` documents the WCAG principle mapping used to interpret axe-core results.
-- `rules/wcag-2-plus.json` holds automated-or-manual rules, currently focused on p5/canvas patterns (canvas description, keyboard alternative, animation pause control).
-- `rules/human-review-prompts.json` holds the full set of manual-review prompts (motion, flashing, captions, transcripts, keyboard-only use, cognitive load, plain-language navigation, canvas descriptions, sound alternatives, touch target size, consistent help, accessible authentication, multilingual labels, and navigation: skip links, focus order, focus visibility, consistent navigation, multiple ways to find content), each tagged with the contexts (`html`, `p5`, `canvas`, `animation`) it applies to.
+- `rules/wcag-2-plus.json` holds automated-or-manual rules: p5/canvas patterns (canvas description, keyboard alternative, animation pause control) and PDF structural checks (tagged structure, document language, document title).
+- `rules/human-review-prompts.json` holds the full set of manual-review prompts (motion, flashing, captions, transcripts, keyboard-only use, cognitive load, plain-language navigation, canvas descriptions, sound alternatives, touch target size, consistent help, accessible authentication, multilingual labels, navigation, and PDF-specific prompts: reading order, alt text, heading structure, form field labels, table headers, color contrast, link text, permissions), each tagged with the contexts (`html`, `p5`, `canvas`, `animation`, `pdf`) it applies to.
 
 ## Navigation rules
 
@@ -42,6 +43,10 @@ Navigation issues are split between what axe-core can already catch automaticall
 - **Multiple ways (2.4.5).** Is there more than one way to find a page (nav menu plus search or sitemap), other than a single required path?
 
 These ship as human-review prompts (`skip-link-review`, `focus-order-review`, `focus-visible-review`, `consistent-navigation-review`, `multiple-ways-review` in `rules/human-review-prompts.json`) rather than automated rules, because they require either multi-page context or a live keyboard walkthrough that a single-page automated scan can't reliably verify.
+
+## PDF rules
+
+PDF documents aren't a DOM, so `audit-pdf` doesn't use axe-core at all — it reads the PDF's own catalog and metadata (via `pdf-lib`) instead. Only three things are reliably checkable without a full tag-tree walk and rendering pass, so those are the automated rules; everything about whether the tags are *correct* is a human-review prompt. See [docs/pdf-accessibility-guide.md](pdf-accessibility-guide.md) for the full breakdown.
 
 ## Extending the framework
 

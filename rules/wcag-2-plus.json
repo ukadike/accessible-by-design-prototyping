@@ -48,6 +48,51 @@
         "Avoid motion that is not essential to the sketch's meaning."
       ],
       "appliesTo": ["p5", "canvas"]
+    },
+    {
+      "id": "pdf-tagged-structure",
+      "title": "PDF is not tagged for accessibility",
+      "category": "pdf",
+      "severity": "critical",
+      "wcag": ["1.3.1", "4.1.2"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "This PDF has no tag structure (no /MarkInfo Marked entry). Without tags, screen readers cannot reliably determine reading order, headings, lists, tables, or alternative text, and PDF/UA conformance is not possible.",
+      "nextSteps": [
+        "Re-export the PDF from an authoring tool (Word, InDesign, Acrobat) with tagging enabled, or run it through Acrobat's 'Autotag Document' as a starting point.",
+        "Review and correct the generated tag tree, since autotagging is not fully reliable on its own."
+      ],
+      "appliesTo": ["pdf"]
+    },
+    {
+      "id": "pdf-document-language",
+      "title": "PDF has no specified document language",
+      "category": "pdf",
+      "severity": "serious",
+      "wcag": ["3.1.1"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "The PDF catalog has no /Lang entry, so screen readers cannot determine which language to use for pronunciation and voice selection.",
+      "nextSteps": [
+        "Set the document language in the authoring tool's document properties, or in Acrobat under File > Properties > Advanced.",
+        "If sections of the document use a different language than the rest, tag those sections with their own language attribute."
+      ],
+      "appliesTo": ["pdf"]
+    },
+    {
+      "id": "pdf-document-title",
+      "title": "PDF has no document title",
+      "category": "pdf",
+      "severity": "moderate",
+      "wcag": ["2.4.2"],
+      "principle": "WCAG 2+",
+      "testType": "automated-or-manual",
+      "description": "The PDF's document properties have no Title set, so screen readers and browser tabs fall back to the file name, which is often unclear.",
+      "nextSteps": [
+        "Set a clear, descriptive document title in the authoring tool's document properties or Acrobat's Description tab.",
+        "Also set the viewer preference to display the document title instead of the file name, where supported."
+      ],
+      "appliesTo": ["pdf"]
     }
   ]
 }
