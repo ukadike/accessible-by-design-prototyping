@@ -1,0 +1,93 @@
+[
+  {
+    "id": "motion-review",
+    "title": "Review motion and animation comfort",
+    "question": "Can users pause, reduce, or avoid motion that is not essential?",
+    "wcag": ["2.2.2", "2.3.3"],
+    "appliesTo": ["animation", "p5", "canvas", "html"]
+  },
+  {
+    "id": "flashing-review",
+    "title": "Review flashing and rapid visual change risk",
+    "question": "Does any content flash more than three times per second, or could it be adjusted so it doesn't?",
+    "wcag": ["2.3.1"],
+    "appliesTo": ["animation", "p5", "canvas", "html"]
+  },
+  {
+    "id": "captions-review",
+    "title": "Review captions for audio/video content",
+    "question": "Do all pre-recorded audio and video elements have accurate captions?",
+    "wcag": ["1.2.2"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "transcripts-review",
+    "title": "Review transcripts for media content",
+    "question": "Is a full text transcript available for audio-only or video-only content?",
+    "wcag": ["1.2.1"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "keyboard-only-review",
+    "title": "Review keyboard-only usability",
+    "question": "Can every interactive element and creative interaction be reached and operated using only a keyboard?",
+    "wcag": ["2.1.1", "2.1.2"],
+    "appliesTo": ["html", "p5", "canvas"]
+  },
+  {
+    "id": "cognitive-load-review",
+    "title": "Review cognitive load",
+    "question": "Is the interface free of unnecessary complexity, jargon, or steps that could overwhelm someone under time pressure or with a cognitive disability?",
+    "wcag": ["3.1.5"],
+    "appliesTo": ["html", "p5"]
+  },
+  {
+    "id": "plain-language-navigation-review",
+    "title": "Review plain-language navigation",
+    "question": "Are navigation labels, menu items, and instructions written in plain, unambiguous language?",
+    "wcag": ["3.1.5", "2.4.6"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "canvas-description-review",
+    "title": "Review canvas/sketch descriptions",
+    "question": "Does the canvas or sketch have a text description that conveys what a sighted user would see?",
+    "wcag": ["1.1.1", "1.3.1"],
+    "appliesTo": ["p5", "canvas"]
+  },
+  {
+    "id": "sound-alternative-review",
+    "title": "Review sound-based interaction alternatives",
+    "question": "Is sound-based feedback or interaction also available through a visual or text alternative?",
+    "wcag": ["1.1.1", "1.2.1"],
+    "appliesTo": ["p5", "canvas", "html"]
+  },
+  {
+    "id": "touch-target-review",
+    "title": "Review touch target size",
+    "question": "Are interactive touch targets at least 24 by 24 CSS pixels, or given adequate spacing if smaller?",
+    "wcag": ["2.5.8"],
+    "appliesTo": ["html", "p5", "canvas"]
+  },
+  {
+    "id": "consistent-help-review",
+    "title": "Review consistent help placement",
+    "question": "If help mechanisms exist across multiple pages, do they appear in the same relative order each time?",
+    "wcag": ["3.2.6"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "accessible-authentication-review",
+    "title": "Review accessible authentication",
+    "question": "Does authentication avoid relying solely on cognitive function tests such as memorizing passwords or solving puzzles, without an alternative?",
+    "wcag": ["3.3.8"],
+    "appliesTo": ["html"]
+  },
+  {
+    "id": "multilingual-labels-review",
+    "title": "Review multilingual accessibility notes",
+    "question": "If the project serves multiple languages, are accessibility labels, alt text, and instructions translated and reviewed by fluent speakers?",
+    "wcag": ["3.1.2"],
+    "appliesTo": ["html", "p5"]
+  }
+]

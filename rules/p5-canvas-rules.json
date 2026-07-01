@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "description": "Detection patterns used by the p5 sketch auditor to scan page source/DOM for accessibility-relevant p5.js API usage.",
+  "descriptionFunctions": ["describe(", "describeElement(", "textOutput(", "gridOutput("],
+  "mouseOnlyFunctions": ["mousePressed", "mouseDragged", "mouseMoved", "touchStarted"],
+  "keyboardFunctions": ["keyPressed", "keyReleased", "keyTyped"],
+  "animationIndicators": ["function draw(", "requestAnimationFrame"]
+}

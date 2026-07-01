@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://accessibility-audit-lab/schemas/accessibility-rule.schema.json",
+  "title": "AccessibilityRule",
+  "type": "object",
+  "required": ["id", "title", "category", "severity", "wcag", "principle", "testType", "description", "nextSteps"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "category": { "type": "string" },
+    "severity": { "enum": ["critical", "serious", "moderate", "minor", "manual"] },
+    "wcag": { "type": "array", "items": { "type": "string" } },
+    "principle": { "enum": ["Perceivable", "Operable", "Understandable", "Robust", "WCAG 2+"] },
+    "testType": { "enum": ["automated", "manual", "automated-or-manual"] },
+    "description": { "type": "string" },
+    "nextSteps": { "type": "array", "items": { "type": "string" } },
+    "appliesTo": { "type": "array", "items": { "type": "string" } }
+  }
+}

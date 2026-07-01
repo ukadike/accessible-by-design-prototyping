@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "description": "Core WCAG 2.0/2.1/2.2 automated checks, delegated to axe-core at runtime. This file documents the WCAG principle mapping used to interpret axe-core results.",
+  "principles": [
+    { "id": "1", "name": "Perceivable" },
+    { "id": "2", "name": "Operable" },
+    { "id": "3", "name": "Understandable" },
+    { "id": "4", "name": "Robust" }
+  ]
+}

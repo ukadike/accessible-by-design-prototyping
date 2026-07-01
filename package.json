@@ -1,0 +1,55 @@
+{
+  "name": "accessibility-audit-lab",
+  "version": "0.1.0",
+  "description": "An open-source WCAG 2.2+ accessibility auditing toolkit for websites, creative coding projects, p5.js sketches, civic media, and experimental interfaces.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Adekemi (Kemi) Hanna Sijuwade-Ukadike",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukadike/accessible-by-design-prototyping.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ukadike/accessible-by-design-prototyping/issues"
+  },
+  "homepage": "https://github.com/ukadike/accessible-by-design-prototyping#readme",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "axe-core",
+    "p5js",
+    "creative-coding",
+    "audit"
+  ],
+  "bin": {
+    "a11y-lab": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "dev": "vite --config vite.config.ts",
+    "build": "tsc -p tsconfig.json",
+    "build:web": "vite build --config vite.config.ts",
+    "test": "vitest run",
+    "audit": "tsx src/cli/index.ts audit",
+    "audit:p5": "tsx src/cli/index.ts audit-p5"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "playwright": "^1.47.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.2"
+  }
+}

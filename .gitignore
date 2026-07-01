@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-web/
+*.log
+.DS_Store
+reports/*.md
+reports/*.json
+!reports/sample-report.md
+!reports/sample-report.json
+.env
