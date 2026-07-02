@@ -31,6 +31,7 @@ For each prompt:
 - Focus visibility
 - Consistent navigation
 - Multiple ways to find content
+- PDF reading order, alt text, heading structure, form field labels, table headers, color contrast, link text, and permissions
 
 ## Best practice: include disabled testers
 

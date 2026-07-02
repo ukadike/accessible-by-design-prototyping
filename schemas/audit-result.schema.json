@@ -36,7 +36,7 @@
           "location": { "type": "string" },
           "explanation": { "type": "string" },
           "nextSteps": { "type": "array", "items": { "type": "string" } },
-          "source": { "enum": ["axe-core", "wcag-2-plus", "p5-auditor", "manual-review"] }
+          "source": { "enum": ["axe-core", "wcag-2-plus", "p5-auditor", "pdf-auditor", "manual-review"] }
         }
       }
     },

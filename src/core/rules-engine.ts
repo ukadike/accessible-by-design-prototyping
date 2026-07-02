@@ -6,7 +6,7 @@ import type { AccessibilityRule, HumanReviewPrompt } from './types.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RULES_DIR = path.resolve(__dirname, '../../rules');
 
-export type AuditContext = 'html' | 'p5' | 'canvas' | 'animation';
+export type AuditContext = 'html' | 'p5' | 'canvas' | 'animation' | 'pdf';
 
 function loadJson<T>(fileName: string): T {
   const raw = readFileSync(path.join(RULES_DIR, fileName), 'utf-8');

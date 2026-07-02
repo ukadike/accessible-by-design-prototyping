@@ -5,9 +5,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Contributor%20Covenant-blue.svg)](CODE_OF_CONDUCT.md)
 
-Accessibility Audit Lab is an open-source WCAG 2.2+ auditing toolkit for websites, p5.js sketches, creative coding projects, civic media, and experimental interfaces.
+Accessibility Audit Lab is an open-source WCAG 2.2+ auditing toolkit for websites, p5.js sketches, PDFs, creative coding projects, civic media, and experimental interfaces.
 
-It combines automated accessibility checks, p5/canvas-specific review, plain-language remediation guidance, and structured reports that help teams understand what to fix next.
+It combines automated accessibility checks, p5/canvas-specific review, PDF structural checks, plain-language remediation guidance, and structured reports that help teams understand what to fix next.
 
 This repository also hosts the original [Accessible by Design workshop guide](docs/workshop-guide.md), which this tool grew out of.
 
@@ -16,6 +16,7 @@ This repository also hosts the original [Accessible by Design workshop guide](do
 - Audits public URLs
 - Audits local HTML files
 - Reviews p5.js sketches for canvas accessibility patterns
+- Audits PDFs (local files or public URLs) for tagging, language, and title
 - Maps issues to WCAG 2.0, 2.1, and 2.2 where possible
 - Adds a WCAG 2+ layer for creative and multimodal accessibility
 - Generates Markdown and JSON reports
@@ -37,27 +38,28 @@ npm run build
 npm run test
 npm run audit -- https://example.com
 npm run audit:p5 -- ./examples/p5-sketch-needs-work/index.html
+npm run audit:pdf -- ./examples/pdf-needs-work/document.pdf
 npm run dev
 ```
 
-`npm run audit` and `npm run audit:p5` print a console summary and write Markdown/JSON reports to `./reports`. `npm run dev` starts the web UI at the URL Vite prints in the terminal.
+`npm run audit`, `npm run audit:p5`, and `npm run audit:pdf` print a console summary and write Markdown/JSON reports to `./reports`. `npm run dev` starts the web UI at the URL Vite prints in the terminal.
 
 ## Repository Structure
 
-See [docs/audit-methodology.md](docs/audit-methodology.md) for how audits work, [docs/wcag-2-plus-framework.md](docs/wcag-2-plus-framework.md) for the WCAG 2+ extension layer, and [docs/p5-accessibility-guide.md](docs/p5-accessibility-guide.md) for p5.js-specific guidance.
+See [docs/audit-methodology.md](docs/audit-methodology.md) for how audits work, [docs/wcag-2-plus-framework.md](docs/wcag-2-plus-framework.md) for the WCAG 2+ extension layer, [docs/p5-accessibility-guide.md](docs/p5-accessibility-guide.md) for p5.js-specific guidance, and [docs/pdf-accessibility-guide.md](docs/pdf-accessibility-guide.md) for PDF-specific guidance.
 
 ```txt
 src/
   core/       audit orchestration, WCAG mapping, severity, rules engine
-  adapters/   Playwright + axe-core adapters for URLs, HTML files, and p5 sketches
+  adapters/   Playwright + axe-core adapters for URLs/HTML/p5 sketches, plus a pdf-lib adapter for PDFs
   reporters/  Markdown, JSON, and console report generators
   p5-plugin/  optional in-browser helper for p5.js sketch authors
   cli/        the a11y-lab command-line tool
   web/        the Vite + React web UI
 rules/        WCAG core mapping and WCAG 2+ rule/prompt definitions
 schemas/      JSON schemas for audit results and rule definitions
-examples/     sample HTML and p5.js fixtures used in docs and tests
-docs/         methodology, WCAG 2+ framework, and workshop guide
+examples/     sample HTML, p5.js, and PDF fixtures used in docs and tests
+docs/         methodology, WCAG 2+ framework, p5.js guide, PDF guide, and workshop guide
 tests/        Vitest unit tests
 ```
 

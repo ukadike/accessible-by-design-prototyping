@@ -124,5 +124,61 @@
     "question": "Is there more than one way to locate a page within the site (e.g. navigation menu plus search, or a sitemap), other than a single required sequence of steps?",
     "wcag": ["2.4.5"],
     "appliesTo": ["html"]
+  },
+  {
+    "id": "pdf-reading-order-review",
+    "title": "Review PDF reading order",
+    "question": "Does a screen reader announce the tagged content in the same order a sighted reader would read it (including multi-column layouts, sidebars, and footnotes)?",
+    "wcag": ["1.3.2"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-alt-text-review",
+    "title": "Review PDF image and figure alt text",
+    "question": "Does every meaningful image, chart, or figure have alternative text, and is purely decorative artwork tagged as an artifact so it's skipped?",
+    "wcag": ["1.1.1"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-heading-structure-review",
+    "title": "Review PDF heading structure and bookmarks",
+    "question": "Are headings tagged with true heading levels (H1, H2, ...) that nest logically, and do bookmarks let a screen reader user jump directly to a section?",
+    "wcag": ["1.3.1", "2.4.6"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-form-field-labels-review",
+    "title": "Review PDF form field labels",
+    "question": "If the PDF has fillable form fields, does each one have a programmatic label (tooltip/name) that a screen reader will announce?",
+    "wcag": ["1.3.1", "4.1.2"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-table-headers-review",
+    "title": "Review PDF table headers",
+    "question": "Are data tables tagged with real Table/TH/TR structure so column and row headers are announced, rather than being laid out with spaces or tabs?",
+    "wcag": ["1.3.1"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-color-contrast-review",
+    "title": "Review PDF color contrast",
+    "question": "Does text in the PDF meet at least a 4.5:1 contrast ratio against its background (3:1 for large text), including text embedded in images or charts?",
+    "wcag": ["1.4.3"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-link-text-review",
+    "title": "Review PDF link text",
+    "question": "Do links describe their destination or purpose out of context, rather than reading as \"click here\" or a bare URL?",
+    "wcag": ["2.4.4"],
+    "appliesTo": ["pdf"]
+  },
+  {
+    "id": "pdf-permissions-review",
+    "title": "Review PDF permissions and assistive technology access",
+    "question": "If the PDF is encrypted or permission-restricted, does it still allow text extraction and screen reading (the accessibility permission flag), rather than blocking assistive technology along with copy/print?",
+    "wcag": ["4.1.2"],
+    "appliesTo": ["pdf"]
   }
 ]
