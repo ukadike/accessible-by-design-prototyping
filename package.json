@@ -31,6 +31,8 @@
     "dev": "vite --config vite.config.ts",
     "build": "tsc -p tsconfig.json",
     "build:web": "vite build --config vite.config.ts",
+    "build:site": "vite build --config vite.site.config.ts && vite build --config vite.bookmarklet.config.ts",
+    "preview:site": "vite preview --config vite.site.config.ts",
     "test": "vitest run",
     "audit": "tsx src/cli/index.ts audit",
     "audit:p5": "tsx src/cli/index.ts audit-p5",

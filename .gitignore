@@ -1,6 +1,7 @@
 node_modules/
 dist/
 dist-web/
+dist-site/
 *.log
 .DS_Store
 reports/*.md
