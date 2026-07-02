@@ -87,7 +87,7 @@ No other duplicated or outdated files were found. `assets/.gitkeep` is intention
 
 - `docs/workshop-guide.md` already uses descriptive alt text for its three images (not generic like "image1") — good, no change needed.
 - Checked all Markdown files touched or created in this pass (README.md, INDEX.md, SCHEMA_CARD.md, this file) for logical heading order (no skipped levels) and descriptive link text (no bare "click here" links) — all pass.
-- Checked the entire repo for `<a href>` usage in HTML/TSX to see if `target="_blank"` / `rel="noopener noreferrer"` guidance applies: **no anchor tags exist anywhere in the codebase** (the only HTML files are `src/web/index.html`, a bare Vite shell with no links, and the three `examples/*/index.html` audit fixtures, which intentionally contain accessibility issues as test material and also have no `<a>` tags). This guidance does not currently apply; noted here so it isn't silently skipped.
+- Checked the entire repo for `<a href>` usage in HTML/TSX to see if `target="_blank"` / `rel="noopener noreferrer"` guidance applies: at the time of the original sweep, **no anchor tags existed anywhere in the codebase** (the only HTML files were `src/web/index.html`, a bare Vite shell with no links, and the three `examples/*/index.html` audit fixtures, which intentionally contain accessibility issues as test material). **Update at merge time:** the hosted no-code site merged from main (`src/site/index.html`) now has four anchors — a skip link, the bookmarklet, and two GitHub links; reviewed and found to use a skip link and semantic structure, with external links following the ecosystem's same-tab convention.
 
 ## Code quality issues
 

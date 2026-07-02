@@ -38,6 +38,12 @@ Rule/prompt data files in `rules/` (not separately schema'd, described in [docs/
 
 ## Interfaces
 
+- **Hosted no-code site** (`src/site/`, live at
+  [ukadike.github.io/accessible-by-design-prototyping](https://ukadike.github.io/accessible-by-design-prototyping/)):
+  browser-only front door with a drag-to-bookmarks-bar "Audit this page" bookmarklet
+  (`src/site/bookmarklet.ts`, built via `vite.bookmarklet.config.ts`), an in-browser PDF
+  checker (files analyzed locally, never uploaded), and a paste-in p5.js sketch checker
+  (`src/site/main.ts`, built via `vite.site.config.ts`).
 - **CLI** (`bin: a11y-lab` → `dist/cli/index.js`, source at `src/cli/index.ts`): `a11y-lab audit <url-or-path>`, `a11y-lab audit-p5 <url-or-path>`, `a11y-lab audit-pdf <url-or-path>`. Exposed via npm scripts: `npm run audit`, `npm run audit:p5`, `npm run audit:pdf`.
 - **Web UI** (`src/web/`, Vite + React): `npm run dev` starts a dev server with an audit form and report view (`src/web/components/AuditForm.tsx`, `ReportView.tsx`, `IssueCard.tsx`). The dev-server API endpoint is `/api/audit` (dev only — see the Scope note in [SECURITY.md](SECURITY.md): do not expose it to untrusted networks).
 - **Library modules** under `src/core/` (`audit-runner.ts`, `rules-engine.ts`, `issue-normalizer.ts`, `wcag-map.ts`, `severity.ts`, `types.ts`) and `src/adapters/` (`url-auditor.ts`, `html-file-auditor.ts`, `p5-sketch-auditor.ts`, `pdf-auditor.ts`, `playwright-axe.ts`) — not currently published as a standalone importable package (no separate `exports`/`main` field beyond the CLI `bin` in `package.json`; Needs Kemi review if a library entry point is wanted).
@@ -66,7 +72,7 @@ Full versions in [package.json](package.json) / [package-lock.json](package-lock
 ## Accessibility considerations
 
 - The project audits others' accessibility, and this restoration pass also checked the project's *own* docs against the same standard: heading order, descriptive link text, and image alt text in `docs/workshop-guide.md` were reviewed as part of this pass (see [docs/REPO_AUDIT.md](docs/REPO_AUDIT.md)).
-- No HTML pages with `<a href>` navigation exist in this repo outside test fixtures and the bare web-UI shell (`src/web/index.html`), so `target="_blank"` / `rel="noopener noreferrer"` guidance does not currently apply anywhere in the codebase — confirmed by a repo-wide search during this audit.
+- At the time of the original audit sweep, no HTML pages with `<a href>` navigation existed outside test fixtures and the bare web-UI shell. The hosted site added afterward (`src/site/index.html`) now carries a skip link, the bookmarklet anchor, and two GitHub repo links — reviewed at merge time: the page uses a skip link and semantic structure; its external GitHub links do not use `target="_blank"`, consistent with the ecosystem's same-tab convention observed in sibling repos.
 
 ## Future implementation notes
 
