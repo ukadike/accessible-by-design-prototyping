@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility Audit Lab — free accessibility checker</title>
+    <meta
+      name="description"
+      content="Check your website, PDF, or creative coding sketch for accessibility. Free, no installation, nothing leaves your computer."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <h1>Accessibility Audit Lab</h1>
+      <p class="tagline">
+        Check your website, PDF, or creative coding sketch for accessibility problems — and get plain-language
+        advice on how to fix them.
+      </p>
+      <p class="reassurance">
+        Free. Nothing to install. Your files never leave your computer.
+      </p>
+    </header>
+
+    <main id="main">
+      <!-- ============ WEBSITE ============ -->
+      <section aria-labelledby="website-heading" class="tool-card">
+        <h2 id="website-heading">Check your website</h2>
+        <p>
+          Websites can only be checked from inside the page itself, so this works with a special bookmark —
+          you set it up once, and then you can check any page you visit with one click.
+        </p>
+        <ol class="steps">
+          <li>
+            Drag this button up into your browser's bookmarks bar:
+            <p class="bookmarklet-holder">
+              <a id="bookmarklet-link" class="bookmarklet" href="#">Audit this page</a>
+            </p>
+            <p class="hint">
+              Can't see your bookmarks bar? Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
+              (or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> on a Mac) to show it.
+            </p>
+          </li>
+          <li>Go to the website you want to check — for example, your own site.</li>
+          <li>Click the <strong>Audit this page</strong> bookmark. Your results appear right on the page.</li>
+        </ol>
+        <details>
+          <summary>If nothing happens when you click the bookmark</summary>
+          <p>
+            Some websites have strict security settings that block outside tools, including this one.
+            If your results don't appear, that's usually why. You can still check your PDF documents and
+            sketches below, or ask whoever builds your website to run the
+            <a href="https://github.com/ukadike/accessible-by-design-prototyping">developer version</a> of this tool.
+          </p>
+        </details>
+      </section>
+
+      <!-- ============ PDF ============ -->
+      <section aria-labelledby="pdf-heading" class="tool-card">
+        <h2 id="pdf-heading">Check a PDF</h2>
+        <p>
+          Choose a PDF from your computer. It is checked right here in your browser —
+          it is never uploaded anywhere.
+        </p>
+        <p>
+          <label for="pdf-input" class="file-label">Choose a PDF file</label>
+          <input type="file" id="pdf-input" accept=".pdf,application/pdf" />
+        </p>
+        <div id="pdf-results" class="results" role="region" aria-live="polite" aria-label="PDF results"></div>
+      </section>
+
+      <!-- ============ SKETCH ============ -->
+      <section aria-labelledby="sketch-heading" class="tool-card">
+        <h2 id="sketch-heading">Check a p5.js or creative coding sketch</h2>
+        <p>
+          Paste your sketch code below (or the whole HTML page it lives in) and we'll look for common
+          accessibility gaps in canvas-based work.
+        </p>
+        <p>
+          <label for="sketch-input">Your sketch code</label>
+          <textarea
+            id="sketch-input"
+            rows="10"
+            spellcheck="false"
+            placeholder="function setup() {&#10;  createCanvas(400, 400);&#10;}&#10;..."
+          ></textarea>
+        </p>
+        <p>
+          <button type="button" id="sketch-check-button">Check my sketch</button>
+        </p>
+        <div id="sketch-results" class="results" role="region" aria-live="polite" aria-label="Sketch results"></div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section aria-labelledby="about-heading" class="tool-card about">
+        <h2 id="about-heading">What this tool can and can't do</h2>
+        <p>
+          Automated checks catch many common problems, but not everything. Each report also includes a short
+          list of things only a person can judge — like whether your alt text actually describes the image.
+        </p>
+        <p>
+          This tool is an accessibility aid, not a legal certification. For the most complete picture,
+          have people who use screen readers or keyboards test your work directly.
+        </p>
+        <p>
+          Made for designers, artists, educators, and everyone else who wants their work to reach more people.
+          Developers can find the command-line version, source code, and ways to contribute
+          <a href="https://github.com/ukadike/accessible-by-design-prototyping">on GitHub</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Accessibility Audit Lab · Open source (MIT) · Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike</p>
+    </footer>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

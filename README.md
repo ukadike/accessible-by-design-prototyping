@@ -11,6 +11,18 @@ It combines automated accessibility checks, p5/canvas-specific review, PDF struc
 
 This repository also hosts the original [Accessible by Design workshop guide](docs/workshop-guide.md), which this tool grew out of.
 
+## No coding needed — use it in your browser
+
+**→ [ukadike.github.io/accessible-by-design-prototyping](https://ukadike.github.io/accessible-by-design-prototyping/)**
+
+The hosted version requires no installation and no terminal:
+
+- **Check your website** with a drag-to-bookmarks-bar "Audit this page" button — results appear right on your page
+- **Check a PDF** by choosing a file — it's analyzed in your browser and never uploaded
+- **Check a p5.js sketch** by pasting your code
+
+Everything below this point is for developers who want the command-line tool, the source, or to contribute.
+
 ## What It Does
 
 - Audits public URLs
@@ -50,18 +62,21 @@ See [docs/audit-methodology.md](docs/audit-methodology.md) for how audits work, 
 
 ```txt
 src/
-  core/       audit orchestration, WCAG mapping, severity, rules engine
+  core/       audit orchestration, WCAG mapping, severity, rules engine (browser-safe check logic lives here too)
   adapters/   Playwright + axe-core adapters for URLs/HTML/p5 sketches, plus a pdf-lib adapter for PDFs
   reporters/  Markdown, JSON, and console report generators
   p5-plugin/  optional in-browser helper for p5.js sketch authors
   cli/        the a11y-lab command-line tool
-  web/        the Vite + React web UI
+  web/        the Vite + React developer web UI
+  site/       the public no-code site (GitHub Pages) + "Audit this page" bookmarklet
 rules/        WCAG core mapping and WCAG 2+ rule/prompt definitions
 schemas/      JSON schemas for audit results and rule definitions
 examples/     sample HTML, p5.js, and PDF fixtures used in docs and tests
 docs/         methodology, WCAG 2+ framework, p5.js guide, PDF guide, and workshop guide
 tests/        Vitest unit tests
 ```
+
+The public site is built with `npm run build:site` and deployed to GitHub Pages automatically by `.github/workflows/deploy-pages.yml` on every push to `main`.
 
 ## Disclaimer
 
