@@ -11,6 +11,8 @@ It combines automated accessibility checks, p5/canvas-specific review, PDF struc
 
 This repository also hosts the original [Accessible by Design workshop guide](docs/workshop-guide.md), which this tool grew out of.
 
+This project is part of the [Small Systems Lab](https://github.com/ukadike/Small-Systems-Lab) ecosystem ([hub site](https://ukadike.github.io/small-systems-lab/)).
+
 ## What It Does
 
 - Audits public URLs
@@ -44,9 +46,21 @@ npm run dev
 
 `npm run audit`, `npm run audit:p5`, and `npm run audit:pdf` print a console summary and write Markdown/JSON reports to `./reports`. `npm run dev` starts the web UI at the URL Vite prints in the terminal.
 
-## Repository Structure
+## Documentation
 
-See [docs/audit-methodology.md](docs/audit-methodology.md) for how audits work, [docs/wcag-2-plus-framework.md](docs/wcag-2-plus-framework.md) for the WCAG 2+ extension layer, [docs/p5-accessibility-guide.md](docs/p5-accessibility-guide.md) for p5.js-specific guidance, and [docs/pdf-accessibility-guide.md](docs/pdf-accessibility-guide.md) for PDF-specific guidance.
+- [docs/audit-methodology.md](docs/audit-methodology.md) — how an audit runs, end to end
+- [docs/wcag-2-plus-framework.md](docs/wcag-2-plus-framework.md) — the WCAG 2+ extension layer and where its rules live
+- [docs/human-review-guide.md](docs/human-review-guide.md) — how to run the manual-review prompts
+- [docs/p5-accessibility-guide.md](docs/p5-accessibility-guide.md) — p5.js/canvas-specific guidance
+- [docs/pdf-accessibility-guide.md](docs/pdf-accessibility-guide.md) — PDF-specific guidance
+- [docs/funding-language.md](docs/funding-language.md) — the problem space this project addresses
+- [docs/workshop-guide.md](docs/workshop-guide.md) — the original Accessible by Design workshop guide
+- [docs/REPO_AUDIT.md](docs/REPO_AUDIT.md) — repository structure/navigation audit and cleanup log
+- [SCHEMA_CARD.md](SCHEMA_CARD.md) — project summary: purpose, data structures, interfaces, dependencies
+- [INDEX.md](INDEX.md) — full site map of every doc, rule file, schema, and example in this repo
+- [CONTRIBUTING.md](CONTRIBUTING.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) · [SECURITY.md](SECURITY.md) · [CHANGELOG.md](CHANGELOG.md)
+
+## Repository Structure
 
 ```txt
 src/
@@ -60,6 +74,7 @@ rules/        WCAG core mapping and WCAG 2+ rule/prompt definitions
 schemas/      JSON schemas for audit results and rule definitions
 examples/     sample HTML, p5.js, and PDF fixtures used in docs and tests
 docs/         methodology, WCAG 2+ framework, p5.js guide, PDF guide, and workshop guide
+reports/      sample Markdown/JSON audit report output
 tests/        Vitest unit tests
 ```
 
