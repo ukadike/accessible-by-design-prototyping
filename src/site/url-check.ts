@@ -13,6 +13,7 @@
 // injected into the wrapped page copy untouched by our bundler's minifier.
 import axeSource from 'axe-core/axe.min.js?raw';
 import { normalizeAxeViolations, type AxeResults } from '../core/issue-normalizer.js';
+import { categorizeAxeRule } from './categorize.js';
 import type { AuditIssue } from '../core/types.js';
 
 const RELAY_URL = 'https://api.allorigins.win/raw?url=';
@@ -24,6 +25,8 @@ export interface UrlCheckOutcome {
   finalUrl: string;
   /** True when the fetched copy rendered almost nothing — the check likely saw an empty shell. */
   looksEmpty: boolean;
+  /** issue.id → plain-language result category (Page structure, Forms, ...). */
+  categories: Record<string, string>;
 }
 
 export function normalizeUrlInput(input: string): string {
@@ -148,7 +151,11 @@ export async function runUrlCheck(input: string): Promise<UrlCheckOutcome> {
 
     const looksEmpty = (message.textLength ?? 0) < 40 && (message.elementCount ?? 0) < 5;
     const issues = normalizeAxeViolations({ violations: message.violations });
-    return { issues, finalUrl: url, looksEmpty };
+    const categories: Record<string, string> = {};
+    for (const violation of message.violations) {
+      categories[violation.id] = categorizeAxeRule(violation.id, violation.tags);
+    }
+    return { issues, finalUrl: url, looksEmpty, categories };
   } finally {
     iframe.remove();
   }

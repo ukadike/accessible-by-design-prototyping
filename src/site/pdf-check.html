@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Check — Accessibility Audit Lab</title>
+    <meta
+      name="description"
+      content="Check a PDF for accessibility basics: tagging, document language, and title — right in your browser, nothing uploaded."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./website-check.html">Website Check</a></li>
+          <li><a href="./pdf-check.html" aria-current="page">PDF Check</a></li>
+          <li><a href="./p5-check.html">p5 / Creative Coding Check</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li>
+            <a
+              href="https://github.com/ukadike/accessible-by-design-prototyping"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub repository, opens in a new tab"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>PDF Check</h1>
+      <p>
+        PDFs are one of the most common accessibility gaps in public work — untagged documents are unreadable
+        for many screen reader users. This check looks at the three foundations every accessible PDF needs:
+        a tag structure, a declared language, and a document title.
+      </p>
+
+      <section class="tool-card" aria-labelledby="pdf-heading">
+        <h2 id="pdf-heading">Check a PDF from your computer</h2>
+        <p>
+          Choose a PDF below. It is checked right here in your browser — it is
+          <strong>never uploaded anywhere</strong>.
+        </p>
+        <p>
+          <label for="pdf-input" class="file-label">Choose a PDF file</label>
+          <input type="file" id="pdf-input" accept=".pdf,application/pdf" />
+        </p>
+        <div id="pdf-results" class="results" role="region" aria-live="polite" aria-label="PDF results"></div>
+      </section>
+
+      <section class="tool-card" aria-labelledby="pdf-fix-heading">
+        <h2 id="pdf-fix-heading">Where PDF problems usually get fixed</h2>
+        <p>
+          Most PDF accessibility problems are fixed in the program that made the PDF, not in the PDF itself.
+          Use real heading styles, alt text fields, and table tools in Word, Google Docs, or InDesign before
+          exporting, and set the document title and language in the document properties. The report's next
+          steps point you to the right place for each finding.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Accessibility Audit Lab · Open source (MIT) · Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike ·
+        <a
+          href="https://github.com/ukadike/accessible-by-design-prototyping"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View GitHub repository, opens in a new tab"
+          >GitHub</a
+        >
+      </p>
+    </footer>
+
+    <script type="module" src="./pages/pdf.ts"></script>
+  </body>
+</html>

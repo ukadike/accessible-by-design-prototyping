@@ -7,6 +7,9 @@ All notable changes to this project are documented here. This project follows
 
 ### Added
 
+- Public site upgraded to a multi-page lab: Home (hero, who this is for, what it checks, what it cannot do, workshop use, calls to action), Website Check, PDF Check, p5 / Creative Coding Check, and About, with consistent keyboard-accessible navigation, `aria-current` page indication, skip links, semantic landmarks, and external links opening in new tabs with `rel="noopener noreferrer"` and accessible labels.
+- Website Check results are now grouped into plain-language categories (Page structure, Images and media, Links and buttons, Forms, Color and contrast, Keyboard access, Recommendations), mapped from axe-core rule tags.
+
 - Quick website check by web address on the public site: fetches a copy of the page (direct or via a public relay), renders it in a scripts-sandboxed iframe wrapper with axe-core injected, and reports results with an explicit "quick check of a copy" note in every report. The bookmarklet remains the documented accurate path, and the site's "being upfront" section spells out the difference.
 - PDF report download on the public site (`src/reporters/pdf-reporter.ts`): generates a plain-language, paginated PDF report in the browser via pdf-lib, with title and language metadata set.
 

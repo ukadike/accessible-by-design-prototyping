@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p5 / Creative Coding Check — Accessibility Audit Lab</title>
+    <meta
+      name="description"
+      content="Check a p5.js or canvas sketch for accessibility gaps: missing descriptions, mouse-only interaction, and unpausable animation."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./website-check.html">Website Check</a></li>
+          <li><a href="./pdf-check.html">PDF Check</a></li>
+          <li><a href="./p5-check.html" aria-current="page">p5 / Creative Coding Check</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li>
+            <a
+              href="https://github.com/ukadike/accessible-by-design-prototyping"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub repository, opens in a new tab"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>p5 / Creative Coding Check</h1>
+      <p>
+        Canvas-based work is invisible to screen readers unless you describe it. Creative coding deserves the
+        same care as any public interface — this check looks for the most common gaps in p5.js and canvas
+        sketches: missing text descriptions, mouse-only interaction with no keyboard alternative, and
+        animation that never pauses.
+      </p>
+
+      <section class="tool-card" aria-labelledby="sketch-heading">
+        <h2 id="sketch-heading">Paste your sketch code</h2>
+        <p>
+          Paste your sketch below (or the whole HTML page it lives in). The check runs in your browser — your
+          code is never uploaded anywhere.
+        </p>
+        <p>
+          <label for="sketch-input">Your sketch code</label>
+          <textarea
+            id="sketch-input"
+            rows="10"
+            spellcheck="false"
+            placeholder="function setup() {&#10;  createCanvas(400, 400);&#10;}&#10;..."
+          ></textarea>
+        </p>
+        <p>
+          <button type="button" id="sketch-check-button">Check my sketch</button>
+        </p>
+        <div id="sketch-results" class="results" role="region" aria-live="polite" aria-label="Sketch results"></div>
+      </section>
+
+      <section class="tool-card" aria-labelledby="p5-tips-heading">
+        <h2 id="p5-tips-heading">Three habits that make sketches accessible</h2>
+        <ul>
+          <li>
+            <strong>Describe the canvas.</strong> Call <code>describe()</code> in <code>setup()</code> with a
+            sentence a nonvisual visitor would need — what the sketch shows and what it does.
+          </li>
+          <li>
+            <strong>Offer a keyboard path.</strong> If something responds to the mouse, add a
+            <code>keyPressed()</code> alternative or visible buttons that do the same thing.
+          </li>
+          <li>
+            <strong>Let motion rest.</strong> Give continuous animation a pause control, and avoid motion that
+            isn't essential to the meaning of the piece.
+          </li>
+        </ul>
+        <p>
+          Worked examples live in the repository:
+          <a
+            href="https://github.com/ukadike/accessible-by-design-prototyping/tree/main/examples"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Example sketches on GitHub, opens in a new tab"
+            >a sketch done well and a sketch that needs work</a
+          >.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Accessibility Audit Lab · Open source (MIT) · Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike ·
+        <a
+          href="https://github.com/ukadike/accessible-by-design-prototyping"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View GitHub repository, opens in a new tab"
+          >GitHub</a
+        >
+      </p>
+    </footer>
+
+    <script type="module" src="./pages/sketch.ts"></script>
+  </body>
+</html>
