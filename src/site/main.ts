@@ -12,6 +12,8 @@ import {
 import { summarize } from '../core/summarize.js';
 import { generateMarkdownReport } from '../reporters/markdown-reporter.js';
 import { generateJsonReport } from '../reporters/json-reporter.js';
+import { generatePdfReportBytes } from '../reporters/pdf-reporter.js';
+import { runUrlCheck } from './url-check.js';
 import type { AccessibilityRule, AuditIssue, AuditResult, HumanReviewPrompt } from '../core/types.js';
 
 const humanReviewPrompts = humanReviewPromptsData as HumanReviewPrompt[];
@@ -50,6 +52,7 @@ function renderResults(
   prompts: HumanReviewPrompt[],
   result: AuditResult,
   fileBaseName: string,
+  note?: string,
 ): void {
   container.textContent = '';
 
@@ -61,6 +64,11 @@ function renderResults(
       : `The automatic checks found ${issues.length} ${issues.length === 1 ? 'thing' : 'things'} to fix.`,
   );
   container.append(summaryLine);
+
+  if (note) {
+    const noteLine = el('p', 'result-note', note);
+    container.append(noteLine);
+  }
 
   for (const issue of issues) {
     const card = el('div', `finding severity-${issue.severity}`);
@@ -96,7 +104,20 @@ function renderResults(
   }
 
   const downloadRow = el('div', 'download-row');
-  const mdButton = el('button', undefined, 'Download report (easy to read)');
+  const pdfButton = el('button', undefined, 'Download report (PDF)');
+  pdfButton.type = 'button';
+  pdfButton.addEventListener('click', () => {
+    void (async () => {
+      pdfButton.disabled = true;
+      try {
+        const bytes = await generatePdfReportBytes(result, { note });
+        downloadBytes(`${fileBaseName}-report.pdf`, bytes, 'application/pdf');
+      } finally {
+        pdfButton.disabled = false;
+      }
+    })();
+  });
+  const mdButton = el('button', undefined, 'Download report (text)');
   mdButton.type = 'button';
   mdButton.addEventListener('click', () =>
     downloadFile(`${fileBaseName}-report.md`, generateMarkdownReport(result), 'text/markdown'),
@@ -106,7 +127,7 @@ function renderResults(
   jsonButton.addEventListener('click', () =>
     downloadFile(`${fileBaseName}-report.json`, generateJsonReport(result), 'application/json'),
   );
-  downloadRow.append(mdButton, jsonButton);
+  downloadRow.append(pdfButton, mdButton, jsonButton);
   container.append(downloadRow);
 
   container.append(
@@ -115,7 +136,11 @@ function renderResults(
 }
 
 function downloadFile(filename: string, contents: string, mimeType: string): void {
-  const blob = new Blob([contents], { type: mimeType });
+  downloadBytes(filename, new TextEncoder().encode(contents), mimeType);
+}
+
+function downloadBytes(filename: string, bytes: Uint8Array, mimeType: string): void {
+  const blob = new Blob([bytes as BlobPart], { type: mimeType });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -149,6 +174,67 @@ if (bookmarkletLink) {
     window.alert(
       'Drag this button up into your bookmarks bar instead of clicking it. Then visit the site you want to check and click the bookmark there.',
     );
+  });
+}
+
+/* ---------- quick URL checker ---------- */
+
+const QUICK_CHECK_NOTE =
+  'This was a quick check of a copy of the page, so some problems (especially on sites built with heavy scripting) may not show up. For complete results, use the "Audit this page" bookmark.';
+
+const urlInput = document.getElementById('url-input') as HTMLInputElement | null;
+const urlButton = document.getElementById('url-check-button') as HTMLButtonElement | null;
+const urlResults = document.getElementById('url-results');
+
+if (urlInput && urlButton && urlResults) {
+  const runCheck = () => {
+    const value = urlInput.value.trim();
+    urlResults.textContent = '';
+    if (!value) {
+      urlResults.append(el('p', 'result-summary problems', 'Type a web address first, then press the button.'));
+      return;
+    }
+    urlButton.disabled = true;
+    urlResults.textContent = 'Fetching a copy of the page and checking it — this can take a few seconds…';
+    void (async () => {
+      try {
+        const { issues, finalUrl, looksEmpty } = await runUrlCheck(value);
+        const prompts = filterPromptsByContext(humanReviewPrompts, ['html']);
+        const result = buildResult(finalUrl, issues, prompts);
+        if (looksEmpty) {
+          urlResults.textContent = '';
+          urlResults.append(
+            el(
+              'p',
+              'result-summary problems',
+              'The copy of this page came back almost empty — it is probably built with scripting that the quick check can’t see. Please use the "Audit this page" bookmark for this site.',
+            ),
+          );
+          return;
+        }
+        const slug = finalUrl.replace(/^https?:\/\//i, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase() || 'page';
+        renderResults(urlResults, issues, prompts, result, slug, QUICK_CHECK_NOTE);
+      } catch (checkError) {
+        urlResults.textContent = '';
+        urlResults.append(
+          el(
+            'p',
+            'result-summary problems',
+            checkError instanceof Error ? checkError.message : 'Sorry — that page could not be checked.',
+          ),
+        );
+      } finally {
+        urlButton.disabled = false;
+      }
+    })();
+  };
+
+  urlButton.addEventListener('click', runCheck);
+  urlInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      runCheck();
+    }
   });
 }
 
