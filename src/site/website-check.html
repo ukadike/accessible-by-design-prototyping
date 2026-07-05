@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Check — Accessibility Audit Lab</title>
+    <meta
+      name="description"
+      content="Check a website for accessibility barriers: structure, images, links, forms, contrast, and keyboard access."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./website-check.html" aria-current="page">Website Check</a></li>
+          <li><a href="./pdf-check.html">PDF Check</a></li>
+          <li><a href="./p5-check.html">p5 / Creative Coding Check</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li>
+            <a
+              href="https://github.com/ukadike/accessible-by-design-prototyping"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub repository, opens in a new tab"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>Website Check</h1>
+      <p>
+        There are two ways to check a website, and it's worth knowing the honest difference: the
+        <strong>quick check</strong> below examines a fetched <em>copy</em> of your page, so it's fast but can
+        miss things — especially on sites built with heavy scripting. The <strong>bookmark method</strong> runs
+        on the real page in your browser and gives complete results.
+      </p>
+      <p>
+        Results are grouped by what they affect: page structure, images and media, links and buttons, forms,
+        color and contrast, keyboard access — plus recommendations only a person can check.
+      </p>
+
+      <section class="tool-card" aria-labelledby="quick-heading">
+        <h2 id="quick-heading">Option 1: Quick check (fast, partial)</h2>
+        <p>
+          <label for="url-input">Web address to check</label>
+          <input type="url" id="url-input" inputmode="url" placeholder="https://example.com" />
+        </p>
+        <p>
+          <button type="button" id="url-check-button">Run quick check</button>
+        </p>
+        <p class="hint">
+          Heads-up: the address you type is sent through a public relay service to fetch a copy of the page.
+          Don't use this for private or password-protected pages — use the bookmark method for those.
+        </p>
+        <div id="url-results" class="results" role="region" aria-live="polite" aria-label="Website results"></div>
+      </section>
+
+      <section class="tool-card" aria-labelledby="bookmark-heading">
+        <h2 id="bookmark-heading">Option 2: The bookmark method (complete results)</h2>
+        <ol class="steps">
+          <li>
+            Drag this button up into your browser's bookmarks bar:
+            <p class="bookmarklet-holder">
+              <a id="bookmarklet-link" class="bookmarklet" href="#">Audit this page</a>
+            </p>
+            <p class="hint">
+              Can't see your bookmarks bar? Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
+              (or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> on a Mac) to show it.
+            </p>
+          </li>
+          <li>Go to the website you want to check — for example, your own site.</li>
+          <li>Click the <strong>Audit this page</strong> bookmark. Your results appear right on the page.</li>
+        </ol>
+        <details>
+          <summary>If nothing happens when you click the bookmark</summary>
+          <p>
+            Some websites have strict security settings that block outside tools, including this one. If your
+            results don't appear, that's usually why. Try the quick check above, or ask whoever builds your
+            website to run the
+            <a
+              href="https://github.com/ukadike/accessible-by-design-prototyping"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Developer version on GitHub, opens in a new tab"
+              >developer version</a
+            >
+            of this tool.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Accessibility Audit Lab · Open source (MIT) · Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike ·
+        <a
+          href="https://github.com/ukadike/accessible-by-design-prototyping"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View GitHub repository, opens in a new tab"
+          >GitHub</a
+        >
+      </p>
+    </footer>
+
+    <script type="module" src="./pages/website.ts"></script>
+  </body>
+</html>

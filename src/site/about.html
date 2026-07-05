@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Accessibility Audit Lab</title>
+    <meta
+      name="description"
+      content="About the Accessibility Audit Lab: a design practice, teaching resource, and open-source accessibility toolkit."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./website-check.html">Website Check</a></li>
+          <li><a href="./pdf-check.html">PDF Check</a></li>
+          <li><a href="./p5-check.html">p5 / Creative Coding Check</a></li>
+          <li><a href="./about.html" aria-current="page">About</a></li>
+          <li>
+            <a
+              href="https://github.com/ukadike/accessible-by-design-prototyping"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub repository, opens in a new tab"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>About this lab</h1>
+
+      <blockquote class="positioning">
+        Accessibility is not a final checklist. It is a design practice, a prototyping method, and a way of
+        making public digital work more usable, understandable, and humane.
+      </blockquote>
+
+      <section class="tool-card" aria-labelledby="why-heading">
+        <h2 id="why-heading">Why this exists</h2>
+        <p>
+          Most accessibility tools focus on conventional websites and assume a technical audience. But a great
+          deal of public digital work — art, education, civic media, community documents, creative code — is
+          made by people without an accessibility specialist on hand. Many automated tools can identify common
+          HTML issues; far fewer help artists, educators, journalists, and creative technologists evaluate
+          canvas-based, document-based, or sensory-rich work.
+        </p>
+        <p>
+          This lab tries to close that gap: automated checks where automation is honest, human-review prompts
+          where it isn't, and plain-language next steps everywhere — written to make repair feel doable, not
+          shameful.
+        </p>
+      </section>
+
+      <section class="tool-card" aria-labelledby="practice-heading">
+        <h2 id="practice-heading">Accessibility as a prototyping practice</h2>
+        <p>
+          This project grew out of
+          <a
+            href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/docs/workshop-guide.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Accessible by Design workshop guide on GitHub, opens in a new tab"
+            >Accessible by Design</a
+          >, a hands-on workshop about prototyping with intention: make something, clarify what it is and how
+          to use it, then expand who can use it. The lab is the workshop's toolbox — a way to fold
+          accessibility into the making process instead of bolting it on at the end.
+        </p>
+        <p>
+          Facilitators are welcome to use it in classes, portfolio reviews, and creative coding sessions. Each
+          report's "things only a person can check" section doubles as a set of discussion prompts.
+        </p>
+      </section>
+
+      <section class="tool-card" aria-labelledby="honesty-heading">
+        <h2 id="honesty-heading">What this tool is honest about</h2>
+        <ul>
+          <li>
+            Automated checks catch only part of the picture. They cannot replace testing with disabled users,
+            screen reader review, or a full WCAG audit.
+          </li>
+          <li>
+            The website quick check examines a fetched copy of a page and says so on every report it produces.
+            The bookmark method is the accurate path.
+          </li>
+          <li>
+            The PDF and sketch checks run entirely in your browser; nothing is uploaded. The quick check's
+            typed address passes through a public relay to fetch the page copy.
+          </li>
+          <li>A clean result is a good start, not a certification.</li>
+        </ul>
+      </section>
+
+      <section class="tool-card" aria-labelledby="open-heading">
+        <h2 id="open-heading">Open source</h2>
+        <p>
+          The lab is MIT-licensed. Developers can run the command-line version, read the audit methodology,
+          and contribute new rules — especially for creative, civic, educational, and multimodal work — via
+          the
+          <a
+            href="https://github.com/ukadike/accessible-by-design-prototyping"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub repository, opens in a new tab"
+            >GitHub repository</a
+          >.
+        </p>
+        <p>Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Accessibility Audit Lab · Open source (MIT) · Created by Adekemi (Kemi) Hanna Sijuwade-Ukadike ·
+        <a
+          href="https://github.com/ukadike/accessible-by-design-prototyping"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View GitHub repository, opens in a new tab"
+          >GitHub</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
