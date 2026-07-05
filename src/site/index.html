@@ -29,9 +29,27 @@
       <section aria-labelledby="website-heading" class="tool-card">
         <h2 id="website-heading">Check your website</h2>
         <p>
-          Websites can only be checked from inside the page itself, so this works with a special bookmark —
-          you set it up once, and then you can check any page you visit with one click.
+          There are two ways to check a website, and it's worth knowing the honest difference:
+          the <strong>quick check</strong> below examines a fetched <em>copy</em> of your page, so it's fast but
+          can miss things — especially on sites built with heavy scripting. The
+          <strong>bookmark method</strong> runs on the real page in your browser and gives complete results.
         </p>
+
+        <h3>Option 1: Quick check (fast, partial)</h3>
+        <p>
+          <label for="url-input">Web address to check</label>
+          <input type="url" id="url-input" inputmode="url" placeholder="https://example.com" />
+        </p>
+        <p>
+          <button type="button" id="url-check-button">Run quick check</button>
+        </p>
+        <p class="hint">
+          Heads-up: the address you type is sent through a public relay service to fetch a copy of the page.
+          Don't use this for private or password-protected pages — use the bookmark method for those.
+        </p>
+        <div id="url-results" class="results" role="region" aria-live="polite" aria-label="Website results"></div>
+
+        <h3>Option 2: The bookmark method (complete results)</h3>
         <ol class="steps">
           <li>
             Drag this button up into your browser's bookmarks bar:
@@ -50,8 +68,8 @@
           <summary>If nothing happens when you click the bookmark</summary>
           <p>
             Some websites have strict security settings that block outside tools, including this one.
-            If your results don't appear, that's usually why. You can still check your PDF documents and
-            sketches below, or ask whoever builds your website to run the
+            If your results don't appear, that's usually why. Try the quick check above, check your PDF
+            documents and sketches below, or ask whoever builds your website to run the
             <a href="https://github.com/ukadike/accessible-by-design-prototyping">developer version</a> of this tool.
           </p>
         </details>
@@ -95,15 +113,28 @@
 
       <!-- ============ ABOUT ============ -->
       <section aria-labelledby="about-heading" class="tool-card about">
-        <h2 id="about-heading">What this tool can and can't do</h2>
+        <h2 id="about-heading">What this tool can and can't do — being upfront</h2>
         <p>
           Automated checks catch many common problems, but not everything. Each report also includes a short
           list of things only a person can judge — like whether your alt text actually describes the image.
         </p>
-        <p>
-          This tool is an accessibility aid, not a legal certification. For the most complete picture,
-          have people who use screen readers or keyboards test your work directly.
-        </p>
+        <ul>
+          <li>
+            <strong>The quick website check is partial.</strong> It examines a fetched copy of your page, and
+            every report it produces says so. Sites built with heavy scripting may show few or no results —
+            that doesn't mean they're accessible. The bookmark method is the accurate one.
+          </li>
+          <li>
+            <strong>The PDF and sketch checks run entirely on your computer.</strong> Your files and code are
+            never uploaded anywhere. The quick website check is the one exception: the address you type
+            passes through a public relay to fetch the page copy.
+          </li>
+          <li>
+            <strong>A clean result is a good start, not a finish line.</strong> This tool is an accessibility
+            aid, not a legal certification. For the most complete picture, have people who use screen readers
+            or keyboards test your work directly.
+          </li>
+        </ul>
         <p>
           Made for designers, artists, educators, and everyone else who wants their work to reach more people.
           Developers can find the command-line version, source code, and ways to contribute

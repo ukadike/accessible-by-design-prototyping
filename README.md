@@ -19,9 +19,10 @@ This project is part of the [Small Systems Lab](https://github.com/ukadike/Small
 
 The hosted version requires no installation and no terminal:
 
-- **Check your website** with a drag-to-bookmarks-bar "Audit this page" button — results appear right on your page
+- **Check your website** two ways: a quick check by typing a web address (fast, examines a fetched copy of the page, clearly labeled as partial), or the drag-to-bookmarks-bar "Audit this page" button for complete results right on your page
 - **Check a PDF** by choosing a file — it's analyzed in your browser and never uploaded
 - **Check a p5.js sketch** by pasting your code
+- **Download results** as a plain-language PDF report, a text report, or developer-friendly JSON
 
 Everything below this point is for developers who want the command-line tool, the source, or to contribute.
 

@@ -7,6 +7,9 @@ All notable changes to this project are documented here. This project follows
 
 ### Added
 
+- Quick website check by web address on the public site: fetches a copy of the page (direct or via a public relay), renders it in a scripts-sandboxed iframe wrapper with axe-core injected, and reports results with an explicit "quick check of a copy" note in every report. The bookmarklet remains the documented accurate path, and the site's "being upfront" section spells out the difference.
+- PDF report download on the public site (`src/reporters/pdf-reporter.ts`): generates a plain-language, paginated PDF report in the browser via pdf-lib, with title and language metadata set.
+
 - No-code public site (`src/site/`, deployed to GitHub Pages on push to `main`): check a PDF by choosing a file (analyzed entirely in the browser), check a p5.js sketch by pasting code, and audit any website with a drag-to-bookmarks "Audit this page" bookmarklet that renders plain-language results in an on-page overlay (axe-core bundled, shadow-DOM isolated).
 - Browser-safe core modules (`context-filter`, `p5-checks`, `pdf-checks`, `summarize`) so the same check logic runs in the CLI and in the browser; Node adapters now delegate to them.
 
