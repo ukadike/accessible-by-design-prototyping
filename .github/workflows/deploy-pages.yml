@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,4 +35,12 @@ jobs:
         with:
           path: dist-site
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      # The Pages deploy service intermittently answers "Deployment failed, try
+      # again later" on push-triggered runs; one retry has reliably succeeded.
+      - if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
