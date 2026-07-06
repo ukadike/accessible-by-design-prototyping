@@ -106,6 +106,14 @@ Security issues should be reported privately — see [SECURITY.md](SECURITY.md).
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 
+## Related SSL Projects
+
+- [Small Systems Lab](https://ukadike.github.io/small-systems-lab/) — ecosystem hub
+- [Omoluabi](https://ukadike.github.io/omoluabi/) — editorial intelligence
+- [Earth Sensors Lab](https://ukadike.github.io/earth-sensors-lab/) — accessible STEAM research
+- [Echo](https://ukadike.github.io/echo/) — AI literacy
+- [Umada](https://ukadike.github.io/umada/) — speculative worldbuilding
+
 ## Credits
 
 Adekemi (Kemi) Hanna Sijuwade-Ukadike

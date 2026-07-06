@@ -113,6 +113,60 @@ h1 {
   border-bottom-color: var(--text);
 }
 
+.ecosystem-nav {
+  font-size: 0.85rem;
+  padding-top: 0.25rem;
+}
+
+.ecosystem-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ecosystem-nav a {
+  color: var(--line);
+  text-decoration: underline;
+}
+
+.ecosystem-nav a[aria-current='page'] {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  padding: 0.4rem 0 0.75rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.25rem;
+  color: var(--line);
+}
+
+.breadcrumb a {
+  color: var(--line);
+}
+
+.breadcrumb li[aria-current='page'] {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .hero {
   padding: 2rem 0 0.5rem;
 }
