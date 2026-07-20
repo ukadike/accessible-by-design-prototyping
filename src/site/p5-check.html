@@ -9,9 +9,29 @@
       content="Check a p5.js or canvas sketch for accessibility gaps: missing descriptions, mouse-only interaction, and unpausable animation."
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./ssl-nav.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="ssl-header">
+      <div class="ssl-header__row">
+        <a class="ssl-brand" href="https://ukadike.github.io/Small-Systems-Lab/">Small Systems Lab</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="ssl-global-nav">Menu</button>
+      </div>
+      <nav id="ssl-global-nav" class="ssl-global-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/">Small Systems Lab</a></li>
+          <li><a href="https://ukadike.github.io/omoluabi/">Omoluabi</a></li>
+          <li><a href="https://ukadike.github.io/Umada/">UMADA</a></li>
+          <li><a href="https://ukadike.github.io/accessible-by-design-prototyping/" aria-current="page">Accessible by Design</a></li>
+          <li><a href="https://ukadike.github.io/Earth-Sensors-Lab/">Earth Sensors Lab</a></li>
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/schema-cards/">Schema Cards</a></li>
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/site-map/">Site Map</a></li>
+          <li><a href="https://github.com/ukadike">GitHub</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <header class="site-header">
       <nav aria-label="Main navigation">
@@ -104,8 +124,38 @@
           >GitHub</a
         >
       </p>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/site-map/">Site Map</a></li>
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/accessibility/">Accessibility</a></li>
+          <li><a href="https://ukadike.github.io/Small-Systems-Lab/schema-cards/">Schema Cards</a></li>
+          <li><a href="https://github.com/ukadike">GitHub</a></li>
+        </ul>
+      </nav>
     </footer>
 
     <script type="module" src="./pages/sketch.ts"></script>
+
+    <script type="application/json" data-schema="page.schema.v1">
+{
+  "title": "p5 / Creative Coding Check",
+  "project": "Accessible by Design",
+  "canonicalUrl": "https://ukadike.github.io/accessible-by-design-prototyping/p5-check.html",
+  "status": "active",
+  "nav": {
+    "globalNav": true,
+    "localNav": true,
+    "siteMapEntry": true
+  },
+  "accessibility": {
+    "skipLink": true,
+    "mainLandmark": true,
+    "keyboardTested": true,
+    "screenReaderLabeling": true,
+    "focusVisible": true
+  },
+  "lastUpdated": "2026-07-20"
+}
+    </script>
   </body>
 </html>
