@@ -26,6 +26,15 @@ The hosted version requires no installation and no terminal:
 
 Everything below this point is for developers who want the command-line tool, the source, or to contribute.
 
+## Access Is the Interface
+
+[Open the keynote and interactive p5 demo](https://ukadike.github.io/accessible-by-design-prototyping/access-agent-consent.html).
+This dedicated page explores the convergence of creative coding, accessibility, and AI governance.
+It includes the thesis, a keynote outline, a presenter walkthrough, editable message previews,
+optional speech input/output, and a simulated action that requires approval of the exact current draft.
+Message delivery is simulated; no email is sent. The interpretation uses a fixed teaching example, not a language model.
+The page source is [src/site/access-agent-consent.html](src/site/access-agent-consent.html).
+
 ## What It Does
 
 - Audits public URLs

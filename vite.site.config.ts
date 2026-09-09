@@ -19,6 +19,7 @@ export default defineConfig({
         'website-check': site('website-check.html'),
         'pdf-check': site('pdf-check.html'),
         'p5-check': site('p5-check.html'),
+        'access-agent-consent': site('access-agent-consent.html'),
         about: site('about.html'),
       },
     },

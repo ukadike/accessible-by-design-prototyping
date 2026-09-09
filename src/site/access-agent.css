@@ -1,0 +1,89 @@
+.keynote-page {
+  --card-bg: #f4f5f6;
+  --focus: #005fcc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .keynote-page {
+    --card-bg: #242424;
+    --focus: #8dc7ff;
+  }
+}
+
+.keynote-page main,
+.keynote-page .site-header,
+.keynote-page footer {
+  max-width: 70rem;
+}
+
+.keynote-page a { color: var(--text); }
+.keynote-page [hidden] { display: none !important; }
+.page-intro { padding: 1.5rem 0; }
+.page-intro > p { margin: 0.4rem 0; }
+.eyebrow { font-size: 0.9rem; font-weight: 700; }
+.section-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-top: 1rem; }
+.section-links a { padding: 0.3rem 0; }
+.section-band { border-top: 1px solid var(--line); padding: 1.75rem 0; scroll-margin-top: 1rem; }
+.section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.25rem; }
+.section-heading h2 { margin-bottom: 0; }
+.simulation-label { font-size: 0.9rem; font-weight: 700; color: var(--good); }
+.demo-intro { margin-top: 0.5rem; }
+.demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'request review' 'decision review'; gap: 0.5rem 2rem; }
+.request-column { grid-area: request; }
+.review-column { grid-area: review; }
+.decision-column { grid-area: decision; }
+.demo-column { min-width: 0; }
+.demo-column h3 { margin: 0.75rem 0; }
+.keynote-page textarea,
+.keynote-page input[type='text'] {
+  font: inherit;
+  line-height: 1.45;
+  width: 100%;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.6rem;
+}
+.keynote-page input[type='text'] { margin-bottom: 0.8rem; }
+.keynote-page textarea { resize: vertical; min-height: 6rem; }
+.keynote-page textarea::placeholder { color: var(--text); opacity: 0.75; }
+.keynote-page textarea:disabled { background: var(--card-bg); }
+.control-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; }
+.keynote-page button { min-height: 44px; padding: 0.55rem 0.85rem; }
+.keynote-page button.primary { background: var(--text); color: var(--bg); }
+.keynote-page button:disabled { cursor: not-allowed; opacity: 0.55; background: var(--bg); color: var(--text); }
+.approval-row { display: flex; align-items: flex-start; gap: 0.7rem; }
+.approval-row input { width: 24px; height: 24px; margin: 0.15rem 0 0; flex-shrink: 0; accent-color: var(--good); }
+.approval-row label { margin: 0; cursor: pointer; }
+.interpretation { border-left: 3px solid var(--line); padding-left: 0.75rem; font-size: 0.95rem; }
+.demo-status { border-left: 5px solid var(--good); background: var(--card-bg); padding: 1rem; min-height: 5rem; }
+.demo-status[data-state='blocked'] { border-color: var(--bad); }
+.flow-figure { margin: 1.5rem 0; }
+.flow-figure figcaption { font-weight: 700; }
+#flow-canvas { margin: 0.5rem 0; }
+#flow-canvas canvas { display: block; max-width: 100%; height: auto !important; }
+#flow-text { margin: 0.5rem 0; }
+.keynote-page summary { cursor: pointer; padding: 0.5rem 0; font-weight: 600; }
+.action-log { padding-left: 1.5rem; }
+.action-log li { margin: 0.5rem 0; overflow-wrap: anywhere; }
+.prose { max-width: 52rem; }
+.prose p { margin: 0.6rem 0 1rem; }
+.keynote-outline { padding-left: 1.65rem; }
+.keynote-outline > li { padding-left: 0.4rem; margin-bottom: 1.8rem; }
+.keynote-outline h3 { margin: 0; }
+.keynote-outline h3 span { display: block; font-size: 0.95rem; font-weight: 400; }
+.keynote-page pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 1rem; background: var(--card-bg); border: 1px solid var(--line); border-radius: 6px; font-size: 0.9rem; }
+.keynote-page footer { border-top: 1px solid var(--line); padding-top: 1rem; }
+
+@media (max-width: 48rem) {
+  .demo-grid { grid-template-columns: 1fr; grid-template-areas: 'request' 'review' 'decision'; gap: 1rem; }
+  .page-intro h1 { font-size: 1.75rem; }
+}
+
+@media print {
+  .keynote-page { color: #000; background: #fff; }
+  .site-header, .section-links, #demo, footer { display: none; }
+  .section-band { padding: 1rem 0; }
+  .keynote-outline > li { break-inside: avoid; }
+}

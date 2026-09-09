@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Is the Interface | Accessible by Design</title>
+    <meta name="description" content="A keynote and interactive p5 demo by Kemi Sijuwade-Ukadike on creative coding, access needs, AI agents, and human authority." />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./access-agent.css" />
+  </head>
+  <body class="keynote-page">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html">Accessible by Design</a></li>
+          <li><a href="./p5-check.html">p5 / Creative Coding Check</a></li>
+          <li><a href="./access-agent-consent.html" aria-current="page">Keynote + AI Access Demo</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <div class="page-intro">
+        <p class="eyebrow">Accessible by Design / Keynote in development</p>
+        <h1>Access Is the Interface</h1>
+        <p class="tagline">Creative coding, accessibility, and human authority in the age of AI.</p>
+        <p>By Adekemi (Kemi) Hanna Sijuwade-Ukadike</p>
+        <nav class="section-links" aria-label="On this page">
+          <a href="#demo">Try the demo</a>
+          <a href="#thesis">Read the thesis</a>
+          <a href="#outline">Keynote outline</a>
+          <a href="#presenter">Presenter walkthrough</a>
+          <a href="#code">Explore the code</a>
+        </nav>
+      </div>
+
+      <section id="demo" aria-labelledby="demo-heading" class="section-band">
+        <div class="section-heading">
+          <h2 id="demo-heading">When assistance becomes action</h2>
+          <span class="simulation-label">Simulation only</span>
+        </div>
+        <p class="demo-intro">Prepare a draft, review it, then try the action before and after approval. The message is fictional and delivery is simulated.</p>
+        <noscript><p>This interaction needs JavaScript. The thesis, outline, and presenter walkthrough are available below.</p></noscript>
+        <p id="demo-loading">Loading the interaction. The keynote outline is available below.</p>
+        <div id="demo-controls" hidden>
+          <div class="demo-grid">
+            <div class="demo-column request-column">
+              <h3>1. Express an intention</h3>
+              <label for="request-text">Your request</label>
+              <textarea id="request-text" rows="4">Tell the workshop team I can give a keynote about accessibility and coding in the age of AI, but let me review it first.</textarea>
+              <div class="control-row">
+                <button id="prepare-button" type="button" class="primary">Prepare sample draft</button>
+                <button id="voice-button" type="button" aria-describedby="voice-note" aria-pressed="false">Use voice input</button>
+              </div>
+              <p class="hint" id="voice-note">Optional voice input may send audio to your browser's speech service. It only fills the request; it never approves an action.</p>
+              <p class="interpretation" id="interpretation">The script prepares a fixed example for review. No language model is connected.</p>
+            </div>
+            <div class="demo-column review-column">
+              <h3 id="review-heading" tabindex="-1">2. Review and edit</h3>
+              <label for="recipient">Simulated recipient</label>
+              <input id="recipient" type="text" value="Workshop team (fictional)" autocomplete="off" />
+              <label for="draft-text">Exact message preview</label>
+              <textarea id="draft-text" rows="11" disabled placeholder="Your editable sample draft will appear here."></textarea>
+              <div class="control-row">
+                <button id="speak-button" type="button" disabled>Read preview aloud</button>
+                <button id="stop-speech-button" type="button" disabled>Stop reading</button>
+              </div>
+              <p class="hint" id="speech-note">Read-aloud is optional. All information is also available as text.</p>
+            </div>
+            <div class="demo-column decision-column">
+              <h3>3. Decide what can happen</h3>
+              <div class="approval-row">
+                <input id="consent-check" type="checkbox" disabled />
+                <label for="consent-check">I approve one simulated send of this exact draft to the recipient shown.</label>
+              </div>
+              <p class="hint" id="revision-note">Prepare a draft to enable approval. Editing the request, recipient, or draft clears approval.</p>
+              <div class="control-row">
+                <button id="act-button" type="button">Try simulated send</button>
+                <button id="reset-button" type="button">Reset demo</button>
+              </div>
+            </div>
+          </div>
+          <p id="demo-status" class="demo-status" role="status" aria-live="polite" aria-atomic="true">Ready. Prepare the sample draft, or try a simulated send to test the boundary.</p>
+          <figure class="flow-figure" aria-labelledby="flow-heading">
+            <figcaption id="flow-heading">The p5 sketch: expression, interpretation, preparation, review, action</figcaption>
+            <div id="flow-canvas" aria-hidden="true"></div>
+            <p id="flow-text">Current stage: expression. No action has been authorized.</p>
+            <p id="canvas-note" class="hint">The visual diagram is loading. Controls and stage descriptions work independently.</p>
+          </figure>
+          <details>
+            <summary>Action history <span id="log-count">(0)</span></summary>
+            <ol id="action-log" class="action-log"></ol>
+          </details>
+        </div>
+      </section>
+
+      <section id="thesis" aria-labelledby="thesis-heading" class="section-band prose">
+        <p class="eyebrow">The convergence</p>
+        <h2 id="thesis-heading">Access needs are shaping the future of code</h2>
+        <p>Creative coding is reaching a convergence: the systems we use to make work can also interpret our intentions, generate speech, manipulate files, call APIs, and act through other software. For a creator with access needs, these capabilities can be the interface through which making becomes possible.</p>
+        <p>A spoken request can become editable text, a draft can become speech, and an API can complete a task that an inaccessible interface puts out of reach. Accessibility therefore belongs inside the architecture of an agent: how it receives an intention, represents uncertainty, offers review, receives permission, and carries out an action.</p>
+        <p>This keynote argues that the convergence changes what it means to write code. Alongside designing images, sounds, and interactions, we are designing delegated authority. The creator must be able to understand, direct, correct, authorize, and stop the system through access pathways they can actually use.</p>
+        <blockquote class="positioning">The future of code is also the design of agency: what a system can do, whose intention it serves, and how that person remains in control.</blockquote>
+        <h3>What AI governance means here</h3>
+        <p>AI governance is the assignment and enforcement of responsibility, decision rights, and limits around an AI system across its life cycle. In a creative coding project, that means deciding who may authorize an action, what tools the system can reach, how failures are detected, and who must respond when something goes wrong.</p>
+        <p>An approval control is one part of that work. Governance also includes testing, access to evidence, incident response, and the people responsible for repair. NIST's <a href="https://www.nist.gov/itl/ai-risk-management-framework">AI Risk Management Framework</a> offers a broader structure for managing risks through design, development, use, and evaluation.</p>
+      </section>
+
+      <section id="outline" aria-labelledby="outline-heading" class="section-band prose">
+        <h2 id="outline-heading">Keynote outline</h2>
+        <p>Suggested arc: 35 minutes, followed by discussion. Each section begins with a coding decision and follows its consequences for access and authority.</p>
+        <ol class="keynote-outline">
+          <li>
+            <h3>When a function acts in your name <span>4 minutes</span></h3>
+            <p>Open with a familiar operation: preparing a message. A person asks to review it, but an assistant sends it. Put the missing boundary between <code>prepareDraft()</code> and <code>sendMessage()</code> on screen. The issue is the action taken beyond permission and its consequences for the person.</p>
+            <p><strong>Coding question:</strong> What actually prevents a proposed action from becoming an executed action?</p>
+          </li>
+          <li>
+            <h3>Access begins with participation <span>4 minutes</span></h3>
+            <p>Ask what someone needs to interact online: to perceive what is happening, express an intention, operate controls, understand a response, and correct a mistake. Connect these capabilities to semantic HTML, keyboard operation, speech, captions, and adjustable presentation.</p>
+            <p><strong>Coding question:</strong> Can a person complete the whole task through the input and output pathways available to them?</p>
+          </li>
+          <li>
+            <h3>Access needs reveal the agent stack <span>5 minutes</span></h3>
+            <p>Follow a voice request through transcription, interpretation, a proposed tool call, review, and execution. Define an agent operationally: a system that can select and use tools over multiple steps toward a task. These layers may be essential working infrastructure for a disabled creative coder.</p>
+            <p><strong>Coding question:</strong> Where do transcription errors, inferred intentions, and tool permissions become different problems?</p>
+          </li>
+          <li>
+            <h3>The convergence: making through delegation <span>4 minutes</span></h3>
+            <p>Move beyond code completion: a creator dictates a sketch change, asks for its behavior to be described aloud, and uses an API to manage project files. The same pipeline supports creative expression and exercises authority. Walk through <code>expression -&gt; proposal -&gt; permission -&gt; effect</code>.</p>
+            <p><strong>Coding question:</strong> What can be automated within an agreed scope, and what changes require a new decision?</p>
+          </li>
+          <li>
+            <h3>Live p5 demo: make the boundary visible <span>7 minutes</span></h3>
+            <p>Prepare a draft. Read or hear it. Attempt an unapproved simulated send and inspect the refusal. Approve, edit the recipient or text, and try again: approval is invalidated. Approve the current version, simulate one send, then show that the permission cannot be reused.</p>
+            <p><strong>Coding question:</strong> Is permission attached to the exact action, or just to an old checkbox?</p>
+          </li>
+          <li>
+            <h3>Governance becomes architecture <span>4 minutes</span></h3>
+            <p>Separate proposals from execution; enforce permissions at the tool service; limit credentials to the resources a task needs. Bind permission to the actor, action, target, version, and appropriate duration. Keep records and provide a stop path. Examine observable failure paths before attributing intentions to a system.</p>
+            <p><strong>Coding question:</strong> If the model proposes something outside its authority, does the surrounding code refuse it?</p>
+          </li>
+          <li>
+            <h3>Accessible control, accountable recovery <span>4 minutes</span></h3>
+            <p>Test whether a person can review a meaningful change, refuse it, revoke delegation, and inspect the outcome without an inaccessible interface. Distinguish cancellation before execution from recovery afterward; some external actions cannot be undone. Close with an invitation to build these controls with the people who depend on them.</p>
+            <p><strong>Closing question:</strong> If someone relies on your code to act, can they also use it to govern that action?</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="presenter" aria-labelledby="presenter-heading" class="section-band prose">
+        <h2 id="presenter-heading">Presenter walkthrough</h2>
+        <ol class="steps">
+          <li>Select <strong>Prepare sample draft</strong>. The editable preview appears and receives focus. Explain that this teaching example uses a fixed template; it does not infer permission from language.</li>
+          <li>Edit the preview, or select <strong>Read preview aloud</strong>. The recipient is part of the review. Voice input is optional; browser or device dictation into the text fields is another pathway.</li>
+          <li>Leave approval unchecked and select <strong>Try simulated send</strong>. The status and p5 diagram show a blocked action.</li>
+          <li>Check approval, then change a word or the recipient. Approval clears. Try again to demonstrate why an old approval cannot authorize a new action.</li>
+          <li>Approve the current version and select <strong>Try simulated send</strong>. The history records a simulated receipt. Try once more: that one-use permission has been consumed.</li>
+          <li>Select <strong>Reset demo</strong> for the next run. Reset also stops voice input and reading. Ask the audience where they would enforce these rules in an app with a real backend.</li>
+        </ol>
+      </section>
+
+      <section id="code" aria-labelledby="code-heading" class="section-band prose">
+        <h2 id="code-heading">Explore the code</h2>
+        <p>The p5 canvas reflects the state of the interaction. Native HTML holds the request, recipient, preview, approval, status, and history, so using the demo does not depend on seeing or clicking the canvas.</p>
+        <pre><code>const action = { tool: 'message.send', recipient, body, revision };
+
+// Approval stores a copy of this exact proposed action.
+gate.approve(action);
+
+// Editing any part revokes permission.
+gate.revoke();
+
+// Every attempt passes through the same check.
+const result = gate.execute(action);
+if (!result.ok) {
+  announce(result.reason);
+  return;
+}
+// This demo records a local simulated receipt only.</code></pre>
+        <p>This browser gate is a teaching model. A production tool service must enforce authorization independently of the model and browser, authenticate the person, validate the allowed action and resources, and prevent duplicate execution. The browser alone cannot protect a real API.</p>
+        <p>Approval can also be scoped and revocable for a sequence of low-risk actions. This demo deliberately uses one explicit approval per message so that the boundary is easy to inspect.</p>
+        <ul class="source-links">
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/agent-consent.ts">Action permission logic</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/pages/access-agent.ts">Interaction and speech controls</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/access-agent-sketch.js">p5 sketch source</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/tests/agent-consent.test.ts">Permission boundary tests</a></li>
+        </ul>
+        <p>The sketch uses <a href="https://p5js.org/reference/p5/createCanvas/">p5 createCanvas()</a> and <a href="https://p5js.org/reference/p5/noLoop/">noLoop()</a> with redraws on state changes. It has no continuous animation. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition">Web Speech API</a> has limited browser support; some implementations process recognition on a server. Text input remains available.</p>
+      </section>
+    </main>
+    <footer><p>Accessible by Design / Small Systems Lab / <a href="https://github.com/ukadike/accessible-by-design-prototyping">GitHub repository</a></p></footer>
+    <script type="module" src="./pages/access-agent.ts"></script>
+  </body>
+</html>
