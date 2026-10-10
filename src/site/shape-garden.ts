@@ -144,36 +144,65 @@ export function mountShapeGarden(): void {
       motion: item.motion,
       motionApproved: item.motionApproved,
     }));
+    const selectedIndex = Math.max(0, items.findIndex((item) => item.id === selectedId));
     const source = `// UMADA Garden scene — paste into the p5.js web editor.
 const gardenObjects = ${JSON.stringify(entries, null, 2)};
 const actionTrail = ${JSON.stringify(actions, null, 2)};
+let selectedObject = ${selectedIndex};
+let motionEnabled = ${inputs.animate.checked};
 
 function setup() {
   createCanvas(640, 420);
-  noLoop();
+  updateCanvasDescription();
+  if (motionEnabled && gardenObjects.some((item) => item.motionApproved && item.motion !== 'still')) loop();
+  else noLoop();
+}
+
+function updateCanvasDescription() {
+  const informative = gardenObjects
+    .filter((item) => item.alternativeRole === 'informative')
+    .map((item) => item.alternativeText || item.description);
+  const decorativeCount = gardenObjects.filter((item) => item.alternativeRole === 'decorative').length;
+  const locations = gardenObjects.map((item) => item.label + ' at ' + Math.round(item.x * 100) + '% across and ' + Math.round(item.y * 100) + '% down');
+  const meaning = informative.length ? informative.join('. ') : 'The garden contains decorative shapes.';
+  const decorative = decorativeCount ? ' ' + decorativeCount + ' decorative objects.' : '';
+  describe('UMADA Garden. ' + meaning + decorative + ' ' + locations.join('; ') + '.');
 }
 
 function draw() {
   background('#f6f0dc');
+  const seconds = millis() / 1000;
   gardenObjects.forEach((item) => {
+    const moving = motionEnabled && item.motionApproved;
+    const phase = seconds + item.x * 6 + item.y * 4;
+    let x = item.x * width;
+    let y = item.y * height;
+    let size = item.size;
+    if (moving && item.motion === 'drift') x += Math.sin(phase * 0.45) * 8;
+    if (moving && item.motion === 'bounce') y -= Math.abs(Math.sin(phase * 1.1)) * 14;
+    if (moving && item.motion === 'orbit') {
+      x += Math.cos(phase * 0.55) * 16;
+      y += Math.sin(phase * 0.55) * 12;
+    }
+    if (moving && item.motion === 'pulse') size *= 1 + Math.sin(phase * 1.2) * 0.08;
     push();
-    translate(item.x * width, item.y * height);
+    translate(x, y);
     fill(item.color);
     noStroke();
-    const s = item.size;
-    if (item.kind === 'circle') ellipse(0, 0, s);
-    if (item.kind === 'rectangle') rectMode(CENTER), rect(0, 0, s, s * 0.72, 10);
-    if (item.kind === 'triangle') triangle(0, -s / 2, -s / 2, s / 2, s / 2, s / 2);
+    if (item.kind === 'circle') ellipse(0, 0, size);
+    if (item.kind === 'rectangle') { rectMode(CENTER); rect(0, 0, size, size * 0.72, 10); }
+    if (item.kind === 'triangle') triangle(0, -size / 2, -size / 2, size / 2, size / 2, size / 2);
     if (item.kind === 'star') {
       beginShape();
       for (let point = 0; point < 10; point++) {
-        const radius = point % 2 === 0 ? s / 2 : s / 4;
+        const radius = point % 2 === 0 ? size / 2 : size / 4;
         const angle = -HALF_PI + point * TWO_PI / 10;
         vertex(cos(angle) * radius, sin(angle) * radius);
       }
       endShape(CLOSE);
     }
     if (item.kind === 'words') {
+      fill('#17212b');
       textAlign(CENTER, CENTER);
       textSize(18);
       text(item.label, 0, 0, 180);
@@ -182,9 +211,39 @@ function draw() {
   });
 }
 
-// Intention, descriptions, text alternatives, and the participant's decisions
-// travel with the sketch as metadata. Canvas text alternatives still need to
-// be presented in an accessible HTML interface when you publish it.
+// Arrow keys move the selected object. Space or P pauses/resumes approved motion.
+function keyPressed() {
+  const item = gardenObjects[selectedObject];
+  if (item && keyCode === LEFT_ARROW) item.x = max(0.06, item.x - 0.035);
+  else if (item && keyCode === RIGHT_ARROW) item.x = min(0.94, item.x + 0.035);
+  else if (item && keyCode === UP_ARROW) item.y = max(0.06, item.y - 0.035);
+  else if (item && keyCode === DOWN_ARROW) item.y = min(0.94, item.y + 0.035);
+  else if (key === ' ' || key === 'p' || key === 'P') {
+    motionEnabled = !motionEnabled;
+    if (motionEnabled && gardenObjects.some((shape) => shape.motionApproved && shape.motion !== 'still')) loop();
+    else noLoop();
+    return false;
+  } else return;
+  updateCanvasDescription();
+  if (!motionEnabled) redraw();
+  return false;
+}
+
+// Mouse and touch remain available in this standalone sketch. The keyboard path
+// above moves the same selected object. Published work still needs semantic DOM
+// controls beside the canvas to expose its task and state.
+function mouseDragged() {
+  const item = gardenObjects[selectedObject];
+  if (!item) return false;
+  item.x = constrain(mouseX / width, 0.06, 0.94);
+  item.y = constrain(mouseY / height, 0.06, 0.94);
+  updateCanvasDescription();
+  if (!motionEnabled) redraw();
+  return false;
+}
+
+// Intention, description, alternative choice, movement approval, and decisions
+// travel with the sketch as metadata. describe() supplies the canvas description.
 `;
     codeOutput.textContent = source;
     copyButton.disabled = false;
