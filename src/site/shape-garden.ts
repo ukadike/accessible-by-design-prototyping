@@ -37,7 +37,7 @@ interface FaceResult {
 }
 interface FaceModel {
   detectStart(video: HTMLVideoElement, callback: (faces: FaceResult[]) => void): void;
-  detectStop?: (): void;
+  detectStop?: () => void;
 }
 interface Ml5Api {
   faceMesh(options: { maxFaces: number }): Promise<FaceModel> | FaceModel;
