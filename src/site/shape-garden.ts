@@ -60,6 +60,9 @@ export function mountShapeGarden(): void {
   const copyButton = byId<HTMLButtonElement>('garden-copy-code');
   const downloadButton = byId<HTMLButtonElement>('garden-download-code');
   const printButton = byId<HTMLButtonElement>('garden-print-notes');
+  const schemaMarkdownButton = byId<HTMLButtonElement>('garden-download-schema-markdown');
+  const schemaJsonButton = byId<HTMLButtonElement>('garden-download-schema-json');
+  const schemaStatus = byId<HTMLElement>('garden-schema-status');
   const printSheet = byId<HTMLElement>('garden-print-sheet');
   const loadVisualButton = byId<HTMLButtonElement>('garden-load-canvas');
   const canvasPlaceholder = byId<HTMLElement>('garden-canvas-placeholder');
@@ -99,8 +102,7 @@ export function mountShapeGarden(): void {
 
   const selected = () => items.find((item) => item.id === selectedId) ?? null;
   const record = (action: string, detail: string) => {
-    actions.push({ action, detail, time: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) });
-    if (actions.length > 40) actions.shift();
+    actions.push({ action, detail, time: new Date().toISOString() });
     renderLog();
     renderCode();
   };
@@ -111,7 +113,7 @@ export function mountShapeGarden(): void {
     logList.replaceChildren();
     for (const entry of actions) {
       const li = document.createElement('li');
-      li.textContent = `${entry.time}: ${entry.action} — ${entry.detail}`;
+      li.textContent = `${new Date(entry.time).toLocaleString()}: ${entry.action} — ${entry.detail}`;
       logList.append(li);
     }
   }
@@ -133,6 +135,9 @@ export function mountShapeGarden(): void {
       copyButton.disabled = true;
       downloadButton.disabled = true;
       printButton.disabled = false;
+      schemaMarkdownButton.disabled = true;
+      schemaJsonButton.disabled = true;
+      schemaStatus.textContent = 'Add an object to prepare your Schema Card. The print view is available as a blank planning template.';
       return;
     }
     const entries = items.map((item) => ({
@@ -267,6 +272,12 @@ function mouseDragged() {
     copyButton.disabled = false;
     downloadButton.disabled = false;
     printButton.disabled = false;
+    schemaMarkdownButton.disabled = false;
+    schemaJsonButton.disabled = false;
+    const incomplete = items.some((item) => !item.intention.trim() || !item.description.trim() || (item.altRole === 'informative' && !item.altText.trim()));
+    schemaStatus.textContent = incomplete
+      ? 'Schema Card ready as a draft. Add any missing intention, description, or informative alt text before handing it to another system.'
+      : 'Schema Card ready for your review and take-home.';
   }
   function updateControls(): void {
     const item = selected();
@@ -497,6 +508,148 @@ function mouseDragged() {
     announce('Garden cleared.');
   });
 
+  function createSchemaCard() {
+    const createdAt = new Date().toISOString();
+    const objects = items.map((item) => ({
+      kind: item.kind,
+      label: item.label,
+      color: item.color,
+      size_px: item.size,
+      position: { x: Number(item.x.toFixed(3)), y: Number(item.y.toFixed(3)) },
+      intention: item.intention,
+      description: item.description,
+      text_alternative: { role: item.altRole, text: item.altText },
+      movement: { proposed_rule: item.motion, explicitly_allowed: item.motionApproved },
+    }));
+    const missing = objects.flatMap((item, index) => {
+      const issues: string[] = [];
+      if (!item.intention.trim()) issues.push('Object ' + (index + 1) + ': intention not recorded.');
+      if (!item.description.trim()) issues.push('Object ' + (index + 1) + ': description not recorded.');
+      if (item.text_alternative.role === 'informative' && !item.text_alternative.text.trim()) issues.push('Object ' + (index + 1) + ': informative text alternative not recorded.');
+      return issues;
+    });
+    return {
+      format: 'small-systems-lab/interaction-schema-card',
+      schema_version: '1.0.0',
+      card_id: 'UMADA-GARDEN-INTERACTION',
+      created_at: createdAt,
+      title: 'UMADA Garden Schema Card',
+      project: { name: 'UMADA Garden', workshop: 'Accessible by Design' },
+      status: missing.length ? 'draft_needs_accessibility_review' : 'ready_for_participant_review',
+      purpose: 'Portable record of a participant-created garden interaction, its access requirements, governance rules, and implementation.',
+      handoff: {
+        instructions: [
+          'Treat the accessibility requirements and prohibitions in this card as constraints.',
+          'Preserve the participant’s wording; do not invent missing intentions, descriptions, alt text, or permissions.',
+          'Ask the participant before changing a stated rule or broadening an allowed action.',
+          'This card is a design specification. It does not itself authorize a device or AI system to act.',
+        ],
+        suggested_use: 'Bring the Markdown into an AI-assisted coding conversation, or use the JSON as structured input in a device or code workflow that supports these fields.',
+      },
+      governance: {
+        world_boundary: 'Objects affect only this local garden scene.',
+        allowed_actions: ['Add, describe, adjust, move, or remove garden objects through participant controls.', 'Run movement only when the participant allows movement for that object and starts approved movement.'],
+        prohibited_actions: ['Do not call tools, send messages, or act outside the garden scene.', 'Do not infer permission from an object intention or from the presence of this card.', 'Do not run movement that the participant has not explicitly allowed.'],
+        human_authority: 'The participant decides the object’s intention, text alternative, movement permission, and any later adaptation.',
+        benefit_status: 'An object’s intended benefit is a hypothesis to discuss and test, not an established outcome.',
+      },
+      accessibility: {
+        reference: 'WCAG 2.2',
+        conformance_claim: false,
+        review_status: missing.length ? 'incomplete' : 'participant_review_needed',
+        missing_fields: missing,
+        requirements: [
+          'Every object has a plain-language intention and description.',
+          'Every informative object has a text alternative; decorative objects are explicitly marked decorative.',
+          'The scene’s information is available as text, not through color or canvas appearance alone.',
+          'The task can be completed using keyboard and touch controls without relying on dragging.',
+          'Movement requires explicit per-object permission, can be paused, and respects the device reduced-motion preference.',
+          'Review contrast, focus visibility, text size, and target size before adapting or sharing the work.',
+        ],
+        scene_text_alternative: description.textContent,
+        review_note: 'This card records design requirements and participant choices; it is not an automated accessibility audit or WCAG conformance certificate.',
+      },
+      privacy: {
+        camera_is_optional_and_user_started: true,
+        camera_video_included: false,
+        face_landmarks_included: false,
+        note: 'The card records the selected input mode and decisions, not camera video or face coordinates.',
+      },
+      interaction: {
+        input_mode: currentMode,
+        approved_movement_running: inputs.animate.checked,
+        objects: objects,
+      },
+      decision_trail: actions.map((entry) => ({ ...entry })),
+      implementation: { language: 'p5.js', source: codeOutput.textContent || '', },
+    };
+  }
+
+  function downloadText(filename: string, content: string, mimeType: string): void {
+    const file = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  schemaJsonButton.addEventListener('click', () => {
+    const card = createSchemaCard();
+    downloadText('umada-garden-schema-card.json', JSON.stringify(card, null, 2), 'application/json;charset=utf-8');
+    schemaStatus.textContent = card.status === 'draft_needs_accessibility_review'
+      ? 'Draft Schema Card downloaded. Its missing fields are listed in the card for you to complete.'
+      : 'Schema Card downloaded. Review its requirements before carrying it into another workflow.';
+  });
+
+  schemaMarkdownButton.addEventListener('click', () => {
+    const card = createSchemaCard();
+    const json = JSON.stringify(card, null, 2);
+    const runs = json.match(/`+/g) || [];
+    const fence = '`'.repeat(Math.max(3, ...runs.map((run) => run.length + 1)));
+    const lines = [
+      '# UMADA Garden Schema Card',
+      '',
+      'A portable record of what you made, the rules you chose, the accessibility requirements, the decision trail, and the generated p5.js code.',
+      '',
+      '## Handoff instructions',
+      ...card.handoff.instructions.map((instruction) => '- ' + instruction),
+      '',
+      '## Status',
+      '- ' + card.status,
+      '- Accessibility review: ' + card.accessibility.review_status,
+      '- WCAG reference: ' + card.accessibility.reference + ' (this card does not certify conformance)',
+      '',
+      '## Objects',
+      ...(card.interaction.objects.length ? card.interaction.objects.flatMap((item, index) => [
+        '',
+        '### ' + (index + 1) + '. ' + item.label,
+        '- Intention: ' + (item.intention || 'Not recorded'),
+        '- Description: ' + (item.description || 'Not recorded'),
+        '- Text alternative: ' + item.text_alternative.role + (item.text_alternative.text ? ' — ' + item.text_alternative.text : ' — not recorded'),
+        '- Movement: ' + item.movement.proposed_rule + '; explicitly allowed: ' + item.movement.explicitly_allowed,
+      ]) : ['', 'No objects yet; this is a blank planning card.']),
+      '',
+      '## Accessibility requirements',
+      ...card.accessibility.requirements.map((requirement) => '- ' + requirement),
+      '',
+      '## Decision trail',
+      ...(card.decision_trail.length ? card.decision_trail.map((entry) => '- ' + entry.time + ' — ' + entry.action + ': ' + entry.detail) : ['No decisions recorded yet.']),
+      '',
+      '## Machine-readable card (includes the p5.js source)',
+      fence + 'json',
+      json,
+      fence,
+      '',
+    ];
+    downloadText('umada-garden-schema-card.md', lines.join('\n'), 'text/markdown;charset=utf-8');
+    schemaStatus.textContent = card.status === 'draft_needs_accessibility_review'
+      ? 'Draft Schema Card downloaded. Its missing fields are listed in the card for you to complete.'
+      : 'Readable Schema Card downloaded. It includes the JSON record and p5.js source for handoff.';
+  });
   printButton.addEventListener('click', () => {
     printSheet.replaceChildren();
     const heading = document.createElement('h1');
