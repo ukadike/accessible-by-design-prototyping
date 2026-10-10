@@ -294,6 +294,53 @@ if (!Voice) {
 if (!speechAvailable) {
   element('speech-note').textContent = 'Browser read-aloud is unavailable here. The editable preview also works with your screen reader.';
 }
+const labCode = element<HTMLTextAreaElement>('lab-code');
+const labFrame = element<HTMLIFrameElement>('lab-preview');
+const labStatus = element('lab-status');
+const labStarter = labCode.value;
+let labTimer = 0;
+
+function renderLab(announce = false): void {
+  window.clearTimeout(labTimer);
+  // Multiple CSP policies only tighten together; the sandbox also disables script execution.
+  labFrame.srcdoc = '<!doctype html><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data: blob:; style-src \'unsafe-inline\'; font-src data:; form-action \'none\'; base-uri \'none\';">\n' + labCode.value;
+  if (announce) labStatus.textContent = 'Preview updated from your current code.';
+}
+
+renderLab();
+
+labCode.addEventListener('input', () => {
+  window.clearTimeout(labTimer);
+  labTimer = window.setTimeout(() => renderLab(false), 350);
+});
+element<HTMLButtonElement>('lab-update').addEventListener('click', () => {
+  renderLab(true);
+});
+element<HTMLButtonElement>('lab-copy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(labCode.value);
+    labStatus.textContent = 'Code copied to the clipboard.';
+  } catch {
+    labStatus.textContent = 'Clipboard access is unavailable. Select the code and copy it with your keyboard.';
+    labCode.focus();
+  }
+});
+element<HTMLButtonElement>('lab-download').addEventListener('click', () => {
+  const file = new Blob([labCode.value], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(file);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'my-accessible-page.html';
+  link.click();
+  URL.revokeObjectURL(url);
+  labStatus.textContent = 'HTML downloaded as my-accessible-page.html.';
+});
+element<HTMLButtonElement>('lab-reset').addEventListener('click', () => {
+  labCode.value = labStarter;
+  renderLab(true);
+  labStatus.textContent = 'Starter code restored and preview updated.';
+});
+
 element('demo-loading').hidden = true;
 element('demo-controls').hidden = false;
 updateControls();

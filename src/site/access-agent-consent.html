@@ -88,6 +88,52 @@
             <p id="flow-text">Current stage: expression. No action has been authorized.</p>
             <p id="canvas-note" class="hint">The visual diagram is loading. Controls and stage descriptions work independently.</p>
           </figure>
+          <section class="workshop-lab" aria-labelledby="lab-heading">
+            <h3 id="lab-heading">Your turn: make a page with your own code</h3>
+            <p>Change the HTML and CSS below. The preview updates as you type. Your work stays in this browser; nothing is uploaded. The isolated preview does not run JavaScript.</p>
+            <div class="lab-grid">
+              <div>
+                <label for="lab-code">Editable HTML and CSS</label>
+                <textarea id="lab-code" rows="22" spellcheck="false" aria-describedby="lab-code-note"><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A page I can shape</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { max-width: 38rem; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    main { border: 2px solid currentColor; border-radius: 1rem; padding: 1.5rem; }
+    a, button { font: inherit; }
+    :focus-visible { outline: 3px solid #d04; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>My idea</p>
+    <h1>Access is part of the design</h1>
+    <p>Replace this with your own words. Try changing the colors, spacing, or type, too.</p>
+    <a href="#more">A link with a clear purpose</a>
+    <p id="more">What changes when more people can use this?</p>
+  </main>
+</body>
+</html></textarea>
+                <p class="hint" id="lab-code-note">Try changing the heading, adding a paragraph, or adjusting the CSS. Keep a heading structure, readable contrast, and a visible keyboard focus.</p>
+                <div class="control-row">
+                  <button id="lab-update" type="button" class="primary">Update preview</button>
+                  <button id="lab-copy" type="button">Copy code</button>
+                  <button id="lab-download" type="button">Download HTML</button>
+                  <button id="lab-reset" type="button">Restore starter</button>
+                </div>
+                <p id="lab-status" class="hint" role="status" aria-live="polite" aria-atomic="true">Starter preview is ready.</p>
+              </div>
+              <div>
+                <h4 id="lab-preview-heading">Live preview</h4>
+                <iframe id="lab-preview" title="Preview of your HTML and CSS" sandbox="" referrerpolicy="no-referrer"></iframe>
+                <p class="hint">This frame is isolated: scripts and network requests are blocked. It is a learning preview, not a production security review.</p>
+              </div>
+            </div>
+          </section>
           <details>
             <summary>Action history <span id="log-count">(0)</span></summary>
             <ol id="action-log" class="action-log"></ol>
