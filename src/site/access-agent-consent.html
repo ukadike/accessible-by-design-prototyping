@@ -166,7 +166,7 @@
           </section>
           <section class="shape-garden" aria-labelledby="garden-heading">
             <h3 id="garden-heading">UMADA Garden: a p5 playground</h3>
-            <p>Give a seed, sun, leaf, raindrop, shape, or character a purpose. Change it with a mouse, keyboard, or optional face tracking. The canvas is a visual layer; the controls, scene description, and decision trail carry the same information in text.</p>
+            <p>Give a shape or words an intention. Change the scene with keyboard, touch, or optional face tracking. Each participant can take home a Schema Card: a portable record of what they made, the accessibility rules they chose, and the code and decisions behind it.</p>
             <div class="garden-layout">
               <div class="garden-toolbox">
                 <h4>1. Add something to your garden</h4>
@@ -253,13 +253,20 @@ else holdPosition();</code></pre>
                   <summary>Action and decision trail</summary>
                   <ol id="garden-action-log" class="garden-action-log" aria-label="Your changes and decisions"></ol>
                 </details>
+                <h4>Your Schema Card: take it with you</h4>
+                <p>A Schema Card is your portable handoff: it records each object’s intention, description, alt text choice, controls, movement permission, accessibility requirements, your decision trail, and the p5 code. Download Markdown to read or bring into an AI conversation, or JSON to use as structured input in a device or code workflow. Ask the next system to preserve the card’s rules. The card communicates your requirements; it does not grant a system new permissions.</p>
+                <div class="control-row">
+                  <button id="garden-download-schema-markdown" type="button" disabled>Download Schema Card (Markdown)</button>
+                  <button id="garden-download-schema-json" type="button" disabled>Download Schema Card (JSON)</button>
+                </div>
+                <p id="garden-schema-status" class="hint" role="status" aria-live="polite" aria-atomic="true">Add an object to prepare your Schema Card.</p>
                 <h4>Code for this scene</h4>
                 <p class="hint">The code includes object intention, description, text alternative choice, and your recorded decisions.</p>
                 <pre class="garden-code"><code id="garden-code-output" tabindex="-1">// Add an object to create your p5.js code.</code></pre>
                 <div class="control-row">
                   <button id="garden-copy-code" type="button" disabled>Copy p5 code</button>
                   <button id="garden-download-code" type="button" disabled>Download p5 sketch</button>
-                  <button id="garden-print-notes" type="button" disabled>Print garden field notes</button>
+                  <button id="garden-print-notes" type="button" disabled>Print schema card</button>
                 </div>
                 <p class="hint garden-next-step"><strong>Next step:</strong> <a href="./p5-check.html">Check this sketch with the p5 / Creative Coding Check</a>. It runs in your browser and checks for common patterns. Then review whether each description makes sense to a nonvisual visitor, the keyboard path completes the same task, and motion can pause.</p>
                 <p class="hint">Learning references: <a href="https://ml5js.org/">ml5.js</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, and <a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Quick Reference</a>.</p>
