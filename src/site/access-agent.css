@@ -1,3 +1,7 @@
+body.keynote-page {
+  color: var(--text);
+  background: var(--bg);
+}
 .keynote-page {
   --text: #292824;
   --bg: #f4efe3;
@@ -188,7 +192,34 @@
 }
 .garden-move-controls:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
 .garden-move-controls label { align-self: center; }
+#garden-canvas { min-height: 1rem; }
 .garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--signal-gold); border-radius: 0.75rem; background: var(--canvas-bg); }
+#garden-print-sheet { display: none; }
+@media (max-width: 48rem) {
+  .keynote-page button, .keynote-page input, .keynote-page select, .keynote-page summary { touch-action: manipulation; }
+  .keynote-page button { min-height: 48px; }
+}
+@media print {
+  body.printing-garden * { visibility: hidden !important; }
+  body.printing-garden #demo { display: block !important; }
+  body.printing-garden #garden-print-sheet,
+  body.printing-garden #garden-print-sheet * { visibility: visible !important; }
+  body.printing-garden #garden-print-sheet {
+    display: block !important;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    max-width: none;
+    padding: 1rem;
+    color: #111;
+    background: #fff;
+    font: 11pt/1.45 system-ui, sans-serif;
+  }
+  body.printing-garden #garden-print-sheet h1 { font-size: 20pt; }
+  body.printing-garden #garden-print-sheet h2 { margin-top: 1.25rem; }
+  body.printing-garden #garden-print-sheet pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 8pt; }
+  body.printing-garden #garden-print-sheet li { break-inside: avoid; }
+}
 .garden-code { max-height: 28rem; overflow: auto; padding: 0.85rem; border: 1px solid var(--line); border-radius: 0.75rem; }
 .garden-code code { white-space: pre; }
 .garden-rules pre { overflow-x: auto; }
