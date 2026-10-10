@@ -50,7 +50,6 @@ const byId = <T extends HTMLElement>(id: string): T => {
   return node as T;
 };
 const clamp = (value: number, min = 0.06, max = 0.94) => Math.max(min, Math.min(max, value));
-const escapeCode = (value: string) => JSON.stringify(value);
 
 export function mountShapeGarden(): void {
   const status = byId<HTMLElement>('garden-status');
@@ -503,11 +502,13 @@ function draw() {
       video.srcObject = stream;
       video.hidden = false;
       await video.play();
+      cameraStop.disabled = false;
       announce('Camera is on for this page. Loading the face-position model; video is not recorded by this sketch.');
       const ml5 = await loadMl5();
+      if (!stream || currentMode !== 'face') { stopCamera(); return; }
       faceModel = await ml5.faceMesh({ maxFaces: 1 });
+      if (!stream || currentMode !== 'face') { stopCamera(); return; }
       faceModel.detectStart(video, moveByFace);
-      cameraStop.disabled = false;
       cameraStart.disabled = true;
       record('Started face tracking', 'One face position controls movement through the displayed rules.');
       announce('Face-position tracking started. Select Stop camera at any time.');
