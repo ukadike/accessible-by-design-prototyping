@@ -353,10 +353,14 @@ element('demo-loading').hidden = true;
 element('demo-controls').hidden = false;
 updateControls();
 
-mountFlow(() => ({ state, prepared })).then((draw: () => void) => {
-  redraw = draw;
-  element('canvas-note').hidden = true;
-  redraw();
-}).catch(() => {
-  element('canvas-note').textContent = 'The p5 diagram could not load. All controls, status descriptions, and keynote content remain available.';
-});
+if (window.matchMedia('(max-width: 48rem)').matches) {
+  element('canvas-note').textContent = 'On phone screens, this diagram stays in its accessible text form to keep the page responsive.';
+} else {
+  mountFlow(() => ({ state, prepared })).then((draw: () => void) => {
+    redraw = draw;
+    element('canvas-note').hidden = true;
+    redraw();
+  }).catch(() => {
+    element('canvas-note').textContent = 'The p5 diagram could not load. All controls, status descriptions, and keynote content remain available.';
+  });
+}
