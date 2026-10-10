@@ -386,6 +386,10 @@ function draw() {
     radio.addEventListener('change', () => {
       if (!radio.checked) return;
       currentMode = radio.value as InputMode;
+      if (currentMode !== 'face' && (stream || cameraBusy)) {
+        stopCamera();
+        record('Stopped camera', 'Input mode changed; camera stream ended.');
+      }
       cameraControls.hidden = currentMode !== 'face';
       const help: Record<InputMode, string> = {
         keyboard: 'Select an object, then use the direction buttons or focus the movement controls and press an arrow key.',
