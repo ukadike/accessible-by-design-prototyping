@@ -229,6 +229,19 @@ function keyPressed() {
   return false;
 }
 
+// Rules-only movement helper for an optional FaceMesh position estimate.
+// Pass mirrored, normalized face coordinates (0–1); identity is never needed.
+function moveFromFacePosition(faceX, faceY) {
+  const item = gardenObjects[selectedObject];
+  if (!item) return;
+  if (faceX < 0.45) item.x = max(0.06, item.x - 0.012);
+  else if (faceX > 0.55) item.x = min(0.94, item.x + 0.012);
+  if (faceY < 0.45) item.y = max(0.06, item.y - 0.012);
+  else if (faceY > 0.55) item.y = min(0.94, item.y + 0.012);
+  updateCanvasDescription();
+  if (!motionEnabled) redraw();
+}
+
 // Mouse and touch remain available in this standalone sketch. The keyboard path
 // above moves the same selected object. Published work still needs semantic DOM
 // controls beside the canvas to expose its task and state.
