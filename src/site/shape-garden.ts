@@ -423,6 +423,25 @@ function mouseDragged() {
     words.value = '';
   });
 
+  document.querySelectorAll<HTMLButtonElement>('[data-garden-nago]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const name = button.dataset.gardenNago ?? 'Nago';
+      const meaning = button.dataset.meaning ?? 'Meaning not provided.';
+      const mark = button.dataset.mark ?? 'Mark description not provided.';
+      const tactile = button.dataset.tactile ?? 'Tactile description not provided.';
+      createItem('words', `Nago · ${name}`);
+      const item = selected();
+      if (!item) return;
+      item.intention = `Garden wayfinding: ${meaning}`;
+      item.description = `Nago ${name} study marker (emerging): ${mark} Tactile form: ${tactile}`;
+      item.altText = `Nago sign study marker for ${name}. Meaning: ${meaning} Mark study: ${mark} Tactile description: ${tactile} Canon status: emerging; this is a labeled prototype marker, not a finished glyph.`;
+      updateControls();
+      renderItems();
+      record('Placed Nago study marker', `${name}: ${meaning} Mark: ${mark} Tactile form: ${tactile} Status: emerging prototype reference.`);
+      announce(`Nago ${name} study marker added with its meaning and tactile description. Review it in the Schema Card.`);
+    });
+  });
+
   bindField(inputs.intention, (item, value) => { item.intention = value; }, 'Recorded intention', (item) => `${item.label}: ${item.intention || 'cleared'}`);
   bindField(inputs.description, (item, value) => { item.description = value; }, 'Updated description', (item) => `${item.label}: ${item.description || 'cleared'}`);
   bindField(inputs.altRole, (item, value) => {

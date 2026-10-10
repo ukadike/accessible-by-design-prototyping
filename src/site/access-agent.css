@@ -279,3 +279,58 @@ body.keynote-page {
 @media (max-width: 48rem) {
   .garden-world-brief { grid-template-columns: minmax(0, 1fr); }
 }
+
+.garden-nago-layer {
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: var(--card-bg);
+}
+.garden-nago-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.8fr);
+  gap: 1rem;
+  align-items: start;
+}
+.garden-eyebrow, .garden-nago-status {
+  color: var(--accent, #285a4b);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.garden-nago-intro h4 { margin: 0.2rem 0 0.5rem; }
+.garden-nago-care {
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+}
+.garden-nago-care summary { cursor: pointer; font-weight: 700; }
+.garden-nago-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.garden-nago-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--card-bg) 85%, #c9dfd0 15%);
+}
+.garden-nago-card h5 { margin: 0.15rem 0; font-size: 1rem; }
+.garden-nago-card p { margin: 0; font-size: 0.9rem; }
+.garden-nago-card button { margin-top: auto; }
+@media (max-width: 64rem) {
+  .garden-nago-intro { grid-template-columns: 1fr; }
+  .garden-nago-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 34rem) {
+  .garden-nago-cards { grid-template-columns: 1fr; }
+}
