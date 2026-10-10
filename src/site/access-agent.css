@@ -1,12 +1,36 @@
 .keynote-page {
-  --card-bg: #f4f5f6;
-  --focus: #005fcc;
+  --text: #292824;
+  --bg: #f4efe3;
+  --card-bg: #eae2d3;
+  --line: #6c6356;
+  --focus: #244f73;
+  --link: #3e456a;
+  --accent: #454366;
+  --accent-text: #f4efe3;
+  --accent-hover: #343350;
+  --signal-gold: #80601e;
+  --canvas-bg: #e2d8c6;
+  --good: #315a3d;
+  --bad: #873341;
+  --warn: #76561a;
 }
 
 @media (prefers-color-scheme: dark) {
   .keynote-page {
-    --card-bg: #242424;
-    --focus: #8dc7ff;
+    --text: #f0e8d9;
+    --bg: #252622;
+    --card-bg: #34332e;
+    --line: #aaa18f;
+    --focus: #e2c16f;
+    --link: #c4d4e6;
+    --accent: #d1c9ee;
+    --accent-text: #29263a;
+    --accent-hover: #eee9fc;
+    --signal-gold: #d7b665;
+    --canvas-bg: #3a3832;
+    --good: #9ac9a4;
+    --bad: #f0a0a7;
+    --warn: #e2c16f;
   }
 }
 
@@ -16,7 +40,7 @@
   max-width: 70rem;
 }
 
-.keynote-page a { color: var(--text); }
+.keynote-page a { color: var(--link); text-underline-offset: 0.15em; }
 .keynote-page [hidden] { display: none !important; }
 .page-intro { padding: 1.5rem 0; }
 .page-intro > p { margin: 0.4rem 0; }
@@ -50,9 +74,25 @@
 .keynote-page textarea::placeholder { color: var(--text); opacity: 0.75; }
 .keynote-page textarea:disabled { background: var(--card-bg); }
 .control-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; }
-.keynote-page button { min-height: 44px; padding: 0.55rem 0.85rem; }
+.keynote-page button {
+  min-height: 44px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+}
+.keynote-page button:not(:disabled),
+.keynote-page button.primary {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.keynote-page button:not(:disabled):hover,
+.keynote-page button.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--accent-text);
+}
 .keynote-page button.primary { background: var(--text); color: var(--bg); }
-.keynote-page button:disabled { cursor: not-allowed; opacity: 0.55; background: var(--bg); color: var(--text); }
+.keynote-page button:disabled { cursor: not-allowed; opacity: 1; background: var(--card-bg); color: var(--text); border-color: var(--line); }
 .approval-row { display: flex; align-items: flex-start; gap: 0.7rem; }
 .approval-row input { width: 24px; height: 24px; margin: 0.15rem 0 0; flex-shrink: 0; accent-color: var(--good); }
 .approval-row label { margin: 0; cursor: pointer; }
@@ -102,7 +142,7 @@
 .shape-garden {
   margin: 2rem 0;
   padding: 1.25rem;
-  border: 2px solid var(--line);
+  border: 2px solid var(--signal-gold);
   border-radius: 1rem;
   background: var(--card-bg);
 }
@@ -148,7 +188,7 @@
 }
 .garden-move-controls:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
 .garden-move-controls label { align-self: center; }
-.garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--line); border-radius: 0.75rem; }
+.garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--signal-gold); border-radius: 0.75rem; background: var(--canvas-bg); }
 .garden-code { max-height: 28rem; overflow: auto; padding: 0.85rem; border: 1px solid var(--line); border-radius: 0.75rem; }
 .garden-code code { white-space: pre; }
 .garden-rules pre { overflow-x: auto; }
