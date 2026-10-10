@@ -354,6 +354,15 @@ function draw() {
     renderItems();
     announce(item.motionApproved ? `Movement approved for ${item.label}.` : `Movement stopped for ${item.label}.`);
   });
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches && inputs.animate.checked) {
+      inputs.animate.checked = false;
+      record('Paused movement', 'The device preference changed to reduced motion.');
+      announce('Movement paused because your device now prefers reduced motion.');
+      sceneRefresh();
+    }
+  });
   inputs.animate.addEventListener('change', () => {
     const hasApproved = items.some((item) => item.motionApproved);
     if (inputs.animate.checked && !hasApproved) {
@@ -467,6 +476,7 @@ function draw() {
     lastFaceMove = Date.now();
     sceneRefresh();
     describeScene();
+    renderCode();
     // Log zone changes, not every camera frame: the trail remains readable.
     if (zone !== lastLoggedFaceZone) {
       lastLoggedFaceZone = zone;
@@ -619,11 +629,20 @@ function draw() {
     p.mouseDragged = () => { positionAtPointer(); return false; };
     p.touchStarted = () => { positionAtPointer(); return false; };
     p.touchMoved = () => { positionAtPointer(); return false; };
+    p.mouseReleased = () => { commitPointerPosition(); return false; };
+    p.touchEnded = () => { commitPointerPosition(); return false; };
   })).catch(() => {
     byId<HTMLElement>('garden-canvas').textContent = 'The visual stage could not load. Use the object list and controls; your scene description and code remain available.';
   });
 
   let lastPointerLog = 0;
+  let lastPointerRender = 0;
+  function commitPointerPosition(): void {
+    if (currentMode !== 'mouse') return;
+    const item = selected();
+    if (!item) return;
+    record('Placed object', `${item.label} at ${Math.round(item.x * 100)}% across and ${Math.round(item.y * 100)}% down with mouse or touch.`);
+  }
   function moveByPointer(x: number, y: number): void {
     const item = selected();
     if (!item) return;
@@ -631,6 +650,10 @@ function draw() {
     item.y = clamp(y);
     sceneRefresh();
     describeScene();
+    if (Date.now() - lastPointerRender > 250) {
+      lastPointerRender = Date.now();
+      renderCode();
+    }
     if (Date.now() - lastPointerLog > 700) {
       lastPointerLog = Date.now();
       record('Moved object', `${item.label} to ${Math.round(x * 100)}% across and ${Math.round(y * 100)}% down with mouse or touch.`);
