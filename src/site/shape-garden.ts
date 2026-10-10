@@ -89,6 +89,7 @@ export function mountShapeGarden(): void {
   let stream: MediaStream | null = null;
   let cameraBusy = false;
   let lastFaceZone = '';
+  let lastLoggedFaceZone = '';
   let lastFaceMove = 0;
   let scene: p5 | null = null;
   let sceneRefresh = () => {};
@@ -439,6 +440,7 @@ function draw() {
   });
 
   function moveByFace(faces: FaceResult[]): void {
+    if (currentMode !== 'face') return;
     const face = faces[0];
     if (!face?.keypoints?.length || !video.videoWidth || !video.videoHeight) return;
     const xs = face.keypoints.map((point) => point.x).filter(Number.isFinite);
@@ -463,12 +465,11 @@ function draw() {
     sceneRefresh();
     describeScene();
     // Log zone changes, not every camera frame: the trail remains readable.
-    if (zone !== moveByFace.lastLoggedZone) {
-      moveByFace.lastLoggedZone = zone;
+    if (zone !== lastLoggedFaceZone) {
+      lastLoggedFaceZone = zone;
       record('Rules moved object', `${item.label}: face center in the ${zone} zone; rule threshold 45% / 55%.`);
     }
   }
-  moveByFace.lastLoggedZone = '';
   async function loadMl5(): Promise<Ml5Api> {
     const win = window as Ml5Window;
     if (win.ml5) return win.ml5;
@@ -494,6 +495,7 @@ function draw() {
     announce('Requesting camera permission. You can choose not to allow it and keep using keyboard or mouse controls.');
     try {
       stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+      if (currentMode !== 'face') { stopCamera(); return; }
       video.srcObject = stream;
       video.hidden = false;
       await video.play();
