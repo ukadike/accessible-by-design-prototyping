@@ -6,6 +6,7 @@ export interface P5CanvasRules {
   mouseOnlyFunctions: string[];
   keyboardFunctions: string[];
   animationIndicators: string[];
+  pauseControlIndicators: string[];
 }
 
 export interface P5PatternMatches {
@@ -15,6 +16,7 @@ export interface P5PatternMatches {
   mouseOnly: boolean;
   hasKeyboardAlternative: boolean;
   isAnimated: boolean;
+  hasPauseControl: boolean;
 }
 
 export function detectP5PatternsInSource(html: string, patterns: P5CanvasRules): P5PatternMatches {
@@ -28,6 +30,7 @@ export function detectP5PatternsInSource(html: string, patterns: P5CanvasRules):
     mouseOnly: patterns.mouseOnlyFunctions.some((fn) => html.includes(fn)),
     hasKeyboardAlternative: patterns.keyboardFunctions.some((fn) => html.includes(fn)),
     isAnimated: patterns.animationIndicators.some((fn) => html.includes(fn)),
+    hasPauseControl: patterns.pauseControlIndicators.some((fn) => html.includes(fn)),
   };
 }
 
@@ -59,7 +62,7 @@ export function buildP5IssuesFromRules(matches: P5PatternMatches, rules: Accessi
     if (rule) issues.push(ruleToIssue(rule, 'canvas'));
   }
 
-  if (matches.hasCanvas && matches.isAnimated) {
+  if (matches.hasCanvas && matches.isAnimated && !matches.hasPauseControl) {
     const rule = ruleById.get('p5-animation-pause-control');
     if (rule) issues.push(ruleToIssue(rule, 'canvas'));
   }

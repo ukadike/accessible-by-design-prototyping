@@ -97,3 +97,65 @@
 #lab-status { min-height: 1.5em; }
 .keynote-page :is(textarea, input, select, button, iframe):focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 @media (max-width: 48rem) { .lab-grid { grid-template-columns: 1fr; } #lab-preview { height: 28rem; } }
+
+
+.shape-garden {
+  margin: 2rem 0;
+  padding: 1.25rem;
+  border: 2px solid var(--line);
+  border-radius: 1rem;
+  background: var(--card-bg);
+}
+.garden-layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.9fr) minmax(20rem, 1.1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.garden-toolbox, .garden-stage-column { min-width: 0; }
+.garden-toolbox h4, .garden-stage-column h4 { margin: 1.2rem 0 0.6rem; }
+.shape-garden fieldset, .garden-inspector {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.75rem 0;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+.shape-garden fieldset label, .garden-motion-toggle { display: flex; align-items: flex-start; gap: 0.55rem; }
+.garden-toolbox input[type="text"], .garden-inspector textarea, .garden-inspector select {
+  width: 100%;
+  max-width: 100%;
+}
+.garden-inspector input[type="range"] { width: 100%; }
+.garden-inspector textarea { resize: vertical; }
+.garden-objects, .garden-action-log { padding-inline-start: 1.5rem; }
+.garden-objects li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.45rem 0;
+}
+.garden-objects [aria-current="true"] { outline: 3px solid var(--focus); outline-offset: 2px; }
+.garden-move-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+.garden-move-controls:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
+.garden-move-controls label { align-self: center; }
+.garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--line); border-radius: 0.75rem; }
+.garden-code { max-height: 28rem; overflow: auto; padding: 0.85rem; border: 1px solid var(--line); border-radius: 0.75rem; }
+.garden-code code { white-space: pre; }
+.garden-rules pre { overflow-x: auto; }
+#garden-camera-preview { display: block; width: min(100%, 20rem); margin-block: 0.75rem; border-radius: 0.75rem; transform: scaleX(-1); }
+@media (max-width: 48rem) {
+  .garden-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .garden-stage-column *, .garden-move-controls * { scroll-behavior: auto !important; }
+}

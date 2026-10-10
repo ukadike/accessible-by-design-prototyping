@@ -134,6 +134,105 @@
               </div>
             </div>
           </section>
+          <section class="shape-garden" aria-labelledby="garden-heading">
+            <h3 id="garden-heading">UMADA Garden: a p5 playground</h3>
+            <p>Give a seed, sun, leaf, raindrop, shape, or character a purpose. Change it with a mouse, keyboard, or optional face tracking. The canvas is a visual layer; the controls, scene description, and decision trail carry the same information in text.</p>
+            <div class="garden-layout">
+              <div class="garden-toolbox">
+                <h4>1. Add something to your garden</h4>
+                <div class="control-row" aria-label="Add an object">
+                  <button type="button" data-garden-add="circle">Add circle</button>
+                  <button type="button" data-garden-add="rectangle">Add rectangle</button>
+                  <button type="button" data-garden-add="triangle">Add triangle</button>
+                  <button type="button" data-garden-add="star">Add star</button>
+                </div>
+                <label for="garden-new-words">Words or object name</label>
+                <input id="garden-new-words" type="text" maxlength="80" placeholder="For example: water for the garden" />
+                <button id="garden-add-words" type="button">Add words</button>
+
+                <h4>2. Choose how you want to interact</h4>
+                <fieldset id="garden-input-modes">
+                  <legend>Input mode</legend>
+                  <label><input type="radio" name="garden-input-mode" value="keyboard" checked /> Keyboard and controls</label>
+                  <label><input type="radio" name="garden-input-mode" value="mouse" /> Mouse or touch</label>
+                  <label><input type="radio" name="garden-input-mode" value="face" /> Face tracking with ml5</label>
+                </fieldset>
+                <p id="garden-mode-help" class="hint">Select an object, then use the direction buttons or arrow keys while the movement panel has focus.</p>
+                <div id="garden-camera-controls" hidden>
+                  <p>Face tracking locates a face in the camera image to control position; it does not identify who you are. Camera starts only when you select Start. This sketch does not record or upload video. The ml5 code and model are downloaded when you start.</p>
+                  <div class="control-row">
+                    <button id="garden-camera-start" type="button">Start face tracking</button>
+                    <button id="garden-camera-stop" type="button" disabled>Stop camera</button>
+                  </div>
+                  <video id="garden-camera-preview" muted playsinline aria-label="Local camera preview for face-position control" hidden></video>
+                </div>
+                <details class="garden-rules">
+                  <summary>See the movement rule</summary>
+                  <p>ml5 estimates the center of a face. A simple rule uses that position: below 45% of the stage width, move the selected object left; above 55%, move it right; between those points, hold. The same rule applies vertically. No identity or emotion is inferred.</p>
+                  <pre><code>if (faceX &lt; 0.45) moveLeft();
+else if (faceX &gt; 0.55) moveRight();
+else holdPosition();</code></pre>
+                </details>
+
+                <h4>3. Select and describe an object</h4>
+                <ul id="garden-objects" class="garden-objects" aria-label="Objects in your scene"></ul>
+                <div class="garden-inspector">
+                  <label for="garden-intention">Intention: what is this object for?</label>
+                  <textarea id="garden-intention" rows="2" maxlength="180" disabled></textarea>
+                  <label for="garden-description">Description: what does it look like or do?</label>
+                  <textarea id="garden-description" rows="2" maxlength="180" disabled></textarea>
+                  <label for="garden-alt-role">Text alternative</label>
+                  <select id="garden-alt-role" disabled>
+                    <option value="informative">This object conveys information</option>
+                    <option value="decorative">This object is decorative</option>
+                  </select>
+                  <label for="garden-alt-text">Alternative text (leave empty for decorative objects)</label>
+                  <textarea id="garden-alt-text" rows="2" maxlength="180" disabled></textarea>
+                  <label for="garden-color">Color</label>
+                  <input id="garden-color" type="color" value="#e63946" disabled />
+                  <label for="garden-size">Size: <output id="garden-size-value" for="garden-size">72</output></label>
+                  <input id="garden-size" type="range" min="28" max="140" value="72" disabled />
+                  <label for="garden-motion">Proposed movement</label>
+                  <select id="garden-motion" disabled>
+                    <option value="still">Still</option>
+                    <option value="drift">Drift</option>
+                    <option value="bounce">Bounce</option>
+                    <option value="orbit">Orbit</option>
+                    <option value="pulse">Pulse</option>
+                  </select>
+                  <label class="garden-motion-toggle"><input id="garden-motion-approval" type="checkbox" disabled /> Allow this object to move</label>
+                </div>
+                <div id="garden-move-controls" class="garden-move-controls" role="group" aria-label="Move the selected object" tabindex="0">
+                  <button id="garden-move-up" type="button" aria-label="Move selected object up">↑ Up</button>
+                  <button id="garden-move-left" type="button" aria-label="Move selected object left">← Left</button>
+                  <button id="garden-move-down" type="button" aria-label="Move selected object down">↓ Down</button>
+                  <button id="garden-move-right" type="button" aria-label="Move selected object right">Right →</button>
+                  <label class="garden-motion-toggle"><input id="garden-animate" type="checkbox" /> Run approved movement</label>
+                  <button id="garden-clear" type="button">Clear scene</button>
+                </div>
+                <p class="hint">Movement is paused until you allow it for an object and select Run approved movement. Stop the camera at any time.</p>
+                <p id="garden-status" class="demo-status" role="status" aria-live="polite" aria-atomic="true">The garden is empty. Add a shape or some words.</p>
+              </div>
+              <div class="garden-stage-column">
+                <h4 id="garden-stage-heading">Your p5 stage</h4>
+                <div id="garden-canvas" aria-hidden="true"></div>
+                <p id="garden-scene-description" class="hint">No objects yet.</p>
+                <details>
+                  <summary>Action and decision trail</summary>
+                  <ol id="garden-action-log" class="garden-action-log" aria-label="Your changes and decisions"></ol>
+                </details>
+                <h4>Code for this scene</h4>
+                <p class="hint">The code includes object intention, description, text alternative choice, and your recorded decisions.</p>
+                <pre class="garden-code"><code id="garden-code-output" tabindex="-1">// Add an object to create your p5.js code.</code></pre>
+                <div class="control-row">
+                  <button id="garden-copy-code" type="button" disabled>Copy p5 code</button>
+                  <button id="garden-download-code" type="button" disabled>Download p5 sketch</button>
+                </div>
+                <p class="hint garden-next-step"><strong>Next step:</strong> <a href="./p5-check.html">Check this sketch with the p5 / Creative Coding Check</a>. It runs in your browser and checks for common patterns. Then review whether each description makes sense to a nonvisual visitor, the keyboard path completes the same task, and motion can pause.</p>
+                <p class="hint">Learning references: <a href="https://ml5js.org/">ml5.js</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, and <a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Quick Reference</a>.</p>
+              </div>
+            </div>
+          </section>
           <details>
             <summary>Action history <span id="log-count">(0)</span></summary>
             <ol id="action-log" class="action-log"></ol>
