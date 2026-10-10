@@ -351,7 +351,6 @@ function mouseDragged() {
     renderItems();
     record('Added object', item.label);
     announce(`${item.label} added. Write its intention, description, and a text alternative, or mark it decorative.`);
-    byId<HTMLTextAreaElement>('garden-intention').focus();
   }
   function move(dx: number, dy: number, source: string): void {
     const item = selected();
