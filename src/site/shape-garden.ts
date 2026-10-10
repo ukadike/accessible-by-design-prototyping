@@ -654,25 +654,44 @@ function mouseDragged() {
     printSheet.replaceChildren();
     const heading = document.createElement('h1');
     heading.id = 'garden-print-heading';
-    heading.textContent = 'UMADA Garden — accessible making record';
+    heading.textContent = 'UMADA Garden — participant Schema Card';
     printSheet.append(heading);
     const introduction = document.createElement('p');
     introduction.textContent = 'A participant-owned record of intention, description, alt text, constraints, decisions, and p5.js code.';
     printSheet.append(introduction);
 
+    const card = createSchemaCard();
+    const statusLine = document.createElement('p');
+    statusLine.textContent = 'Card status: ' + card.status + '. WCAG 2.2 is a review reference; this card does not certify conformance.';
+    printSheet.append(statusLine);
+
+    const handoffHeading = document.createElement('h2');
+    handoffHeading.textContent = 'Handoff rules';
+    const handoffRules = document.createElement('ul');
+    for (const rule of card.handoff.instructions) {
+      const li = document.createElement('li');
+      li.textContent = rule;
+      handoffRules.append(li);
+    }
+    printSheet.append(handoffHeading, handoffRules);
+
+    const governanceHeading = document.createElement('h2');
+    governanceHeading.textContent = 'Permissions and boundaries';
+    const governanceRules = document.createElement('ul');
+    for (const rule of card.governance.prohibited_actions) {
+      const li = document.createElement('li');
+      li.textContent = rule;
+      governanceRules.append(li);
+    }
+    const governanceNote = document.createElement('p');
+    governanceNote.textContent = card.governance.human_authority + ' ' + card.governance.benefit_status;
+    printSheet.append(governanceHeading, governanceRules, governanceNote);
+
     const checklistHeading = document.createElement('h2');
-    checklistHeading.textContent = 'Accessibility checklist';
+    checklistHeading.textContent = 'Accessibility requirements';
     printSheet.append(checklistHeading);
     const checklist = document.createElement('ul');
-    for (const item of [
-      'Each object has an intention: what it is for.',
-      'Each object has a plain-language description of what it looks like or does.',
-      'Each informative object has alt text; decorative objects are explicitly marked decorative.',
-      'The scene can be created and changed without relying on dragging or seeing the canvas.',
-      'Movement is opt-in, follows a visible rule, and can be stopped.',
-      'The canvas is not the only way to understand the scene; text and decision records are included.',
-      'Review contrast, keyboard access, touch target size, reduced motion, and the exported p5.js code before sharing.',
-    ]) {
+    for (const item of card.accessibility.requirements) {
       const li = document.createElement('li');
       li.textContent = '☐ ' + item;
       checklist.append(li);
