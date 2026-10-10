@@ -1,5 +1,6 @@
 import { createConsentGate, type ProposedAction } from '../agent-consent';
 import { mountFlow } from '../access-agent-sketch.js';
+import { mountShapeGarden } from '../shape-garden.js';
 
 interface RecognitionResultEvent {
   results: { [index: number]: { [index: number]: { transcript: string } } };
@@ -340,6 +341,13 @@ element<HTMLButtonElement>('lab-reset').addEventListener('click', () => {
   renderLab(true);
   labStatus.textContent = 'Starter code restored and preview updated.';
 });
+
+try {
+  mountShapeGarden();
+} catch {
+  const gardenStatus = document.getElementById('garden-status');
+  if (gardenStatus) gardenStatus.textContent = 'The garden controls could not load. The rest of the workshop remains available.';
+}
 
 element('demo-loading').hidden = true;
 element('demo-controls').hidden = false;
