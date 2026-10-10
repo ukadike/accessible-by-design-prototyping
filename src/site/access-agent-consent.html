@@ -27,6 +27,7 @@
         <p class="tagline">Creative coding, accessibility, and human authority in the age of AI.</p>
         <p>By Adekemi (Kemi) Hanna Sijuwade-Ukadike</p>
         <nav class="section-links" aria-label="On this page">
+          <a href="#umada-narrative">Why UMADA?</a>
           <a href="#demo">Try the demo</a>
           <a href="#thesis">Read the thesis</a>
           <a href="#outline">Keynote outline</a>
@@ -35,6 +36,17 @@
         </nav>
       </div>
 
+      <section id="umada-narrative" aria-labelledby="umada-narrative-heading" class="section-band prose">
+        <p class="eyebrow">A story-world as a design space</p>
+        <h2 id="umada-narrative-heading">Why UMADA belongs in this workshop</h2>
+        <p>UMADA is my Afrofuturist speculative-fiction project: a world I build through story, research, and creative technology. I am bringing this garden into the workshop as an example of my own work, and as a way to let participants enter that world by making.</p>
+        <p>In this garden, children with different access needs are creating objects, scenes, and stories. Workshop participants join as guests. They can offer a sun, seed, raindrop, shape, word, or character; state what it is for; describe what it looks like or does; and decide how it should be represented and move. The children remain authors of their world. A guest’s contribution has a purpose and a boundary.</p>
+        <h3>A Faraday-cage sandbox for making</h3>
+        <p>I use the Faraday cage as a metaphor for a bounded sandbox. In other AI conversations, an object or agent may be described as escaping its sandbox and acting on its own. That is not what happens here. A garden object changes this local p5 scene only: it cannot call a tool, send a message, or act outside the garden. A movement rule is visible, movement stays paused until someone allows it, and a person can stop it.</p>
+        <p>This makes the garden a small, inspectable model of AI governance. Participants can create something, see how their constraints shape it, and take home the intention, description, alt text, movement rule, decision trail, and p5 code. Accessibility is part of the object’s design and part of the story—not a check added after the scene is finished.</p>
+        <p><strong>Workshop question:</strong> When we enter someone else’s world to help build it, what limits should our tools follow, and who gets to set those limits?</p>
+      </section>
+
       <section id="demo" aria-labelledby="demo-heading" class="section-band">
         <div class="section-heading">
           <h2 id="demo-heading">When assistance becomes action</h2>
@@ -42,8 +54,8 @@
         </div>
         <p class="demo-intro">Prepare a draft, review it, then try the action before and after approval. The message is fictional and delivery is simulated.</p>
         <noscript><p>This interaction needs JavaScript. The thesis, outline, and presenter walkthrough are available below.</p></noscript>
-        <p id="demo-loading">Loading the interaction. The keynote outline is available below.</p>
-        <div id="demo-controls" hidden>
+        <p id="demo-loading">The interactive controls are loading. The UMADA story and workshop outline are available even if a visual sketch does not load.</p>
+        <div id="demo-controls">
           <div class="demo-grid">
             <div class="demo-column request-column">
               <h3>1. Express an intention</h3>
@@ -215,6 +227,8 @@ else holdPosition();</code></pre>
               </div>
               <div class="garden-stage-column">
                 <h4 id="garden-stage-heading">Your p5 stage</h4>
+                <p id="garden-canvas-placeholder" class="hint">The drawing is optional. The object list, descriptions, movement controls, and code work independently of the visual stage.</p>
+                <button id="garden-load-canvas" type="button">Load the visual stage</button>
                 <div id="garden-canvas" aria-hidden="true"></div>
                 <p id="garden-scene-description" class="hint">No objects yet.</p>
                 <details>
@@ -227,12 +241,14 @@ else holdPosition();</code></pre>
                 <div class="control-row">
                   <button id="garden-copy-code" type="button" disabled>Copy p5 code</button>
                   <button id="garden-download-code" type="button" disabled>Download p5 sketch</button>
+                  <button id="garden-print-notes" type="button" disabled>Print garden field notes</button>
                 </div>
                 <p class="hint garden-next-step"><strong>Next step:</strong> <a href="./p5-check.html">Check this sketch with the p5 / Creative Coding Check</a>. It runs in your browser and checks for common patterns. Then review whether each description makes sense to a nonvisual visitor, the keyboard path completes the same task, and motion can pause.</p>
                 <p class="hint">Learning references: <a href="https://ml5js.org/">ml5.js</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, and <a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Quick Reference</a>.</p>
               </div>
             </div>
           </section>
+          <section id="garden-print-sheet" aria-labelledby="garden-print-heading" hidden></section>
           <details>
             <summary>Action history <span id="log-count">(0)</span></summary>
             <ol id="action-log" class="action-log"></ol>

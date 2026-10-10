@@ -59,6 +59,10 @@ export function mountShapeGarden(): void {
   const codeOutput = byId<HTMLElement>('garden-code-output');
   const copyButton = byId<HTMLButtonElement>('garden-copy-code');
   const downloadButton = byId<HTMLButtonElement>('garden-download-code');
+  const printButton = byId<HTMLButtonElement>('garden-print-notes');
+  const printSheet = byId<HTMLElement>('garden-print-sheet');
+  const loadVisualButton = byId<HTMLButtonElement>('garden-load-canvas');
+  const canvasPlaceholder = byId<HTMLElement>('garden-canvas-placeholder');
   const modeHelp = byId<HTMLElement>('garden-mode-help');
   const cameraControls = byId<HTMLElement>('garden-camera-controls');
   const cameraStart = byId<HTMLButtonElement>('garden-camera-start');
@@ -128,6 +132,7 @@ export function mountShapeGarden(): void {
       codeOutput.textContent = '// Add an object to create your p5.js code.';
       copyButton.disabled = true;
       downloadButton.disabled = true;
+      printButton.disabled = false;
       return;
     }
     const entries = items.map((item) => ({
@@ -261,6 +266,7 @@ function mouseDragged() {
     codeOutput.textContent = source;
     copyButton.disabled = false;
     downloadButton.disabled = false;
+    printButton.disabled = false;
   }
   function updateControls(): void {
     const item = selected();
@@ -491,6 +497,105 @@ function mouseDragged() {
     announce('Garden cleared.');
   });
 
+  printButton.addEventListener('click', () => {
+    printSheet.replaceChildren();
+    const heading = document.createElement('h1');
+    heading.id = 'garden-print-heading';
+    heading.textContent = 'UMADA Garden — accessible making record';
+    printSheet.append(heading);
+    const introduction = document.createElement('p');
+    introduction.textContent = 'A participant-owned record of intention, description, alt text, constraints, decisions, and p5.js code.';
+    printSheet.append(introduction);
+
+    const checklistHeading = document.createElement('h2');
+    checklistHeading.textContent = 'Accessibility checklist';
+    printSheet.append(checklistHeading);
+    const checklist = document.createElement('ul');
+    for (const item of [
+      'Each object has an intention: what it is for.',
+      'Each object has a plain-language description of what it looks like or does.',
+      'Each informative object has alt text; decorative objects are explicitly marked decorative.',
+      'The scene can be created and changed without relying on dragging or seeing the canvas.',
+      'Movement is opt-in, follows a visible rule, and can be stopped.',
+      'The canvas is not the only way to understand the scene; text and decision records are included.',
+      'Review contrast, keyboard access, touch target size, reduced motion, and the exported p5.js code before sharing.',
+    ]) {
+      const li = document.createElement('li');
+      li.textContent = '☐ ' + item;
+      checklist.append(li);
+    }
+    printSheet.append(checklist);
+
+    const objectsHeading = document.createElement('h2');
+    objectsHeading.textContent = 'Objects and design choices';
+    printSheet.append(objectsHeading);
+    if (!items.length) {
+      const empty = document.createElement('p');
+      empty.textContent = 'No objects have been added yet. Use this section as a blank planning template.';
+      printSheet.append(empty);
+    }
+    for (const item of items) {
+      const objectHeading = document.createElement('h3');
+      objectHeading.textContent = item.label;
+      printSheet.append(objectHeading);
+      const details = document.createElement('dl');
+      for (const [term, value] of [
+        ['Kind', item.kind],
+        ['Intention', item.intention || 'Not recorded'],
+        ['Description', item.description || 'Not recorded'],
+        ['Text alternative choice', item.altRole === 'decorative' ? 'Decorative' : 'Informative'],
+        ['Alt text', item.altRole === 'decorative' ? 'Not required: marked decorative' : item.altText || 'Not recorded'],
+        ['Color and size', item.color + ', ' + item.size + ' pixels'],
+        ['Position', Math.round(item.x * 100) + '% from left, ' + Math.round(item.y * 100) + '% from top'],
+        ['Movement rule', item.motion],
+        ['Movement permission', item.motionApproved ? 'Accepted' : 'Not accepted'],
+      ]) {
+        const dt = document.createElement('dt');
+        dt.textContent = term;
+        const dd = document.createElement('dd');
+        dd.textContent = value;
+        details.append(dt, dd);
+      }
+      printSheet.append(details);
+    }
+
+    const trailHeading = document.createElement('h2');
+    trailHeading.textContent = 'Decision trail';
+    printSheet.append(trailHeading);
+    if (actions.length) {
+      const trail = document.createElement('ol');
+      for (const entry of actions) {
+        const li = document.createElement('li');
+        li.textContent = entry.time + ': ' + entry.action + ' — ' + entry.detail;
+        trail.append(li);
+      }
+      printSheet.append(trail);
+    } else {
+      const emptyTrail = document.createElement('p');
+      emptyTrail.textContent = 'No decisions recorded yet.';
+      printSheet.append(emptyTrail);
+    }
+
+    const codeHeading = document.createElement('h2');
+    codeHeading.textContent = 'Generated p5.js code';
+    const code = document.createElement('pre');
+    code.textContent = codeOutput.textContent || '// No scene code yet.';
+    printSheet.append(codeHeading, code);
+    printSheet.hidden = false;
+    document.body.classList.add('printing-garden');
+    const restore = () => {
+      printSheet.hidden = true;
+      document.body.classList.remove('printing-garden');
+    };
+    window.addEventListener('afterprint', restore, { once: true });
+    try {
+      window.print();
+    } catch {
+      restore();
+      announce('Printing is unavailable in this browser. Use Download p5 sketch to keep the scene data and code.');
+    }
+  });
+
   copyButton.addEventListener('click', async () => {
     if (items.some((item) => !item.intention.trim() || !item.description.trim() || (item.altRole === 'informative' && !item.altText.trim()))) {
       announce('Before copying, add an intention, a description, and alternative text for each informative object. Decorative objects may have empty alternative text.');
@@ -622,7 +727,10 @@ function mouseDragged() {
   });
   window.addEventListener('pagehide', stopCamera);
 
-  void import('p5').then(({ default: P5 }) => new P5((p) => {
+  loadVisualButton.addEventListener('click', () => {
+    loadVisualButton.disabled = true;
+    canvasPlaceholder.textContent = 'Loading the optional visual stage. Your object controls remain available.';
+    void import('p5').then(({ default: P5 }) => new P5((p) => {
     const holder = byId<HTMLElement>('garden-canvas');
     const canvasSize = () => Math.max(260, Math.floor(holder.clientWidth || 520));
     p.setup = () => {
@@ -702,8 +810,11 @@ function mouseDragged() {
     p.touchMoved = () => { positionAtPointer(); return false; };
     p.mouseReleased = () => { commitPointerPosition(); return false; };
     p.touchEnded = () => { commitPointerPosition(); return false; };
-  })).catch(() => {
-    byId<HTMLElement>('garden-canvas').textContent = 'The visual stage could not load. Use the object list and controls; your scene description and code remain available.';
+    })).catch(() => {
+      loadVisualButton.disabled = false;
+      canvasPlaceholder.textContent = 'The visual stage could not load. Use the object list and controls; your scene description and code remain available.';
+      announce('Visual stage unavailable. The garden controls, descriptions, and code remain available.');
+    });
   });
 
   let lastPointerLog = 0;
