@@ -307,6 +307,8 @@ function renderLab(announce = false): void {
   if (announce) labStatus.textContent = 'Preview updated from your current code.';
 }
 
+renderLab();
+
 labCode.addEventListener('input', () => {
   window.clearTimeout(labTimer);
   labTimer = window.setTimeout(() => renderLab(false), 350);
