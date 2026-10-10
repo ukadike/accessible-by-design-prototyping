@@ -230,3 +230,23 @@ body.keynote-page {
 @media (prefers-reduced-motion: reduce) {
   .garden-stage-column *, .garden-move-controls * { scroll-behavior: auto !important; }
 }
+
+
+.garden-story-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.75rem 0 1.5rem;
+}
+.garden-story-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--card-bg);
+}
+.garden-story-card h3 { margin-top: 0; font-size: 1.05rem; }
+.garden-story-card p { margin-bottom: 0; }
+@media (max-width: 48rem) {
+  .garden-story-cards { grid-template-columns: 1fr; }
+}
