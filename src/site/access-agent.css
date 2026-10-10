@@ -250,3 +250,32 @@ body.keynote-page {
 @media (max-width: 48rem) {
   .garden-story-cards { grid-template-columns: 1fr; }
 }
+
+.garden-world-brief {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+  gap: 1rem;
+  align-items: start;
+  margin: 1rem 0 1.5rem;
+}
+.garden-canon-note, .garden-concept-figure {
+  min-width: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--card-bg);
+}
+.garden-canon-note summary { cursor: pointer; font-weight: 700; }
+.garden-canon-note p { max-width: 68ch; }
+.garden-concept-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+}
+.garden-concept-figure figcaption { margin-top: 0.7rem; }
+@media (max-width: 48rem) {
+  .garden-world-brief { grid-template-columns: minmax(0, 1fr); }
+}

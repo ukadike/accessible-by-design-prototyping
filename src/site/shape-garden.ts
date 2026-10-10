@@ -98,6 +98,7 @@ export function mountShapeGarden(): void {
   let lastLoggedFaceZone = '';
   let lastFaceMove = 0;
   let scene: p5 | null = null;
+  let gardenBackdrop: p5.Image | null = null;
   let sceneRefresh = () => {};
 
   const selected = () => items.find((item) => item.id === selectedId) ?? null;
@@ -181,8 +182,16 @@ function updateCanvasDescription() {
   describe('UMADA Garden. ' + meaning + decorative + ' ' + locations.join('; ') + '.');
 }
 
+const gardenBackdropUrl = 'https://ukadike.github.io/accessible-by-design-prototyping/umada-garden-concept.webp';
+let gardenBackdrop;
+
+function preload() {
+  gardenBackdrop = loadImage(gardenBackdropUrl);
+}
+
 function draw() {
-  background('#f6f0dc');
+  if (gardenBackdrop) image(gardenBackdrop, 0, 0, width, height);
+  else background('#f6f0dc');
   const seconds = millis() / 1000;
   gardenObjects.forEach((item) => {
     const moving = motionEnabled && item.motionApproved;
@@ -920,6 +929,11 @@ function mouseDragged() {
         if (inputs.animate.checked && items.some((item) => item.motionApproved && item.motion !== 'still')) scene.loop();
         else { scene.noLoop(); scene.redraw(); }
       };
+      gardenBackdrop = null;
+      p.loadImage(new URL('./umada-garden-concept.webp', import.meta.url).href, (image) => {
+        gardenBackdrop = image;
+        sceneRefresh();
+      });
       const resizeObserver = new ResizeObserver(() => {
         if (!scene) return;
         const size = canvasSize();
@@ -932,7 +946,17 @@ function mouseDragged() {
     };
     p.draw = () => {
       const styles = getComputedStyle(document.body);
-      p.background(styles.getPropertyValue('--card-bg').trim() || '#f4f5f6');
+      if (gardenBackdrop) {
+        const imageRatio = gardenBackdrop.width / gardenBackdrop.height;
+        const canvasRatio = p.width / p.height;
+        const cropWidth = imageRatio > canvasRatio ? gardenBackdrop.height * canvasRatio : gardenBackdrop.width;
+        const cropHeight = imageRatio > canvasRatio ? gardenBackdrop.height : gardenBackdrop.width / canvasRatio;
+        const cropX = (gardenBackdrop.width - cropWidth) / 2;
+        const cropY = (gardenBackdrop.height - cropHeight) / 2;
+        p.image(gardenBackdrop, 0, 0, p.width, p.height, cropX, cropY, cropWidth, cropHeight);
+      } else {
+        p.background(styles.getPropertyValue('--card-bg').trim() || '#f4f5f6');
+      }
       p.noStroke();
       const elapsed = p.millis() / 1000;
       for (const item of items) {
