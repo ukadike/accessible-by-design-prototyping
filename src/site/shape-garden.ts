@@ -135,9 +135,11 @@ export function mountShapeGarden(): void {
       copyButton.disabled = true;
       downloadButton.disabled = true;
       printButton.disabled = false;
-      schemaMarkdownButton.disabled = true;
-      schemaJsonButton.disabled = true;
-      schemaStatus.textContent = 'Add an object to prepare your Schema Card. The print view is available as a blank planning template.';
+      schemaMarkdownButton.disabled = false;
+      schemaJsonButton.disabled = false;
+      schemaStatus.textContent = actions.length
+        ? 'Schema Card ready with your decision trail. It will note that no objects remain in the scene.'
+        : 'Blank Schema Card ready. Add an object to include its details, or take home the planning template.';
       return;
     }
     const entries = items.map((item) => ({
@@ -535,7 +537,7 @@ function mouseDragged() {
       created_at: createdAt,
       title: 'UMADA Garden Schema Card',
       project: { name: 'UMADA Garden', workshop: 'Accessible by Design' },
-      status: missing.length ? 'draft_needs_accessibility_review' : 'ready_for_participant_review',
+      status: !objects.length ? (actions.length ? 'activity_record_no_current_objects' : 'blank_template') : missing.length ? 'draft_needs_accessibility_review' : 'ready_for_participant_review',
       purpose: 'Portable record of a participant-created garden interaction, its access requirements, governance rules, and implementation.',
       handoff: {
         instructions: [
@@ -556,7 +558,7 @@ function mouseDragged() {
       accessibility: {
         reference: 'WCAG 2.2',
         conformance_claim: false,
-        review_status: missing.length ? 'incomplete' : 'participant_review_needed',
+        review_status: !objects.length ? 'no_current_objects' : missing.length ? 'incomplete' : 'participant_review_needed',
         missing_fields: missing,
         requirements: [
           'Every object has a plain-language intention and description.',
@@ -602,7 +604,9 @@ function mouseDragged() {
     downloadText('umada-garden-schema-card.json', JSON.stringify(card, null, 2), 'application/json;charset=utf-8');
     schemaStatus.textContent = card.status === 'draft_needs_accessibility_review'
       ? 'Draft Schema Card downloaded. Its missing fields are listed in the card for you to complete.'
-      : 'Schema Card downloaded. Review its requirements before carrying it into another workflow.';
+      : card.status === 'blank_template' || card.status === 'activity_record_no_current_objects'
+        ? 'Schema Card downloaded with no current objects; it includes your recorded decisions.'
+        : 'Schema Card downloaded. Review its requirements before carrying it into another workflow.';
   });
 
   schemaMarkdownButton.addEventListener('click', () => {
@@ -648,7 +652,9 @@ function mouseDragged() {
     downloadText('umada-garden-schema-card.md', lines.join('\n'), 'text/markdown;charset=utf-8');
     schemaStatus.textContent = card.status === 'draft_needs_accessibility_review'
       ? 'Draft Schema Card downloaded. Its missing fields are listed in the card for you to complete.'
-      : 'Readable Schema Card downloaded. It includes the JSON record and p5.js source for handoff.';
+      : card.status === 'blank_template' || card.status === 'activity_record_no_current_objects'
+        ? 'Schema Card downloaded with no current objects; it includes your recorded decisions.'
+        : 'Readable Schema Card downloaded. It includes the JSON record and p5.js source for handoff.';
   });
   printButton.addEventListener('click', () => {
     printSheet.replaceChildren();
