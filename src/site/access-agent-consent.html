@@ -172,6 +172,7 @@
             <p><a href="https://raw.githubusercontent.com/ukadike/accessible-by-design-prototyping/main/docs/access-is-the-interface-workshop-ephemera.pdf" target="_blank" rel="noopener noreferrer">Download the printable workshop field guide and Schema Card (PDF, 2 pages)</a></p>
             <p>Give a shape or words an intention. Change the scene with keyboard, touch, or optional face tracking. At the end of this accessibility experiment, each participant can take their Schema Card home as a gift: a portable record of what they made, the access rules they chose, and the code and decisions behind it.</p>
             <p>Start with the garden and its children in view. Add your own ideas over the scene, then decide what each thing means, how it moves, and what another person needs to know.</p>
+            <p class="hint">Each browser tab has its own temporary garden; it is not shared live or saved online. If this tab shows earlier objects or decisions, select <strong>Start fresh session</strong> to clear them. Download your Schema Card before starting fresh.</p>
             <div class="garden-world-brief">
               <details class="garden-canon-note">
                 <summary>What UMADA canon says about the Garden</summary>
@@ -330,6 +331,7 @@ else holdPosition();</code></pre>
                   <button id="garden-move-right" type="button" aria-label="Move selected object right">Right →</button>
                   <label class="garden-motion-toggle"><input id="garden-animate" type="checkbox" /> Run approved movement</label>
                   <button id="garden-clear" type="button">Clear scene</button>
+                  <button id="garden-reset-session" type="button">Start fresh session</button>
                 </div>
                 <p class="hint">Movement is paused until you allow it for an object and select Run approved movement. Stop the camera at any time.</p>
                 <p id="garden-status" class="demo-status" role="status" aria-live="polite" aria-atomic="true">The garden is empty. Add a shape or some words.</p>
