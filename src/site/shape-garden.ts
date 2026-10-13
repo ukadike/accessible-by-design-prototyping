@@ -582,7 +582,26 @@ function mouseDragged() {
     inputs.animate.checked = false;
     renderItems();
     record('Cleared scene', 'Removed all objects and stopped the camera.');
-    announce('Garden cleared.');
+    announce('Garden cleared. Your decision trail remains available in this session.');
+  });
+
+  byId<HTMLButtonElement>('garden-reset-session').addEventListener('click', () => {
+    stopCamera();
+    items.splice(0, items.length);
+    actions.splice(0, actions.length);
+    selectedId = null;
+    nextId = 1;
+    currentMode = 'keyboard';
+    inputs.animate.checked = false;
+    words.value = '';
+    const keyboardMode = document.querySelector<HTMLInputElement>('input[name="garden-input-mode"][value="keyboard"]');
+    if (keyboardMode) keyboardMode.checked = true;
+    cameraControls.hidden = true;
+    modeHelp.textContent = 'Select an object, then use the direction buttons or focus the movement controls and press an arrow key.';
+    logList.replaceChildren();
+    renderItems();
+    renderCode();
+    announce('Fresh session started. The garden and decision trail are clear.');
   });
 
   function createSchemaCard() {
