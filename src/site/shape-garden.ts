@@ -1,6 +1,15 @@
 import type p5 from 'p5';
 
-type ShapeKind = 'circle' | 'rectangle' | 'triangle' | 'star' | 'words';
+type NagoSign = 'Water' | 'Safe' | 'Help' | 'Rest';
+type GlyphCrop = { x: number; y: number; w: number; h: number };
+const NAGO_PLATE_SOURCE = 'https://raw.githubusercontent.com/ukadike/Umada/main/assets/img/PLATE_NAGO_SYMBOLOGY_OF_UMADA.png';
+const NAGO_GLYPH_CROPS: Record<NagoSign, GlyphCrop> = {
+  Water: { x: 286, y: 250, w: 90, h: 95 },
+  Safe: { x: 390, y: 250, w: 90, h: 95 },
+  Help: { x: 809, y: 250, w: 90, h: 95 },
+  Rest: { x: 920, y: 250, w: 90, h: 95 },
+};
+type ShapeKind = 'circle' | 'rectangle' | 'triangle' | 'star' | 'words' | 'nago';
 type MotionKind = 'still' | 'drift' | 'bounce' | 'orbit' | 'pulse';
 type InputMode = 'keyboard' | 'mouse' | 'face';
 type AltRole = 'informative' | 'decorative';
@@ -20,6 +29,8 @@ interface GardenItem {
   altRole: AltRole;
   altText: string;
   phase: number;
+  nagoSign: NagoSign | null;
+  nagoRegistryStatus: string | null;
 }
 
 interface ActionEntry {
@@ -99,6 +110,8 @@ export function mountShapeGarden(): void {
   let lastFaceMove = 0;
   let scene: p5 | null = null;
   let gardenBackdrop: p5.Image | null = null;
+  let nagoGlyphPlate: p5.Image | null = null;
+  let nagoGlyphLoadRequested = false;
   let sceneRefresh = () => {};
 
   const selected = () => items.find((item) => item.id === selectedId) ?? null;
@@ -110,6 +123,17 @@ export function mountShapeGarden(): void {
   const announce = (message: string) => {
     status.textContent = message;
   };
+  function ensureNagoGlyphPlate(): void {
+    if (!scene || nagoGlyphPlate || nagoGlyphLoadRequested) return;
+    nagoGlyphLoadRequested = true;
+    scene.loadImage(NAGO_PLATE_SOURCE, (image) => {
+      nagoGlyphPlate = image;
+      sceneRefresh();
+    }, () => {
+      nagoGlyphLoadRequested = false;
+      announce('The canonical glyph image could not load. The marker label and text alternative are still available.');
+    });
+  }
   function renderLog(): void {
     logList.replaceChildren();
     for (const entry of actions) {
@@ -156,6 +180,10 @@ export function mountShapeGarden(): void {
       alternativeText: item.altText,
       motion: item.motion,
       motionApproved: item.motionApproved,
+      nagoSign: item.nagoSign,
+      nagoRegistryStatus: item.nagoRegistryStatus,
+      glyphCrop: item.nagoSign ? NAGO_GLYPH_CROPS[item.nagoSign] : null,
+      glyphSource: item.nagoSign ? NAGO_PLATE_SOURCE : null,
     }));
     const selectedIndex = Math.max(0, items.findIndex((item) => item.id === selectedId));
     const source = `// UMADA Garden scene — paste into the p5.js web editor.
@@ -184,14 +212,19 @@ function updateCanvasDescription() {
 
 const gardenBackdropUrl = 'https://ukadike.github.io/accessible-by-design-prototyping/umada-garden-concept.webp';
 let gardenBackdrop;
+const nagoGlyphPlateUrl = '${NAGO_PLATE_SOURCE}';
+let nagoGlyphPlate;
 
 function preload() {
   gardenBackdrop = loadImage(gardenBackdropUrl);
+  if (gardenObjects.some((item) => item.kind === 'nago')) {
+    nagoGlyphPlate = loadImage(nagoGlyphPlateUrl, () => {}, () => { nagoGlyphPlate = null; });
+  }
 }
 
 function draw() {
   if (gardenBackdrop) image(gardenBackdrop, 0, 0, width, height);
-  else background('#f6f0dc');
+  else background('#262622');
   const seconds = millis() / 1000;
   gardenObjects.forEach((item) => {
     const moving = motionEnabled && item.motionApproved;
@@ -223,10 +256,18 @@ function draw() {
       endShape(CLOSE);
     }
     if (item.kind === 'words') {
-      fill('#17212b');
+      fill('#f0eadc');
       textAlign(CENTER, CENTER);
       textSize(18);
       text(item.label, 0, 0, 180);
+    }
+    if (item.kind === 'nago') {
+      const crop = item.glyphCrop;
+      if (nagoGlyphPlate && crop) image(nagoGlyphPlate, -size / 2, -size / 2, size, size, crop.x, crop.y, crop.w, crop.h);
+      fill('#efece2');
+      textAlign(CENTER, CENTER);
+      textSize(12);
+      text(item.label, -72, size / 2 + 10, 144, 24);
     }
     pop();
   });
@@ -300,7 +341,7 @@ function mouseDragged() {
       inputs.description.value = '';
       inputs.altRole.value = 'informative';
       inputs.altText.value = '';
-      inputs.color.value = '#e63946';
+      inputs.color.value = '#c6b98f';
       inputs.size.value = '72';
       inputs.sizeValue.value = '72';
       inputs.motion.value = 'still';
@@ -317,6 +358,7 @@ function mouseDragged() {
       inputs.approval.checked = item.motionApproved;
     }
     inputs.altText.disabled = !item || item.altRole === 'decorative';
+    inputs.color.disabled = !item || item.kind === 'nago';
     itemsList.querySelectorAll<HTMLButtonElement>('[data-item-id]').forEach((button) => {
       if (Number(button.dataset.itemId) === selectedId) button.setAttribute('aria-current', 'true');
       else button.removeAttribute('aria-current');
@@ -357,12 +399,12 @@ function mouseDragged() {
     describeScene();
   }
   function createItem(kind: ShapeKind, label?: string): void {
-    const names: Record<ShapeKind, string> = { circle: 'Circle', rectangle: 'Rectangle', triangle: 'Triangle', star: 'Star', words: 'Words' };
+    const names: Record<ShapeKind, string> = { circle: 'Circle', rectangle: 'Rectangle', triangle: 'Triangle', star: 'Star', words: 'Words', nago: 'Nago glyph' };
     const item: GardenItem = {
       id: nextId++,
       kind,
       label: label?.trim() || names[kind],
-      color: ['#e63946', '#2a9d8f', '#f4a261', '#5865d9'][items.length % 4],
+      color: ['#c6b98f', '#74806f', '#858b8a', '#a58d73'][items.length % 4],
       size: 72,
       x: clamp(0.2 + (items.length % 4) * 0.18),
       y: clamp(0.25 + Math.floor(items.length / 4) * 0.2),
@@ -373,6 +415,8 @@ function mouseDragged() {
       altRole: 'informative',
       altText: '',
       phase: Math.random() * Math.PI * 2,
+      nagoSign: null,
+      nagoRegistryStatus: null,
     };
     items.push(item);
     selectedId = item.id;
@@ -429,16 +473,19 @@ function mouseDragged() {
       const meaning = button.dataset.meaning ?? 'Meaning not provided.';
       const mark = button.dataset.mark ?? 'Mark description not provided.';
       const tactile = button.dataset.tactile ?? 'Tactile description not provided.';
-      createItem('words', `Nago · ${name}`);
+      createItem('nago', `Nago · ${name}`);
       const item = selected();
       if (!item) return;
+      item.nagoSign = name as NagoSign;
+      item.nagoRegistryStatus = button.dataset.registryStatus ?? 'status not supplied';
       item.intention = `Garden wayfinding: ${meaning}`;
-      item.description = `Nago ${name} study marker (emerging): ${mark} Tactile form: ${tactile}`;
-      item.altText = `Nago sign study marker for ${name}. Meaning: ${meaning} Mark study: ${mark} Tactile description: ${tactile} Canon status: emerging; this is a labeled prototype marker, not a finished glyph.`;
+      item.description = `Exact ${name} glyph crop from the realized Nago Symbology of UMADA plate. Visual mark: ${mark} Tactile form: ${tactile} The structured registry currently lists this sign as ${item.nagoRegistryStatus}.`;
+      item.altText = `Canonical Nago glyph for ${name}, cropped from the realized Nago Symbology of UMADA plate. Meaning: ${meaning} Tactile form: ${tactile} The structured registry lists this sign as ${item.nagoRegistryStatus}.`;
       updateControls();
       renderItems();
-      record('Placed Nago study marker', `${name}: ${meaning} Mark: ${mark} Tactile form: ${tactile} Status: emerging prototype reference.`);
-      announce(`Nago ${name} study marker added with its meaning and tactile description. Review it in the Schema Card.`);
+      record('Placed canonical Nago glyph', `${name}: ${meaning} Plate crop placed; mark: ${mark} Tactile form: ${tactile} Structured registry status: ${item.nagoRegistryStatus}.`);
+      ensureNagoGlyphPlate();
+      announce(`Canonical Nago ${name} glyph added with its meaning and tactile description. Review it in the Schema Card.`);
     });
   });
 
@@ -550,6 +597,12 @@ function mouseDragged() {
       description: item.description,
       text_alternative: { role: item.altRole, text: item.altText },
       movement: { proposed_rule: item.motion, explicitly_allowed: item.motionApproved },
+      nago_glyph: item.nagoSign ? {
+        name: item.nagoSign,
+        source: NAGO_PLATE_SOURCE,
+        source_crop: NAGO_GLYPH_CROPS[item.nagoSign],
+        structured_registry_status: item.nagoRegistryStatus,
+      } : null,
     }));
     const missing = objects.flatMap((item, index) => {
       const issues: string[] = [];
@@ -948,6 +1001,7 @@ function mouseDragged() {
         if (inputs.animate.checked && items.some((item) => item.motionApproved && item.motion !== 'still')) scene.loop();
         else { scene.noLoop(); scene.redraw(); }
       };
+      if (items.some((item) => item.kind === 'nago')) ensureNagoGlyphPlate();
       gardenBackdrop = null;
       p.loadImage(new URL('./umada-garden-concept.webp', import.meta.url).href, (image) => {
         gardenBackdrop = image;
@@ -974,7 +1028,7 @@ function mouseDragged() {
         const cropY = (gardenBackdrop.height - cropHeight) / 2;
         p.image(gardenBackdrop, 0, 0, p.width, p.height, cropX, cropY, cropWidth, cropHeight);
       } else {
-        p.background(styles.getPropertyValue('--card-bg').trim() || '#f4f5f6');
+        p.background(styles.getPropertyValue('--canvas-bg').trim() || '#262622');
       }
       p.noStroke();
       const elapsed = p.millis() / 1000;
@@ -1006,15 +1060,23 @@ function mouseDragged() {
           p.endShape(p.CLOSE);
         }
         if (item.kind === 'words') {
-          p.fill('#17212b');
+          p.fill('#f0eadc');
           p.textAlign(p.CENTER, p.CENTER);
           p.textSize(16);
           p.text(item.label, -90, -24, 180, 48);
         }
+        if (item.kind === 'nago') {
+          const crop = item.nagoSign ? NAGO_GLYPH_CROPS[item.nagoSign] : null;
+          if (nagoGlyphPlate && crop) p.image(nagoGlyphPlate, -size / 2, -size / 2, size, size, crop.x, crop.y, crop.w, crop.h);
+          p.fill('#efece2');
+          p.textAlign(p.CENTER, p.CENTER);
+          p.textSize(12);
+          p.text(item.label, -72, size / 2 + 10, 144, 24);
+        }
         p.pop();
       }
       if (!items.length) {
-        p.fill('#3d4852');
+        p.fill('#f0eadc');
         p.textAlign(p.CENTER, p.CENTER);
         p.textSize(16);
         p.text('Add a shape or words to start your garden', p.width / 2, p.height / 2, p.width - 28);

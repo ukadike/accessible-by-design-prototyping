@@ -33,6 +33,7 @@
           <a href="#outline">Keynote outline</a>
           <a href="#presenter">Presenter walkthrough</a>
           <a href="#code">Explore the code</a>
+          <a href="#references">References</a>
         </nav>
       </div>
 
@@ -188,43 +189,55 @@
                   <p>Nago is UMADA’s evolving, shared sign system. Choose a sign to place a labeled marker in the scene; its meaning and tactile description will travel with it into your Schema Card.</p>
                 </div>
                 <details class="garden-nago-care">
-                  <summary>About the marks and their source</summary>
-                  <p>This prototype uses plain-language sign labels and canon descriptions rather than drawing new glyphs. The structured Nago registry marks these forms as emerging; treat each as a study marker, not a finished public sign. Nago is fictional UMADA worldbuilding, drawing on Nagô/Yoruba heritage; it is not a real sign language or sacred script.</p>
-                  <p><a href="https://github.com/ukadike/Umada/blob/main/data/nago_signs.json" target="_blank" rel="noopener noreferrer">Read the Nago sign registry</a> · <a href="https://github.com/ukadike/Umada/blob/main/07_languages/NAGO_SYMBOLOGY_BIBLE.md" target="_blank" rel="noopener noreferrer">Read the Nago Symbology Bible</a></p>
+                  <summary>About the glyphs and their source</summary>
+                  <p>The playground places the exact Water, Safe, Help, and Rest glyphs cropped from the realized Nago Symbology of UMADA plate. Each keeps its plain-language label, meaning, and tactile description. The structured registry currently marks some of these signs as emerging while the plate presents them in its core survival set; this prototype preserves that source distinction in each Schema Card.</p>
+                  <p>Nago is fictional UMADA worldbuilding, drawing on Nagô/Yoruba heritage; it is not a real sign language or sacred script.</p>
+                  <p><a href="https://github.com/ukadike/Umada/blob/main/assets/img/PLATE_NAGO_SYMBOLOGY_OF_UMADA.png" target="_blank" rel="noopener noreferrer">View the realized Nago glyph plate</a> · <a href="https://github.com/ukadike/Umada/blob/main/data/nago_signs.json" target="_blank" rel="noopener noreferrer">Read the Nago sign registry</a> · <a href="https://github.com/ukadike/Umada/blob/main/07_languages/NAGO_SYMBOLOGY_BIBLE.md" target="_blank" rel="noopener noreferrer">Read the Nago Symbology Bible</a></p>
                 </details>
               </div>
+              <details class="garden-nago-plate">
+                <summary>See the complete realized glyph plate</summary>
+                <figure>
+                  <img src="https://raw.githubusercontent.com/ukadike/Umada/main/assets/img/PLATE_NAGO_SYMBOLOGY_OF_UMADA.png" width="1402" height="1122" loading="lazy" decoding="async" alt="The realized Nago Symbology of UMADA plate. It shows the core signs Bread, Water, Safe, Danger, Carry, Home, Help, and Rest with their meanings, gestures, tactile forms, signage examples, phrase examples, and tactile system." />
+                  <figcaption>Glyph reference: <a href="https://github.com/ukadike/Umada/blob/main/assets/img/PLATE_NAGO_SYMBOLOGY_OF_UMADA.png" target="_blank" rel="noopener noreferrer">Nago Symbology of UMADA</a>.</figcaption>
+                </figure>
+              </details>
               <ul class="garden-nago-cards" aria-label="Placeable Nago study markers">
                 <li class="garden-nago-card">
-                  <span class="garden-nago-status">Emerging · Survival</span>
+                  <span class="garden-nago-status">Canonical plate · Survival</span>
                   <h5>Water</h5>
+                  <span class="garden-nago-glyph-preview glyph-water" role="img" aria-label="Water glyph cropped from the realized Nago plate"></span>
                   <p><strong>Meaning:</strong> Need water.</p>
                   <p><strong>Mark study:</strong> Wave line with two descending ridges.</p>
                   <p><strong>Tactile:</strong> Raised wave with two descending ridges.</p>
-                  <button type="button" data-garden-nago="Water" data-meaning="Need water." data-mark="Wave line with two descending ridges." data-tactile="Raised wave with two descending ridges.">Place Water marker</button>
+                  <button type="button" data-garden-nago="Water" data-meaning="Need water." data-mark="Wave line with two descending ridges." data-tactile="Raised wave with two descending ridges." data-registry-status="emerging">Place Water glyph</button>
                 </li>
                 <li class="garden-nago-card">
-                  <span class="garden-nago-status">Emerging · Survival</span>
+                  <span class="garden-nago-status">Canonical plate · Survival</span>
                   <h5>Safe</h5>
+                  <span class="garden-nago-glyph-preview glyph-safe" role="img" aria-label="Safe glyph cropped from the realized Nago plate"></span>
                   <p><strong>Meaning:</strong> No threat; I mean no harm.</p>
                   <p><strong>Mark study:</strong> Open circle with a downward settling line.</p>
                   <p><strong>Tactile:</strong> Raised open circle with a calm base line.</p>
-                  <button type="button" data-garden-nago="Safe" data-meaning="No threat; I mean no harm." data-mark="Open circle with a downward settling line." data-tactile="Raised open circle with a calm base line.">Place Safe marker</button>
+                  <button type="button" data-garden-nago="Safe" data-meaning="No threat; I mean no harm." data-mark="Open circle with a downward settling line." data-tactile="Raised open circle with a calm base line." data-registry-status="emerging">Place Safe glyph</button>
                 </li>
                 <li class="garden-nago-card">
-                  <span class="garden-nago-status">Emerging · Care</span>
+                  <span class="garden-nago-status">Canonical plate · Care</span>
                   <h5>Help</h5>
+                  <span class="garden-nago-glyph-preview glyph-help" role="img" aria-label="Help glyph cropped from the realized Nago plate"></span>
                   <p><strong>Meaning:</strong> Help needed, or help here.</p>
                   <p><strong>Mark study:</strong> Two open hands.</p>
                   <p><strong>Tactile:</strong> Raised paired open-hand forms.</p>
-                  <button type="button" data-garden-nago="Help" data-meaning="Help needed, or help here." data-mark="Two open hands." data-tactile="Raised paired open-hand forms.">Place Help marker</button>
+                  <button type="button" data-garden-nago="Help" data-meaning="Help needed, or help here." data-mark="Two open hands." data-tactile="Raised paired open-hand forms." data-registry-status="emerging">Place Help glyph</button>
                 </li>
                 <li class="garden-nago-card">
-                  <span class="garden-nago-status">Emerging · Care</span>
+                  <span class="garden-nago-status">Canonical plate · Care</span>
                   <h5>Rest</h5>
+                  <span class="garden-nago-glyph-preview glyph-rest" role="img" aria-label="Rest glyph cropped from the realized Nago plate"></span>
                   <p><strong>Meaning:</strong> Rest here; recover.</p>
                   <p><strong>Mark study:</strong> Soft downward curve or cupped arc.</p>
                   <p><strong>Tactile:</strong> Raised shallow cupped arc.</p>
-                  <button type="button" data-garden-nago="Rest" data-meaning="Rest here; recover." data-mark="Soft downward curve or cupped arc." data-tactile="Raised shallow cupped arc.">Place Rest marker</button>
+                  <button type="button" data-garden-nago="Rest" data-meaning="Rest here; recover." data-mark="Soft downward curve or cupped arc." data-tactile="Raised shallow cupped arc." data-registry-status="emerging">Place Rest glyph</button>
                 </li>
               </ul>
             </section>
@@ -279,8 +292,8 @@ else holdPosition();</code></pre>
                   </select>
                   <label for="garden-alt-text">Alternative text (leave empty for decorative objects)</label>
                   <textarea id="garden-alt-text" rows="2" maxlength="180" disabled></textarea>
-                  <label for="garden-color">Color</label>
-                  <input id="garden-color" type="color" value="#e63946" disabled />
+                  <label for="garden-color">Color (custom shapes only; canon glyph colors stay as drawn)</label>
+                  <input id="garden-color" type="color" value="#c6b98f" disabled />
                   <label for="garden-size">Size: <output id="garden-size-value" for="garden-size">72</output></label>
                   <input id="garden-size" type="range" min="28" max="140" value="72" disabled />
                   <label for="garden-motion">Proposed movement</label>
@@ -435,6 +448,19 @@ if (!result.ok) {
           <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/tests/agent-consent.test.ts">Permission boundary tests</a></li>
         </ul>
         <p>The sketch uses <a href="https://p5js.org/reference/p5/createCanvas/">p5 createCanvas()</a> and <a href="https://p5js.org/reference/p5/noLoop/">noLoop()</a> with redraws on state changes. It has no continuous animation. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition">Web Speech API</a> has limited browser support; some implementations process recognition on a server. Text input remains available.</p>
+      </section>
+      <section id="references" aria-labelledby="references-heading" class="section-band prose">
+        <h2 id="references-heading">References and further reading</h2>
+        <p>These sources inform the workshop’s accessibility, disability-led design, creative coding, and AI-governance questions. They serve different roles: WCAG is a technical standard; the other works provide supplemental guidance, critical frameworks, and risk-management resources.</p>
+        <ul class="source-links">
+          <li><a href="https://www.w3.org/TR/WCAG22/">World Wide Web Consortium (W3C), <cite>Web Content Accessibility Guidelines (WCAG) 2.2</cite></a>. The technical standard used as one baseline for evaluating web content and interaction.</li>
+          <li><a href="https://www.w3.org/TR/coga-usable/">W3C, <cite>Making Content Usable for People with Cognitive and Learning Disabilities</cite> (Working Group Note, 2021)</a>. Supplemental design guidance that includes user needs and involving people in design and testing; it is not itself a WCAG conformance standard.</li>
+          <li><a href="https://doi.org/10.28968/cftt.v5i1.29607">Aimi Hamraie and Kelly Fritsch, “Crip Technoscience Manifesto” (2019), <cite>Catalyst: Feminism, Theory, Technoscience</cite>, 5(1)</a>. A disability-justice framework for thinking about disabled people as makers and knowledge-holders in technology.</li>
+          <li><a href="https://designjustice.mitpress.mit.edu/">Sasha Costanza-Chock, <cite>Design Justice: Community-Led Practices to Build the Worlds We Need</cite> (MIT Press, 2020)</a>. An open-access book on design, power, and community-led practice.</li>
+          <li><a href="https://designjustice.org/read-the-principles">Design Justice Network, “Design Justice Network Principles”</a>. Principles for accountable, community-led, and community-controlled design.</li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework">National Institute of Standards and Technology (NIST), <cite>AI Risk Management Framework (AI RMF 1.0)</cite></a>, with the <a href="https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook">AI RMF Playbook</a>. Voluntary resources for identifying and managing AI risks across design, development, use, and evaluation. The workshop’s Schema Card is a teaching activity, not a NIST artifact.</li>
+          <li><a href="https://p5js.org/reference/">p5.js Reference</a>. Documentation for the creative-coding library used in the workshop playground.</li>
+        </ul>
       </section>
     </main>
     <footer><p>Accessible by Design / Small Systems Lab / <a href="https://github.com/ukadike/accessible-by-design-prototyping">GitHub repository</a></p></footer>

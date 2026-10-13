@@ -25,6 +25,7 @@
 - [Reflection](#reflection)
 - [Extend Your Prototype](#extend-your-prototype)
 - [Why This Matters](#why-this-matters)
+- [References](#references)
 
 ---
 
@@ -280,6 +281,18 @@ When your intent is clear:
 Accessible design begins with clarity.
 
 ---
+
+## References
+
+These sources distinguish technical accessibility requirements from broader design and governance frameworks.
+
+1. World Wide Web Consortium (W3C). [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/). Technical standard for web accessibility.
+2. W3C. [Making Content Usable for People with Cognitive and Learning Disabilities](https://www.w3.org/TR/coga-usable/) (Working Group Note, 2021). Supplemental guidance on cognitive accessibility, design patterns, and involving users in design and testing.
+3. Hamraie, Aimi, and Kelly Fritsch. [“Crip Technoscience Manifesto”](https://doi.org/10.28968/cftt.v5i1.29607). *Catalyst: Feminism, Theory, Technoscience* 5, no. 1 (2019).
+4. Costanza-Chock, Sasha. [*Design Justice: Community-Led Practices to Build the Worlds We Need*](https://designjustice.mitpress.mit.edu/). MIT Press, 2020. Open-access edition.
+5. Design Justice Network. [Design Justice Network Principles](https://designjustice.org/read-the-principles).
+6. National Institute of Standards and Technology (NIST). [AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) and [AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook). Voluntary AI risk-management resources; the workshop Schema Card is a teaching activity, not a NIST form.
+7. [p5.js Reference](https://p5js.org/reference/). Documentation for the creative-coding library used in the workshop.
 
 ## Credits
 

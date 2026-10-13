@@ -144,12 +144,31 @@ body.keynote-page {
 
 
 .shape-garden {
+  --text: #f0eadc;
+  --bg: #262622;
+  --card-bg: #35342f;
+  --line: #817b70;
+  --focus: #f2d785;
+  --link: #ead8a8;
+  --accent: #d4c28a;
+  --accent-text: #25241f;
+  --accent-hover: #e1d1a2;
+  --signal-gold: #a89563;
+  --canvas-bg: #262622;
+  --good: #b7cfaa;
+  --bad: #f0a0a7;
+  --warn: #e2c16f;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
   margin: 2rem 0;
   padding: 1.25rem;
-  border: 2px solid var(--signal-gold);
-  border-radius: 1rem;
-  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
 }
+.shape-garden a { color: var(--link); }
+.shape-garden button { border-radius: 0.3rem; }
+.shape-garden h3, .shape-garden h4, .shape-garden h5 { color: var(--text); }
 .garden-layout {
   display: grid;
   grid-template-columns: minmax(17rem, 0.9fr) minmax(20rem, 1.1fr);
@@ -193,7 +212,7 @@ body.keynote-page {
 .garden-move-controls:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
 .garden-move-controls label { align-self: center; }
 #garden-canvas { min-height: 1rem; }
-.garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--signal-gold); border-radius: 0.75rem; background: var(--canvas-bg); }
+.garden-stage-column canvas { display: block; max-width: 100%; height: auto !important; border: 1px solid var(--line); border-radius: 0.35rem; background: var(--canvas-bg); }
 #garden-print-sheet { display: none; }
 @media (max-width: 48rem) {
   .keynote-page button, .keynote-page input, .keynote-page select, .keynote-page summary { touch-action: manipulation; }
@@ -284,7 +303,7 @@ body.keynote-page {
   margin: 1rem 0 1.5rem;
   padding: 1rem;
   border: 1px solid var(--line);
-  border-radius: 0.85rem;
+  border-radius: 0.4rem;
   background: var(--card-bg);
 }
 .garden-nago-intro {
@@ -303,9 +322,14 @@ body.keynote-page {
 .garden-nago-care {
   padding: 0.8rem;
   border: 1px solid var(--line);
-  border-radius: 0.65rem;
+  border-radius: 0.35rem;
 }
 .garden-nago-care summary { cursor: pointer; font-weight: 700; }
+.garden-nago-plate { margin: 0.8rem 0; }
+.garden-nago-plate summary { cursor: pointer; font-weight: 700; }
+.garden-nago-plate figure { margin: 0.75rem 0; }
+.garden-nago-plate img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.garden-nago-plate figcaption { margin-top: 0.5rem; }
 .garden-nago-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -321,11 +345,26 @@ body.keynote-page {
   gap: 0.35rem;
   padding: 0.85rem;
   border: 1px solid var(--line);
-  border-radius: 0.7rem;
-  background: color-mix(in srgb, var(--card-bg) 85%, #c9dfd0 15%);
+  border-radius: 0.35rem;
+  background: var(--bg);
 }
 .garden-nago-card h5 { margin: 0.15rem 0; font-size: 1rem; }
 .garden-nago-card p { margin: 0; font-size: 0.9rem; }
+.garden-nago-glyph-preview {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 4rem;
+  border: 1px solid #938367;
+  background-color: #090909;
+  background-image: url("https://raw.githubusercontent.com/ukadike/Umada/main/assets/img/PLATE_NAGO_SYMBOLOGY_OF_UMADA.png");
+  background-repeat: no-repeat;
+  background-size: 701px 561px;
+}
+.glyph-water { background-position: -134px -117px; }
+.glyph-safe { background-position: -186px -117px; }
+.glyph-help { background-position: -395px -116px; }
+.glyph-rest { background-position: -451px -117px; }
 .garden-nago-card button { margin-top: auto; }
 @media (max-width: 64rem) {
   .garden-nago-intro { grid-template-columns: 1fr; }
