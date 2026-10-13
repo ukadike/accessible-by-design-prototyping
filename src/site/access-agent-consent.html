@@ -36,6 +36,7 @@
           <a href="#code">Explore the code</a>
           <a href="#references">References</a>
         </nav>
+        <p class="hint">Links to other websites open in a new tab.</p>
       </div>
 
       <section id="umada-narrative" aria-labelledby="umada-narrative-heading" class="section-band prose">
@@ -168,7 +169,7 @@
           </section>
           <section class="shape-garden" aria-labelledby="garden-heading">
             <h3 id="garden-heading">UMADA Garden: a p5 playground</h3>
-            <p><a href="https://raw.githubusercontent.com/ukadike/accessible-by-design-prototyping/main/docs/access-is-the-interface-workshop-ephemera.pdf">Download the printable workshop field guide and Schema Card (PDF, 2 pages)</a></p>
+            <p><a href="https://raw.githubusercontent.com/ukadike/accessible-by-design-prototyping/main/docs/access-is-the-interface-workshop-ephemera.pdf" target="_blank" rel="noopener noreferrer">Download the printable workshop field guide and Schema Card (PDF, 2 pages)</a></p>
             <p>Give a shape or words an intention. Change the scene with keyboard, touch, or optional face tracking. At the end of this accessibility experiment, each participant can take their Schema Card home as a gift: a portable record of what they made, the access rules they chose, and the code and decisions behind it.</p>
             <p>Start with the garden and its children in view. Add your own ideas over the scene, then decide what each thing means, how it moves, and what another person needs to know.</p>
             <div class="garden-world-brief">
@@ -359,7 +360,7 @@ else holdPosition();</code></pre>
                   <button id="garden-print-notes" type="button" disabled>Print schema card</button>
                 </div>
                 <p class="hint garden-next-step"><strong>Next step:</strong> <a href="./p5-check.html">Check this sketch with the p5 / Creative Coding Check</a>. It runs in your browser and checks for common patterns. Then review whether each description makes sense to a nonvisual visitor, the keyboard path completes the same task, and motion can pause.</p>
-                <p class="hint">Learning references: <a href="https://ml5js.org/">ml5.js</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, and <a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Quick Reference</a>.</p>
+                <p class="hint">Learning references: <a href="https://ml5js.org/" target="_blank" rel="noopener noreferrer">ml5.js</a>, <a href="https://p5js.org/reference/" target="_blank" rel="noopener noreferrer">p5.js reference</a>, and <a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer">WCAG 2.2 Quick Reference</a>.</p>
               </div>
             </div>
           </section>
@@ -380,7 +381,7 @@ else holdPosition();</code></pre>
         <blockquote class="positioning">The future of code is also the design of agency: what a system can do, whose intention it serves, and how that person remains in control.</blockquote>
         <h3>What AI governance means here</h3>
         <p>AI governance is the assignment and enforcement of responsibility, decision rights, and limits around an AI system across its life cycle. In a creative coding project, that means deciding who may authorize an action, what tools the system can reach, how failures are detected, and who must respond when something goes wrong.</p>
-        <p>An approval control is one part of that work. Governance also includes testing, access to evidence, incident response, and the people responsible for repair. NIST's <a href="https://www.nist.gov/itl/ai-risk-management-framework">AI Risk Management Framework</a> offers a broader structure for managing risks through design, development, use, and evaluation.</p>
+        <p>An approval control is one part of that work. Governance also includes testing, access to evidence, incident response, and the people responsible for repair. NIST's <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">AI Risk Management Framework</a> offers a broader structure for managing risks through design, development, use, and evaluation.</p>
       </section>
 
       <section id="outline" aria-labelledby="outline-heading" class="section-band prose">
@@ -458,28 +459,28 @@ if (!result.ok) {
         <p>This browser gate is a teaching model. A production tool service must enforce authorization independently of the model and browser, authenticate the person, validate the allowed action and resources, and prevent duplicate execution. The browser alone cannot protect a real API.</p>
         <p>Approval can also be scoped and revocable for a sequence of low-risk actions. This demo deliberately uses one explicit approval per message so that the boundary is easy to inspect.</p>
         <ul class="source-links">
-          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/agent-consent.ts">Action permission logic</a></li>
-          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/pages/access-agent.ts">Interaction and speech controls</a></li>
-          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/access-agent-sketch.js">p5 sketch source</a></li>
-          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/tests/agent-consent.test.ts">Permission boundary tests</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/agent-consent.ts" target="_blank" rel="noopener noreferrer">Action permission logic</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/pages/access-agent.ts" target="_blank" rel="noopener noreferrer">Interaction and speech controls</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/src/site/access-agent-sketch.js" target="_blank" rel="noopener noreferrer">p5 sketch source</a></li>
+          <li><a href="https://github.com/ukadike/accessible-by-design-prototyping/blob/main/tests/agent-consent.test.ts" target="_blank" rel="noopener noreferrer">Permission boundary tests</a></li>
         </ul>
-        <p>The sketch uses <a href="https://p5js.org/reference/p5/createCanvas/">p5 createCanvas()</a> and <a href="https://p5js.org/reference/p5/noLoop/">noLoop()</a> with redraws on state changes. It has no continuous animation. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition">Web Speech API</a> has limited browser support; some implementations process recognition on a server. Text input remains available.</p>
+        <p>The sketch uses <a href="https://p5js.org/reference/p5/createCanvas/" target="_blank" rel="noopener noreferrer">p5 createCanvas()</a> and <a href="https://p5js.org/reference/p5/noLoop/" target="_blank" rel="noopener noreferrer">noLoop()</a> with redraws on state changes. It has no continuous animation. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition" target="_blank" rel="noopener noreferrer">Web Speech API</a> has limited browser support; some implementations process recognition on a server. Text input remains available.</p>
       </section>
       <section id="references" aria-labelledby="references-heading" class="section-band prose">
         <h2 id="references-heading">References and further reading</h2>
         <p>These sources inform the workshop’s accessibility, disability-led design, creative coding, and AI-governance questions. They serve different roles: WCAG is a technical standard; the other works provide supplemental guidance, critical frameworks, and risk-management resources.</p>
         <ul class="source-links">
-          <li><a href="https://www.w3.org/TR/WCAG22/">World Wide Web Consortium (W3C), <cite>Web Content Accessibility Guidelines (WCAG) 2.2</cite></a>. The technical standard used as one baseline for evaluating web content and interaction.</li>
-          <li><a href="https://www.w3.org/TR/coga-usable/">W3C, <cite>Making Content Usable for People with Cognitive and Learning Disabilities</cite> (Working Group Note, 2021)</a>. Supplemental design guidance that includes user needs and involving people in design and testing; it is not itself a WCAG conformance standard.</li>
-          <li><a href="https://doi.org/10.28968/cftt.v5i1.29607">Aimi Hamraie and Kelly Fritsch, “Crip Technoscience Manifesto” (2019), <cite>Catalyst: Feminism, Theory, Technoscience</cite>, 5(1)</a>. A disability-justice framework for thinking about disabled people as makers and knowledge-holders in technology.</li>
-          <li><a href="https://designjustice.mitpress.mit.edu/">Sasha Costanza-Chock, <cite>Design Justice: Community-Led Practices to Build the Worlds We Need</cite> (MIT Press, 2020)</a>. An open-access book on design, power, and community-led practice.</li>
-          <li><a href="https://designjustice.org/read-the-principles">Design Justice Network, “Design Justice Network Principles”</a>. Principles for accountable, community-led, and community-controlled design.</li>
-          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework">National Institute of Standards and Technology (NIST), <cite>AI Risk Management Framework (AI RMF 1.0)</cite></a>, with the <a href="https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook">AI RMF Playbook</a>. Voluntary resources for identifying and managing AI risks across design, development, use, and evaluation. The workshop’s Schema Card is a teaching activity, not a NIST artifact.</li>
-          <li><a href="https://p5js.org/reference/">p5.js Reference</a>. Documentation for the creative-coding library used in the workshop playground.</li>
+          <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">World Wide Web Consortium (W3C), <cite>Web Content Accessibility Guidelines (WCAG) 2.2</cite></a>. The technical standard used as one baseline for evaluating web content and interaction.</li>
+          <li><a href="https://www.w3.org/TR/coga-usable/" target="_blank" rel="noopener noreferrer">W3C, <cite>Making Content Usable for People with Cognitive and Learning Disabilities</cite> (Working Group Note, 2021)</a>. Supplemental design guidance that includes user needs and involving people in design and testing; it is not itself a WCAG conformance standard.</li>
+          <li><a href="https://doi.org/10.28968/cftt.v5i1.29607" target="_blank" rel="noopener noreferrer">Aimi Hamraie and Kelly Fritsch, “Crip Technoscience Manifesto” (2019), <cite>Catalyst: Feminism, Theory, Technoscience</cite>, 5(1)</a>. A disability-justice framework for thinking about disabled people as makers and knowledge-holders in technology.</li>
+          <li><a href="https://designjustice.mitpress.mit.edu/" target="_blank" rel="noopener noreferrer">Sasha Costanza-Chock, <cite>Design Justice: Community-Led Practices to Build the Worlds We Need</cite> (MIT Press, 2020)</a>. An open-access book on design, power, and community-led practice.</li>
+          <li><a href="https://designjustice.org/read-the-principles" target="_blank" rel="noopener noreferrer">Design Justice Network, “Design Justice Network Principles”</a>. Principles for accountable, community-led, and community-controlled design.</li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">National Institute of Standards and Technology (NIST), <cite>AI Risk Management Framework (AI RMF 1.0)</cite></a>, with the <a href="https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook" target="_blank" rel="noopener noreferrer">AI RMF Playbook</a>. Voluntary resources for identifying and managing AI risks across design, development, use, and evaluation. The workshop’s Schema Card is a teaching activity, not a NIST artifact.</li>
+          <li><a href="https://p5js.org/reference/" target="_blank" rel="noopener noreferrer">p5.js Reference</a>. Documentation for the creative-coding library used in the workshop playground.</li>
         </ul>
       </section>
     </main>
-    <footer><p>Accessible by Design / Small Systems Lab / <a href="https://github.com/ukadike/accessible-by-design-prototyping">GitHub repository</a></p></footer>
+    <footer><p>Accessible by Design / Small Systems Lab / <a href="https://github.com/ukadike/accessible-by-design-prototyping" target="_blank" rel="noopener noreferrer">GitHub repository</a></p></footer>
     <script type="module" src="./pages/access-agent.ts"></script>
   </body>
 </html>
