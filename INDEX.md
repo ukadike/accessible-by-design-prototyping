@@ -24,7 +24,7 @@ A complete index of this repository's documentation, tooling, rule data, and exa
 ## Workshop (origin material)
 
 - [docs/workshop-guide.md](docs/workshop-guide.md) — "Accessible by Design: Prototyping Meaning, Not Just Interfaces," the original workshop guide this toolkit grew out of
-- [docs/ccfest-2026-post-workshop-reflection.md](docs/ccfest-2026-post-workshop-reflection.md) — evidence-based reflection on the CC Fest 2026 session, audience signals, and changes for the next delivery
+- [CC Fest workshop page](https://ukadike.github.io/accessible-by-design-prototyping/access-agent-consent.html#garden-instructions) — live workshop page, anchored at the UMADA Garden activity
 
 ## Rule data (rules/)
 
