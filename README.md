@@ -9,7 +9,7 @@ Accessibility Audit Lab is an open-source WCAG 2.2+ auditing toolkit for website
 
 It combines automated accessibility checks, p5/canvas-specific review, PDF structural checks, plain-language remediation guidance, and structured reports that help teams understand what to fix next.
 
-This repository also hosts the original [Accessible by Design workshop guide](docs/workshop-guide.md), which this tool grew out of.
+This repository also hosts the original [Accessible by Design workshop guide](docs/workshop-guide.md), which this tool grew out of, and a [reflection on the CC Fest 2026 workshop](docs/ccfest-2026-post-workshop-reflection.md).
 
 This project is part of the [Small Systems Lab](https://github.com/ukadike/Small-Systems-Lab) ecosystem ([hub site](https://ukadike.github.io/small-systems-lab/)).
 
@@ -77,6 +77,7 @@ npm run dev
 - [docs/pdf-accessibility-guide.md](docs/pdf-accessibility-guide.md) — PDF-specific guidance
 - [docs/funding-language.md](docs/funding-language.md) — the problem space this project addresses
 - [docs/workshop-guide.md](docs/workshop-guide.md) — the original Accessible by Design workshop guide
+- [docs/ccfest-2026-post-workshop-reflection.md](docs/ccfest-2026-post-workshop-reflection.md) — what landed at CC Fest 2026 and what to improve for the next delivery
 - [docs/REPO_AUDIT.md](docs/REPO_AUDIT.md) — repository structure/navigation audit and cleanup log
 - [SCHEMA_CARD.md](SCHEMA_CARD.md) — project summary: purpose, data structures, interfaces, dependencies
 - [INDEX.md](INDEX.md) — full site map of every doc, rule file, schema, and example in this repo
@@ -87,7 +88,7 @@ npm run dev
 ```txt
 src/
   core/       audit orchestration, WCAG mapping, severity, rules engine (browser-safe check logic lives here too)
-  adapters/   Playwright + axe-core adapters for URLs/HTML/p5 sketches, plus a pdf-lib adapter for PDFs
+  adapters/   Playwright + axe-core adapters for URLs/HTML/p5 sketches, plus a pdf-lib adapter
   reporters/  Markdown, JSON, and console report generators
   p5-plugin/  optional in-browser helper for p5.js sketch authors
   cli/        the a11y-lab command-line tool
