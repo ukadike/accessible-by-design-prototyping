@@ -24,6 +24,7 @@ A complete index of this repository's documentation, tooling, rule data, and exa
 ## Workshop (origin material)
 
 - [docs/workshop-guide.md](docs/workshop-guide.md) — "Accessible by Design: Prototyping Meaning, Not Just Interfaces," the original workshop guide this toolkit grew out of
+- [docs/ccfest-2026-post-workshop-reflection.md](docs/ccfest-2026-post-workshop-reflection.md) — evidence-based reflection on the CC Fest 2026 session, audience signals, and changes for the next delivery
 
 ## Rule data (rules/)
 
@@ -57,7 +58,7 @@ A complete index of this repository's documentation, tooling, rule data, and exa
 - `src/reporters/` — Markdown, JSON, and console report generators
 - `src/p5-plugin/` — optional in-browser helper for p5.js sketch authors
 - `src/cli/` — the `a11y-lab` command-line tool
-- `src/web/` — the Vite + React web UI (dev server)
+- `src/web/` — the Vite + React developer web UI (dev server)
 - `src/site/` — the hosted no-code site (bookmarklet, in-browser PDF and p5 checkers), live at [ukadike.github.io/accessible-by-design-prototyping](https://ukadike.github.io/accessible-by-design-prototyping/)
 
 ## Tests (tests/)
