@@ -16,7 +16,10 @@ import { normalizeAxeViolations, type AxeResults } from '../core/issue-normalize
 import { categorizeAxeRule } from './categorize.js';
 import type { AuditIssue } from '../core/types.js';
 
-const RELAY_URL = 'https://api.allorigins.win/raw?url=';
+const ALL_ORIGINS_RAW_URL = 'https://api.allorigins.win/raw?url=';
+const CORS_DEV_PREFIX = 'https://proxy.cors.dev/';
+const DIRECT_TIMEOUT_MS = 8000;
+const RELAY_TIMEOUT_MS = 12000;
 const RESULT_TIMEOUT_MS = 30000;
 const MESSAGE_TYPE = 'a11y-lab-axe-results';
 
@@ -35,23 +38,64 @@ export function normalizeUrlInput(input: string): string {
   return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
 }
 
-async function fetchPageCopy(url: string): Promise<string> {
+async function fetchWithTimeout(input: string, timeoutMs: number): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const direct = await fetch(url, { mode: 'cors' });
-    if (direct.ok) return await direct.text();
-  } catch {
-    // Most sites block direct cross-origin reads — fall through to the relay.
+    return await fetch(input, { signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
   }
-
-  const relayed = await fetch(`${RELAY_URL}${encodeURIComponent(url)}`);
-  if (!relayed.ok) {
-    throw new Error(
-      'That page could not be fetched. The site may be blocking automated tools — try the "Audit this page" bookmark instead.',
-    );
-  }
-  return relayed.text();
 }
 
+function describeFetchFailure(error: unknown): string {
+  if (error instanceof DOMException && error.name === 'AbortError') return 'timed out';
+  return error instanceof Error ? error.message : 'network error';
+}
+
+async function fetchPageCopy(url: string): Promise<string> {
+  try {
+    const direct = await fetchWithTimeout(url, DIRECT_TIMEOUT_MS);
+    if (direct.ok) return await direct.text();
+  } catch {
+    // Most sites block direct cross-origin reads — try public relays below.
+  }
+
+  const relays = [
+    {
+      name: 'cors.dev',
+      url: `${CORS_DEV_PREFIX}${url}`,
+    },
+    {
+      name: 'AllOrigins',
+      url: `${ALL_ORIGINS_RAW_URL}${encodeURIComponent(url)}`,
+    },
+  ];
+  const failures: string[] = [];
+
+  for (const relay of relays) {
+    try {
+      const response = await fetchWithTimeout(relay.url, RELAY_TIMEOUT_MS);
+      if (!response.ok) {
+        failures.push(`${relay.name} returned HTTP ${response.status}`);
+        continue;
+      }
+      const html = await response.text();
+      if (!html.trim()) {
+        failures.push(`${relay.name} returned an empty response`);
+        continue;
+      }
+      return html;
+    } catch (error) {
+      failures.push(`${relay.name} ${describeFetchFailure(error)}`);
+    }
+  }
+
+  const details = failures.length ? ` Relay results: ${failures.join('; ')}.` : '';
+  throw new Error(
+    `Quick check couldn't fetch this page.${details} This is a fetch failure, not an accessibility result. Try again later or use the "Audit this page" bookmark.`,
+  );
+}
 function buildWrappedCopy(html: string, url: string): string {
   const baseTag = `<base href="${url.replace(/"/g, '&quot;')}">`;
   const withBase = /<head[^>]*>/i.test(html)
