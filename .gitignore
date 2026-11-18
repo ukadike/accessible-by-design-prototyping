@@ -8,4 +8,5 @@ reports/*.md
 reports/*.json
 !reports/sample-report.md
 !reports/sample-report.json
+audit-output/
 .env

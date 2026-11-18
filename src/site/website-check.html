@@ -37,10 +37,9 @@
     <main id="main">
       <h1>Website Check</h1>
       <p>
-        There are two ways to check a website, and it's worth knowing the honest difference: the
-        <strong>quick check</strong> below examines a fetched <em>copy</em> of your page, so it's fast but can
-        miss things — especially on sites built with heavy scripting. The <strong>bookmark method</strong> runs
-        on the real page in your browser and gives complete results.
+        Use the GitHub audit to check public websites in a fresh browser, or use the bookmarklet to check the page
+        already open in your browser. Automated results can miss content and usability problems, so manual review
+        still matters.
       </p>
       <p>
         Results are grouped by what they affect: page structure, images and media, links and buttons, forms,
@@ -48,23 +47,31 @@
       </p>
 
       <section class="tool-card" aria-labelledby="quick-heading">
-        <h2 id="quick-heading">Option 1: Quick check (fast, partial)</h2>
+        <h2 id="quick-heading">Option 1: Check a website through GitHub</h2>
         <p>
-          <label for="url-input">Web address to check</label>
-          <input type="url" id="url-input" inputmode="url" placeholder="https://example.com" />
+          GitHub Actions opens the public website in Chromium and runs the accessibility check on the rendered page.
+          It does not rely on a cross-site relay.
         </p>
+        <ol class="steps">
+          <li>Open the website audit workflow below.</li>
+          <li>Choose <strong>Run workflow</strong> and enter one or more public website addresses, one per line.</li>
+          <li>When the run finishes, download the Markdown and JSON report from its artifacts.</li>
+        </ol>
         <p>
-          <button type="button" id="url-check-button">Run quick check</button>
+          <a
+            class="action-link"
+            href="https://github.com/ukadike/accessible-by-design-prototyping/actions/workflows/audit-website.yml"
+            >Open the GitHub website audit</a
+          >
         </p>
         <p class="hint">
-          Heads-up: the address you type is sent through a public relay service to fetch a copy of the page.
-          Don't use this for private or password-protected pages — use the bookmark method for those.
+          Requires GitHub sign-in and permission to run workflows in this repository. The report contains audit findings,
+          not a copy of the website.
         </p>
-        <div id="url-results" class="results" role="region" aria-live="polite" aria-label="Website results"></div>
       </section>
 
       <section class="tool-card" aria-labelledby="bookmark-heading">
-        <h2 id="bookmark-heading">Option 2: The bookmark method (complete results)</h2>
+        <h2 id="bookmark-heading">Option 2: Check the page in your browser</h2>
         <ol class="steps">
           <li>
             Drag this button up into your browser's bookmarks bar:
@@ -77,13 +84,13 @@
             </p>
           </li>
           <li>Go to the website you want to check — for example, your own site.</li>
-          <li>Click the <strong>Audit this page</strong> bookmark. Your results appear right on the page.</li>
+          <li>Click the <strong>Audit this page</strong> bookmark. The check runs on the page you are viewing.</li>
         </ol>
         <details>
           <summary>If nothing happens when you click the bookmark</summary>
           <p>
-            Some websites have strict security settings that block outside tools, including this one. If your
-            results don't appear, that's usually why. Try the quick check above, or ask whoever builds your
+            Some websites have strict security settings that block bookmarklets. If your
+            results don't appear, try the GitHub website audit above, or ask whoever builds your
             website to run the
             <a
               href="https://github.com/ukadike/accessible-by-design-prototyping"

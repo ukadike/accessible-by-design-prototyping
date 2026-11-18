@@ -1,0 +1,48 @@
+name: Audit a website
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_urls:
+        description: Public HTTP or HTTPS website addresses, one per line (up to five)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies and build the audit tool
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Run website audits
+        env:
+          AUDIT_TARGETS: ${{ inputs.target_urls }}
+        run: node scripts/run-website-audits.mjs
+
+      - name: Upload Markdown and JSON reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-audit-reports-${{ github.run_id }}
+          path: audit-output/
+          if-no-files-found: error
+          retention-days: 7

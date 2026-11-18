@@ -1,0 +1,58 @@
+name: Verify website URL audits
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-website.yml'
+      - '.github/workflows/url-audit-smoke.yml'
+      - 'src/adapters/playwright-axe.ts'
+      - 'src/security/public-url.ts'
+      - 'scripts/run-website-audits.mjs'
+      - 'src/core/**'
+      - 'src/cli/**'
+      - 'package-lock.json'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  audit-known-sites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies and build the audit tool
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Audit IBM, Nike, and Eyebeam
+        env:
+          AUDIT_TARGETS: |
+            https://www.ibm.com/
+            https://www.nike.com/
+            https://eyebeam.org/
+        run: node scripts/run-website-audits.mjs
+
+      - name: Upload smoke audit reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: url-audit-smoke-reports-${{ github.run_id }}
+          path: audit-output/
+          if-no-files-found: error
+          retention-days: 1

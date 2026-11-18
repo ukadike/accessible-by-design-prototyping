@@ -197,6 +197,21 @@ h2 {
   cursor: grab;
 }
 
+.action-link {
+  display: inline-block;
+  border: 2px solid var(--text);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.action-link:focus-visible {
+  outline: 3px solid #0b5fff;
+  outline-offset: 3px;
+}
+
 .hint {
   font-size: 0.95rem;
   margin: 0.5rem 0 0;
