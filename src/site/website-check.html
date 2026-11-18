@@ -57,8 +57,7 @@
           <button type="button" id="url-check-button">Run quick check</button>
         </p>
         <p class="hint">
-          Heads-up: the address you type is sent through a public relay service to fetch a copy of the page.
-          Don't use this for private or password-protected pages — use the bookmark method for those.
+          Heads-up: if direct fetching is blocked, the address and public page content are sent through one of two public relay services; relay operators may see them. Don't use this for private or password-protected pages — use the bookmark method for those. If neither relay can fetch the page, this is a fetch failure, not an accessibility result.
         </p>
         <div id="url-results" class="results" role="region" aria-live="polite" aria-label="Website results"></div>
       </section>
